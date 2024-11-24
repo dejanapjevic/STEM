@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "P54wDqNRSQQ=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\PC\\Desktop\\STEMObrazovanje\\API\\API.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\PC\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.0\\microsoft.aspnetcore.openapi.9.0.0.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\scalar.aspnetcore\\1.2.43\\scalar.aspnetcore.1.2.43.nupkg.sha512"
+  ],
+  "logs": []
+}
