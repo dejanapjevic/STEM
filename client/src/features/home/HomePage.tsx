@@ -130,6 +130,12 @@
                         margin="normal" 
                     />
                     <TextField 
+                            label="E-mail" 
+                            type="email"
+                            fullWidth 
+                            margin="normal" 
+                        />
+                    <TextField 
                         label="Lozinka" 
                         type="password" 
                         fullWidth 
@@ -141,6 +147,7 @@
                         fullWidth 
                         margin="normal" 
                     />
+                     
                     <Button
                         variant="contained"
                         sx={{ 
