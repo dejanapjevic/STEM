@@ -1,6 +1,7 @@
     import { Button, TextField, Box, Typography } from "@mui/material";
     import '../../../styles/App.css';
     import { useState } from "react";
+import Header from "../../components/Header";
     
     export default function HomePage() {
         const [showLoginForm, setShowLoginForm] = useState(false);
@@ -25,6 +26,7 @@
     
         return (
             <>
+            <Header></Header> 
                 <img src="/background.jpg" alt="stem-image" className="stem-image" />
                 
                 {!showLoginForm && !showRegistrationForm && (

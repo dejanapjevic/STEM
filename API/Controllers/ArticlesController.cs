@@ -27,5 +27,16 @@ namespace API.Controllers
         public async Task<ActionResult<Article>> GetArticle(int id) {
             return await  _context.Articles.FindAsync(id);
         }
+        
+        [HttpGet("type/{type}")]
+        public async Task<ActionResult<List<Article>>> GetArticlesByType(string type) {
+
+        var filteredArticles = await _context.Articles
+        .Where(a => a.Category == type)  
+        .ToListAsync();
+        return Ok(filteredArticles);
     }
+
+
+}
 }

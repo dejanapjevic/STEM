@@ -5,8 +5,8 @@ import { NavLink } from 'react-router-dom';
 
 
 const midLinks = [
-  {title:'Početna', path:'/home'},
-  {title:'O nama', path:'/about'},
+  {title:'Odjavi se', path:'/home'},
+  {title:'Omiljeno', path:'/about'},
 ]
 
 const navStyles= {color:'inherit',

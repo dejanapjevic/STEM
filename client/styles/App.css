@@ -1,5 +1,5 @@
 
-body, html {
+body, html, #root, #article-list {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -12,9 +12,10 @@ body, html {
   padding: 0;
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  overflow: hidden;
+   display: flex;
+  flex-direction: column;
+  align-items: stretch;  
 }
 
 .stem-image {
@@ -41,3 +42,11 @@ body, html {
 .form-box {
   z-index: 2; 
 }
+.Catalog {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin:0; 
+}
+
