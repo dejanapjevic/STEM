@@ -1,6 +1,13 @@
+
 import '../../../styles/App.css';
 import Header from '../../components/Header';
+import { useAppDispatch, useAppSelector } from '../../store/store';
 export default function AboutPage() {
+
+  const {data} = useAppSelector(state => state.counter);
+
+  const dispatch = useAppDispatch();
+
     return(
         <>
         <Header></Header> 
@@ -11,8 +18,9 @@ export default function AboutPage() {
  inženjerstva i matematike.Kroz pažljivo selektovane članke, interaktivne testove znanja i angažovane forume za diskusiju, omogućavamo
  korisnicima da istraže i unaprijede svoje razumjevanje ključnih STEM oblasti.Naša misija je da inspirišemo i podstaknemo korisnike svih uzrasta
  da se upuste u svijet nauke i tehnologije, razvijajući kritičko mišljenje i rješavanje problema kroz edukativne aktivnosti.
-        </p>
-  </div>     
+ The data is {data}
+</p>
+  </div> 
   </>
         
     )

@@ -1,4 +1,5 @@
 using API.Data;
+using API.Middleware;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using Scalar.AspNetCore;
@@ -14,9 +15,13 @@ builder.Services.AddDbContext<STEMContext>(opt => {
 });
 
 builder.Services.AddCors();
+builder.Services.AddTransient<ExceptionMiddleware>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+
+app.UseMiddleware<ExceptionMiddleware>();
+
 if (app.Environment.IsDevelopment())
 {
     app.MapScalarApiReference();

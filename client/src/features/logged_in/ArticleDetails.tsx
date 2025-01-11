@@ -1,32 +1,43 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { Article } from "../../article";
-import { Typography } from "@mui/material";
+import { Link, useParams } from "react-router-dom";
+import { Button } from "@mui/material";
+import { useFetchArticleDetailsQuery } from "./CatalogApi";
+import HeaderLoggedIn from "./HeaderLoggedIn";
 
 export default function ArticleDetails() {
+    
+    const {id}=useParams();
+    const {data, isLoading} = useFetchArticleDetailsQuery(id? +id : 0);
 
-    const {id}=useParams<{id:string}>();
-    const[article,setArticle]=useState<Article | null >(null);
-    //kada prvi put load-ujemo kopomemntu, necemo je imati, moramo je dobiti od API-ja, zato ide null
-    const[loading, setLoading]=useState(true); //true kada je zavrsen loading komponente
-
-    useEffect(()=> {
-    axios.get(`http://localhost:5211/api/Articles/${id}`)
-    .then(response=>setArticle(response.data))
-    .catch(error => console.log(error))
-    .finally(()=>setLoading(false))
-    },[id]);
-
-    if(loading) return <h3>....Loading</h3>
-    if(!article) return <h3>Article not found...</h3>
+    const getRoute = (category: string) => {
+        switch (category) {
+          case "Tehnologija":
+            return "/technology";
+          case "Nauka":
+            return "/science";
+          case "Matematika":
+            return "/mathematics";
+          case "Inženjerstvo":
+            return "/engineering";
+          default:
+            return "/catalog";
+        }
+      };
         return (
             <>
-            <h1>{article.title} </h1>
-            <h2> {article.category} </h2>
+            <HeaderLoggedIn></HeaderLoggedIn>
+            {isLoading && !data && (
+              <div>Loading...</div>
+            )}
+            {data && (
+              <>
+            <h1>{data.title} </h1>
+            <h2> {data.category} </h2>
             <p>
-            {article.content}
+            {data.content}
             </p>
+            <Button component={Link} variant="outlined" to={getRoute(data.category)}> Vrati se nazad</Button>
+            </>
+            )}
             </>
           );
     

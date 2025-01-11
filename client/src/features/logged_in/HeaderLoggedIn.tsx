@@ -1,6 +1,7 @@
 
-import { AppBar, List, ListItem, Toolbar, Typography } from '@mui/material';
+import { AppBar, Box, LinearProgress, List, ListItem, Toolbar, Typography } from '@mui/material';
 import { NavLink } from 'react-router-dom';
+import { useAppSelector } from '../../store/store';
 
 
 
@@ -16,8 +17,11 @@ const navStyles= {color:'inherit',
     } }
 
 export default function Header() {
+
+  const {isLoading} = useAppSelector(state => state.ui);
+
   return (
-      <AppBar position="static" color='inherit' >
+      <AppBar position="static" color='inherit' sx={{borderTop:2, borderBottom:2, borderColor:'lightgrey'}} >
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1, color:'#181d38' }}>
             Dobrodošli u STEM istraživač
@@ -35,6 +39,11 @@ export default function Header() {
             ))}
           </List>
         </Toolbar>
+         {isLoading && (
+          <Box sx={{width:'100%'}}>
+            <LinearProgress color='secondary'/>
+          </Box>
+        )} 
       </AppBar>
 
   );

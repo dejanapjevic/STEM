@@ -1,25 +1,23 @@
-import { useEffect, useState } from "react";
 import ArticleList from "../../components/articles/ArticleList";
-import { Article } from "../../article";
 import "../../../styles/App.css";
 import HeaderLoggedIn from "./HeaderLoggedIn";
+import { useFetchCategoryArticlesQuery } from "./CatalogApi";
 
 export default function Catalog() {
-  const [articles, setArticles] = useState<Article[]>([]);
-  const type = "Inženjerstvo";
-  useEffect(() => {
-    fetch(`http://localhost:5211/api/Articles/type/${type}`)
-      .then((response) => response.json())
-      .then((data) => setArticles(data));
-  }, []);
 
-  if (articles.length === 0) {
-    return <h2>Loading...</h2>;
-  }
+   const type = "Inženjerstvo";
+   
+   const{data, isLoading}=useFetchCategoryArticlesQuery(type);
+   
 
   return (
     <>
-    <HeaderLoggedIn></HeaderLoggedIn> 
+    <HeaderLoggedIn></HeaderLoggedIn>
+   
+        {isLoading && !data && ( // Ako nema podataka i nije učitavanje
+        <div>Loading...</div>
+      )}
+{data && (
     <div
       style={{
         height: "100vh",
@@ -30,8 +28,10 @@ export default function Catalog() {
         flexDirection: "column",
       }}
     >
-      <ArticleList articles={articles} style={{}} />
+      <ArticleList articles={data} style={{}} />
     </div>
+)}
     </>
   );
 }
+

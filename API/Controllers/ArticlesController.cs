@@ -6,10 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
-     [ApiController]
-[Route("api/[controller]")]
-
-    public class ArticlesController : ControllerBase
+    public class ArticlesController : BaseApiController
     {
         private readonly STEMContext _context;
         public ArticlesController(STEMContext context)
@@ -25,7 +22,11 @@ namespace API.Controllers
         }
         [HttpGet("{id}")]
         public async Task<ActionResult<Article>> GetArticle(int id) {
-            return await  _context.Articles.FindAsync(id);
+            
+            var article = await  _context.Articles.FindAsync(id);
+            if(article==null) return NotFound();
+
+            return article;
         }
         
         [HttpGet("type/{type}")]

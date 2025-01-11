@@ -27,7 +27,7 @@ import Header from "../../components/Header";
         return (
             <>
             <Header></Header> 
-                <img src="/background.jpg" alt="stem-image" className="stem-image" />
+                <img src="/background.jpg" alt="stem-image" className="stem-image"/>
                 
                 {!showLoginForm && !showRegistrationForm && (
                 <div className="button-container">

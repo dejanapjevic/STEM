@@ -1,7 +1,9 @@
 import '../styles/App.css';
 import { useEffect } from "react";
-import Header from "./components/Header";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 function App() {
@@ -15,8 +17,9 @@ function App() {
   }, [location, navigate]); 
   return (
     <>
+    <ToastContainer position="bottom-right" hideProgressBar theme="colored"/>
     <div className="App" style={{overflowY: 'auto'}}>
-     {/* <Header></Header> */}
+     {/* { <HeaderLoggedIn></HeaderLoggedIn> } */}
      <Outlet/> 
     </div>
     </>
