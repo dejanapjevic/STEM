@@ -1,7 +1,7 @@
     import { Button, TextField, Box, Typography } from "@mui/material";
     import '../../../styles/App.css';
     import { useState } from "react";
-import Header from "../../components/Header";
+import Header from "../../catalog/Header";
     
     export default function HomePage() {
         const [showLoginForm, setShowLoginForm] = useState(false);

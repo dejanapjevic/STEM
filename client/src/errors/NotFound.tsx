@@ -1,5 +1,6 @@
 import { SearchOff } from "@mui/icons-material";
-import { Button, Link, Paper, Typography } from "@mui/material";
+import { Button, Paper, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
 
 
 export default function NotFound() {
