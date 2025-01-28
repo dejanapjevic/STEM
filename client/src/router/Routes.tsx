@@ -10,15 +10,20 @@ import Engineering from "../features/logged_in/Engineering";
 import ServerError from "../errors/ServerError";
 import NotFound from "../errors/NotFound";
 import ArticleDetails from "../catalog/ArticleDetails";
+import LoginForm from "../features/account/LoginForm";
+import RegisterForm from "../features/account/registerForm";
+import RequireAuth from "./RequireAuth";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     children: [
+      {element: <RequireAuth/>, children: [
+        { path: "catalog", element: <Catalog /> },
+      ]},
       { path: "home", element: <HomePage /> },
       { path: "about", element: <AboutPage /> },
-      { path: "catalog", element: <Catalog /> },
       { path: "science", element: <Science /> },
       { path: "technology", element: <Technology /> },
       { path: "engineering", element: <Engineering /> },
@@ -26,6 +31,8 @@ export const router = createBrowserRouter([
       { path: "catalog/:id", element: <ArticleDetails /> },
       { path: "server-error", element: <ServerError /> },
       { path: "not-found", element: <NotFound /> },
+      { path: "login", element: <LoginForm/> },
+      { path: "register", element: <RegisterForm/> },
       { path: "*", element: <Navigate replace to="/not-found" /> },
     ],
   },

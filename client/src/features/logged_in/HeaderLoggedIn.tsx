@@ -3,8 +3,6 @@ import { AppBar, Box, LinearProgress, List, ListItem, Toolbar, Typography } from
 import { NavLink } from 'react-router-dom';
 import { useAppSelector } from '../../store/store';
 
-
-
 const midLinks = [
   {title:'Odjavi se', path:'/home'},
   {title:'Omiljeno', path:'/about'},
@@ -21,7 +19,7 @@ export default function Header() {
   const {isLoading} = useAppSelector(state => state.ui);
 
   return (
-      <AppBar position="static" color='inherit' sx={{borderTop:2, borderBottom:2, borderColor:'lightgrey'}} >
+      <AppBar position="static" color='inherit' sx={{borderTop:2, borderBottom:2, borderColor:'purple'}} >
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1, color:'#181d38' }}>
             Dobrodošli u STEM istraživač

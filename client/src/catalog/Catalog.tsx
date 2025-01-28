@@ -3,7 +3,6 @@ import ArticleList from "./ArticleList";
 import { useFetchArticlesQuery, useFetchFiltersQuery } from "./CatalogApi";
 import { Grid2 } from "@mui/material";
 import Filters from "./Filters";
-import HeaderLoggedIn from "../features/logged_in/HeaderLoggedIn";
 import { useAppDispatch, useAppSelector } from "../store/store";
 import AppPagination from "../components/AppPagination";
 import { setPageNumber } from "./catalogSlice";
@@ -13,26 +12,13 @@ export default function Catalog() {
   const articleParams = useAppSelector((state) => state.catalog);
 
   const { data, isLoading } = useFetchArticlesQuery(articleParams);
-  const { data: filtersData, isLoading: filtersLoading } =
-    useFetchFiltersQuery();
+  const { data: filtersData, isLoading: filtersLoading } = useFetchFiltersQuery();
   const dispatch = useAppDispatch();
 
   if (isLoading || !data || !filtersData || filtersLoading)
     return <div>Loading....</div>;
-
   return (
-    /*    <div
-      style={{
-        height: "100vh",
-        width: "100vw",
-        boxSizing: "border-box",
-        padding: "2%",
-        display: "flex",
-        flexDirection: "column",
-      }} 
-    >*/
     <>
-      <HeaderLoggedIn></HeaderLoggedIn>
       <Grid2 container spacing={4} sx={{ p: 2 }}>
         <Grid2>
           <Filters categories={filtersData} />
@@ -50,6 +36,5 @@ export default function Catalog() {
         </Grid2>
       </Grid2>
     </>
-    //</div>
   );
 }

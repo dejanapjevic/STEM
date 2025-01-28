@@ -2,6 +2,7 @@ using API.Data;
 using API.Entities;
 using API.Extensions;
 using API.RequestHelpers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 #nullable enable
@@ -14,10 +15,12 @@ namespace API.Controllers
         {
             _context = context;
         }
-
+        
         [HttpGet]
         public async Task<ActionResult<List<Article>>> GetArticles([FromQuery]ArticleParams articleParams) {
             //trazi info u query string-u
+            
+          //  if(User.Identity?.IsAuthenticated==false)  return NoContent(); //nece poslati error
             var query= _context.Articles
             .Sort(articleParams.OrderBy)
             .Search(articleParams.SearchTerm)

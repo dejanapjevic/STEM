@@ -1,7 +1,8 @@
 using API.Data;
+using API.Entities;
 using API.Middleware;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.FileProviders;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +17,12 @@ builder.Services.AddDbContext<STEMContext>(opt => {
 
 builder.Services.AddCors();
 builder.Services.AddTransient<ExceptionMiddleware>();
+builder.Services.AddIdentityApiEndpoints<User>(opt=> {
+    opt.User.RequireUniqueEmail=true;
+})
+   .AddRoles<IdentityRole>() //omogućavajući dodeljivanje uloga ( Admin, Member).
+   .AddEntityFrameworkStores<STEMContext>(); //podrška za čuvanje korisničkih podataka u Entity Framework bazi 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -24,57 +31,29 @@ app.UseMiddleware<ExceptionMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {
-    app.MapScalarApiReference();
+  app.MapScalarApiReference();
     app.MapOpenApi();
 }
 
 app.UseHttpsRedirection();
 
  app.UseCors(opt=> {
-    opt.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000");
+    opt.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000").AllowCredentials();
 }); 
 
-app.UseAuthorization();
+app.UseAuthentication();
+
+app.UseAuthorization(); //sta je tom korisniku dozvoljeno da vidi
 
 app.MapControllers();
-
-/* var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast"); */
+// endpoint-i vezani za autentifikaciju korisnika sada imaju prefiks "api", što je dobra praksa kod REST API-ja.
+app.MapGroup("api").MapIdentityApi<User>(); 
 
 var scope = app.Services.CreateScope();
-var context = scope.ServiceProvider.GetRequiredService<STEMContext>();
+//var context = scope.ServiceProvider.GetRequiredService<STEMContext>();
 var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
-try
-{
-    context.Database.Migrate();
-    DbInitializer.Initialize(context);
-}
-catch (Exception ex)
-{
-    
-    logger.LogError(ex,"Problem during migartion");
-}
+
+DbInitializer.InitDb(app);
 
 app.Run();
 
-/* record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
- */

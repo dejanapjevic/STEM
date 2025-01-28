@@ -4,12 +4,13 @@ import { toast } from "react-toastify";
 import { router } from "../router/Routes";
 
 const customBaseQuery = fetchBaseQuery ({
-    baseUrl:'http://localhost:5211/api'
+    baseUrl:'http://localhost:5211/api',
+    credentials: "include" //BEZ OVOG MI NIJE RADIO LOGIN!!!!!! :)
 });
 
 type ErrorResponse = | string | {title:string} | {errors:string[] } ;
 
-const sleep = () =>  new Promise(resolve => setTimeout(resolve,1000));
+const sleep = () =>  new Promise(resolve => setTimeout(resolve,600));
 
 export const baseQueryWithErrorHandling = async (args:string | FetchArgs, api: BaseQueryApi, 
     extraOptions:object) => {

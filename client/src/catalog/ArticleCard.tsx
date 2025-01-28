@@ -22,6 +22,9 @@ export default function ArticleCard({ article }: Props) {
         borderColor: "#D3D3D3",
         borderRadius: "10px",
         boxShadow: "10",
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%',
       }}
     >
       <CardMedia
@@ -29,28 +32,30 @@ export default function ArticleCard({ article }: Props) {
         image={article.pictureUrl}
         title={article.category}
       />
-      <CardContent>
-        <Typography
+      <CardContent >
+        <Typography 
           gutterBottom
           variant="h5"
           component="div"
-          sx={{ fontWeight: "bold" }}
+          sx={{ fontWeight: "bold", marginBottom: '56%', height:'2%', fontSize:23 }}
         >
           {article.title}
         </Typography>
-        <Typography variant="body2" sx={{ color: "text.secondary" }}>
+        <Typography variant="body2" sx={{ color: "text.secondary", height:'2%', marginBottom:'-40%' }}>
           {article.description}
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="medium" sx={{ fontWeight: "bold" }}>
+      <CardActions sx={{marginTop: 'auto'}}>
+        <Button size="medium" color="secondary" sx={{ fontWeight: "bold" }}>
           Dodaj u omiljeno
         </Button>
         <Button
           component={Link}
           to={`/catalog/${article.id}`}
           size="medium"
-          sx={{ fontWeight: "bold" }}
+          color="secondary"
+          sx={{ fontWeight: "bold",  textDecoration: "none", "&:hover": {
+              textDecoration: "underline", color:'purple', fontWeight:'bold'}} }
         >
           Saznaj više
         </Button>

@@ -5,16 +5,18 @@ import { catalogApi } from "../catalog/CatalogApi";
 import { uiSlice } from "../uiSlice";
 import { errorApi } from "../api/ErrorApi";
 import { catalogSlice } from "../catalog/catalogSlice";
+import { accountApi } from "../features/account/accountApi";
 
 export const store = configureStore({
   reducer: {
     [catalogApi.reducerPath]: catalogApi.reducer,
     [errorApi.reducerPath]: errorApi.reducer,
+    [accountApi.reducerPath] :accountApi.reducer,
     ui: uiSlice.reducer,
     catalog: catalogSlice.reducer
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(catalogApi.middleware, errorApi.middleware),
+    getDefaultMiddleware().concat(catalogApi.middleware, errorApi.middleware, accountApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
