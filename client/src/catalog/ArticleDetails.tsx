@@ -1,9 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { Button } from "@mui/material";
-
-import HeaderLoggedIn from "../features/logged_in/HeaderLoggedIn";
 import { useFetchArticleDetailsQuery } from "./CatalogApi";
-
 
 export default function ArticleDetails() {
   const { id } = useParams();
@@ -25,7 +22,6 @@ export default function ArticleDetails() {
   };
   return (
     <>
-      <HeaderLoggedIn></HeaderLoggedIn>
       {isLoading && !data && <div>Loading...</div>}
       {data && (
         <>

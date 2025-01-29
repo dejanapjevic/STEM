@@ -1,23 +1,27 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema, RegisterSchema } from "../../schemas/registerSchema";
-import { useRegisterMutation } from "./accountApi"
+import { useRegisterMutation, useSendWelcomeEmailMutation } from "./accountApi"
 import { useForm } from "react-hook-form";
-import { LockOutlined } from "@mui/icons-material";
+import { HowToReg} from "@mui/icons-material";
 import { Container, Paper, Box, Typography, TextField, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 
 export default function registerForm() {
 
     const[registerUser]=useRegisterMutation();
+    const [sendEmail] = useSendWelcomeEmailMutation();
+    
     const {register, handleSubmit,setError, formState:{errors, isValid, isLoading}} = useForm<RegisterSchema> ({
         mode:'onTouched',
         resolver:zodResolver(registerSchema)
     })
-
     const onSubmit = async (data:RegisterSchema) => {
 
         try {
-            await registerUser(data).unwrap();
+           await registerUser(data).unwrap();
+           await sendEmail({ receptor: data.email });
+           console.log('Email je poslat na adresu:', data.email);
+           
         } catch (error) {
            const apiError=error as{message:string};
            if(apiError.message && typeof apiError.message==='string') {
@@ -33,25 +37,26 @@ export default function registerForm() {
         }
     }
   return (
-    <Container component={Paper} maxWidth='sm' sx={{borderRadius:3, marginTop:12}}>
+    <Container component={Paper} maxWidth='sm' sx={{borderRadius:3, marginTop:12,  borderColor: '#5f4995', border:2}}>
     <Box display='flex' flexDirection='column' alignItems='center' marginTop='8'>
-        <LockOutlined sx={{mt:3, color:'secondary.main', fontSize:40}}/>
+        {/* <LockOutlined sx={{mt:3, color:'secondary.main', fontSize:40}}/> */}
+        <HowToReg sx={{mt:3, color:'secondary.main', fontSize:50}}/>
         <Typography variant="h4">
             Registruj se
         </Typography>
 
         <Box component='form' onSubmit={handleSubmit(onSubmit)} width='100%' display='flex' flexDirection='column' gap={3} marginY={3}>
-        <TextField fullWidth autoFocus label='Email'  autoComplete="email" 
+        <TextField fullWidth color="secondary" autoFocus label='Email'  autoComplete="email" 
         {...register('email')}
         error={!!errors.email}
         helperText={errors.email?.message}
         />
-        <TextField fullWidth  label='Lozinka' type="password"  autoComplete="current-password"
+        <TextField fullWidth color="secondary" label='Lozinka' type="password"  autoComplete="current-password"
         {...register('password')}
         error={!!errors.password}
         helperText={errors.password?.message}
         />
-        <Button variant="contained" type="submit" disabled={isLoading || !isValid}>Registruj se</Button>
+        <Button variant="contained" type="submit" disabled={isLoading || !isValid} color="secondary">Registruj se</Button>
     
         <Typography sx={{textAlign:'center'}}>Već imate nalog?
        <Typography sx={{ml:2}} component={Link} to='/login' color="primary" >Prijavi se</Typography>

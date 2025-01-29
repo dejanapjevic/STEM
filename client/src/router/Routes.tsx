@@ -13,6 +13,7 @@ import ArticleDetails from "../catalog/ArticleDetails";
 import LoginForm from "../features/account/LoginForm";
 import RegisterForm from "../features/account/registerForm";
 import RequireAuth from "./RequireAuth";
+import WelcomePage from "../features/welcome/WelcomePage";
 
 export const router = createBrowserRouter([
   {
@@ -21,6 +22,7 @@ export const router = createBrowserRouter([
     children: [
       {element: <RequireAuth/>, children: [
         { path: "catalog", element: <Catalog /> },
+        { path: "catalog/:id", element: <ArticleDetails /> },
       ]},
       { path: "home", element: <HomePage /> },
       { path: "about", element: <AboutPage /> },
@@ -28,11 +30,11 @@ export const router = createBrowserRouter([
       { path: "technology", element: <Technology /> },
       { path: "engineering", element: <Engineering /> },
       { path: "mathematics", element: <Mathematics /> },
-      { path: "catalog/:id", element: <ArticleDetails /> },
       { path: "server-error", element: <ServerError /> },
       { path: "not-found", element: <NotFound /> },
       { path: "login", element: <LoginForm/> },
       { path: "register", element: <RegisterForm/> },
+      { path: "welcome", element: <WelcomePage/> },
       { path: "*", element: <Navigate replace to="/not-found" /> },
     ],
   },

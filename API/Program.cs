@@ -1,6 +1,7 @@
 using API.Data;
 using API.Entities;
 using API.Middleware;
+using API.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
@@ -23,6 +24,7 @@ builder.Services.AddIdentityApiEndpoints<User>(opt=> {
    .AddRoles<IdentityRole>() //omogućavajući dodeljivanje uloga ( Admin, Member).
    .AddEntityFrameworkStores<STEMContext>(); //podrška za čuvanje korisničkih podataka u Entity Framework bazi 
 
+builder.Services.AddTransient<IEmailService, EmailService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

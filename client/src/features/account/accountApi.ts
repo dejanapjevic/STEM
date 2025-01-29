@@ -30,6 +30,7 @@ export const accountApi = createApi( {
         }
         
         }),
+       
         // mutacija je operacija koja mijenja podatke na serveru, za razliku od query-ja, koji samo dohvaća podatke.
         register : builder.mutation<void, object> ({
             query:(creds) => {
@@ -57,6 +58,21 @@ export const accountApi = createApi( {
             providesTags:['UserInfo']
         }),
 
+        sendWelcomeEmail: builder.mutation<void, { receptor: string }>({
+            query: (emailData) => {
+                if (!emailData.receptor || emailData.receptor.trim() === "") {
+                  throw new Error('Email address is required');
+                }
+            
+                return {
+                  url: 'Emails',
+                  method: 'POST',
+                  body: { receptor: emailData.receptor },
+                };
+            },
+          }),
+
+
         logout: builder.mutation({
             query:() => ({
                 url:'account/logout',
@@ -73,4 +89,5 @@ export const accountApi = createApi( {
         //Ova mutacija postaje dostupna kroz automatski generisanu funkciju u RTK Query API-ju.
     })
 });
-export const {useLoginMutation, useRegisterMutation, useLogoutMutation, useUserInfoQuery, useLazyUserInfoQuery} = accountApi;
+export const {useLoginMutation, useRegisterMutation, useLogoutMutation, useUserInfoQuery,
+     useLazyUserInfoQuery, useSendWelcomeEmailMutation} = accountApi;
