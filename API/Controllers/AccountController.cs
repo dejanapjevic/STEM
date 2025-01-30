@@ -16,7 +16,8 @@ namespace API.Controllers
 
         public async Task<ActionResult> RegisterUser(RegisterDTO registerDto) {
 // DTO (Data Transfer Object) je jednostavan objekat koji sadrži samo podatke, bez logike.
-            var user = new User {UserName=registerDto.Email, Email=registerDto.Email};
+            var user = new User {UserName=registerDto.Email, Email=registerDto.Email, 
+            FirstName=registerDto.FirstName, LastName=registerDto.LastName, Gender=registerDto.Gender, DateOfBirth=registerDto.DateOfBirth};
 //va metoda će pokušati da kreira korisnika i vratiti rezultat, koji može biti uspešan ili neuspešan. 
 //Taj rezultat se čuva u promenljivoj result.
             var result = await signInMenager.UserManager.CreateAsync(user, registerDto.Password);
@@ -51,6 +52,10 @@ U suprotnom, vraća odgovarajući statusni kod (kao što je NoContent ili Unauth
             return Ok(new {
                 user.Email,
                 user.UserName,
+                user.FirstName,
+                user.LastName,
+                user.Gender,
+                user.DateOfBirth,
                 Roles = roles
             });
         }

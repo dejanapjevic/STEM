@@ -1,4 +1,4 @@
-import { LockOutlined, ArrowBackIos} from "@mui/icons-material";
+import { LockOutlined} from "@mui/icons-material";
 import { Box, Button, Container, Paper, TextField, Typography } from "@mui/material";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {useForm} from "react-hook-form";
@@ -45,10 +45,10 @@ export default function LoginForm() {
         error={!!errors.password}
         helperText={errors.password?.message}
         />
-        <Button variant="contained" type="submit" disabled={isLoading} color="secondary">Prijavi se</Button>
+        <Button variant="contained" type="submit" disabled={isLoading} sx={{backgroundColor:'#9C27B0'}}>Prijavi se</Button>
     
         <Typography sx={{textAlign:'center'}}>Nemate nalog?
-       <Typography sx={{ml:2}} component={Link} to='/register' color="primary" >Registruj se</Typography>
+       <Typography sx={{ml:2}} component={Link} to='/register' color="secondary" >Registruj se</Typography>
        </Typography>
        </Box>
     </Box>

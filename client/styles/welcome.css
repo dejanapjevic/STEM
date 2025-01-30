@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes zoom-and-move {
+  0% {
+    transform: scale(0.5) translateZ(-500px) translateY(20px);
+    opacity: 0;
+    left: 0;
+  }
+  50% {
+    transform: scale(1) translateZ(-200px) translateY(50px);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1) translateZ(0) translateY(0);
+    opacity: 1;
+    left: 50%;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Omotaj div u perspektivu */
+.container {
+  perspective: 1000px;
+}
+
+/* Animacija za crni div */
+.animate-zoom-and-move {
+  animation: zoom-and-move 3s ease-out forwards;
+  transform-style: preserve-3d; /* Očuvanje 3D efekta */
+}
+
+/* Animacija za žuti div */
+.animate-fade-in {
+  animation: fade-in 3s ease-out forwards 1s;
+}
+@keyframes zoom-and-move {
+  0% {
+    transform: scale(0.3) translateZ(-1000px); /* Početno stanje - manji i izdaleka */
+    opacity: 0; /* Početna nevidljivost */
+  }
+  50% {
+    transform: scale(1) translateZ(-500px); /* Povećanje i delimično približavanje */
+    opacity: 0.7; /* Polovična vidljivost */
+  }
+  100% {
+    transform: scale(1) translateZ(0); /* Normalna veličina i na normalnoj udaljenosti */
+    opacity: 1; /* Potpuna vidljivost */
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Omotaj div u perspektivu */
+.container {
+  perspective: 1000px;
+}
+
+/* Animacija za crni div */
+.animate-zoom-and-move {
+  animation: zoom-and-move 3s ease-out forwards;
+  transform-style: preserve-3d; /* Očuvanje 3D efekta */
+}
+
+/* Animacija za žuti div */
+.animate-fade-in {
+  animation: fade-in 3s ease-out forwards 1s;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    scale: 0.5;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+.ani {
+  animation: appear linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover 40%;
+}

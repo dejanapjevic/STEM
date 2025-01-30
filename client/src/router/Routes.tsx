@@ -24,7 +24,7 @@ export const router = createBrowserRouter([
         { path: "catalog", element: <Catalog /> },
         { path: "catalog/:id", element: <ArticleDetails /> },
       ]},
-      { path: "home", element: <HomePage /> },
+      { path: "home", element: <WelcomePage /> },
       { path: "about", element: <AboutPage /> },
       { path: "science", element: <Science /> },
       { path: "technology", element: <Technology /> },

@@ -1,6 +1,6 @@
 
 import { AppBar, Box, Button, LinearProgress, List, ListItem, Toolbar, Typography } from '@mui/material';
-import { Navigate, NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useUserInfoQuery } from '../features/account/accountApi';
 import UserMenu from '../features/logged_in/UserMenu';
 import { useAppSelector } from '../store/store';
@@ -12,13 +12,6 @@ const midLinks = [
   {title:'Registruj se', path:'/register'}
 ]
 
-const navStyles= {color:'inherit',
-   typography:'h6', 
-   '&:hover' :{color: 'grey.500'},
-    '&.active': {color:'primary.main'
-    } }
-
-
 export default function Header() {
    const {isLoading} = useAppSelector(state => state.ui);
   const {data:user} = useUserInfoQuery();
@@ -29,7 +22,7 @@ export default function Header() {
     
       <AppBar position="static" color='inherit'  >
         <Toolbar sx={{border:2, borderColor:'#5f4995'}}>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: '#5f4995', textTransform: 'uppercase', fontWeight:'bold' }} >
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: '#9C27B0', textTransform: 'uppercase', fontWeight:'bold' }} >
             Dobrodošli u STEM istraživač
           </Typography>
           {user ? ( 
@@ -43,19 +36,20 @@ export default function Header() {
             )}
 
 
-            <List sx={{display:'flex', fontSize:'1.3rem' }}>
+          {/*   <List sx={{display:'flex', fontSize:'1.3rem' }}>
             {midLinks.map(({title, path})=>(
               <ListItem
               component={NavLink}
               to={path}
               key={path}
-              sx={{navStyles, width:'auto'}}
+              sx={{ width:'auto', color: '#9C27B0', '&:hover': { color: '#b09cb5' },  // Ovo će promeniti boju na crvenu prilikom hovera
+        '&.active': { color: '#5f4995' },}}
               >
                 {title}
               </ListItem>
             ))}
 
-          </List>
+          </List> */}
           </>
           )}
         </Toolbar>

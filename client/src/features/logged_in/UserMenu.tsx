@@ -1,7 +1,7 @@
 import { Button, Divider, ListItemIcon, ListItemText, Menu, MenuItem } from "@mui/material";
 import {useState} from "react";
 import { User } from "../../models/user";
-import { Favorite, Logout, Person } from "@mui/icons-material";
+import { AccountCircle, Favorite, Logout, Person } from "@mui/icons-material";
 import { useLogoutMutation } from "../account/accountApi";
 
 type Props = {
@@ -22,17 +22,27 @@ export default function UserMenu({user}:Props) {
       <div>
         <Button 
           onClick={handleClick}
-          style={{ color: '#b533ff', fontWeight:'bold' }}
+          style={{fontWeight:'bold' }}
           size="large"
-          sx={{fontSize:'1.1rem'}}
+          sx={{fontSize:'1.1rem', display:'flex', gap:2, color: '#8631a1'}}
+
         >
-         {user.email}
+          <AccountCircle sx={{fontSize:40}}/>
+         {user.firstName + ' ' +  user.lastName}
         </Button>
-        <Menu
+        <Menu 
           id="basic-menu"
           anchorEl={anchorEl}
           open={open}
           onClose={handleClose}
+          anchorOrigin={{
+            vertical: 'bottom',  // Meni se otvara ispod dugmeta
+            horizontal: 'center',  // Poravnanje na sredinu
+          }}
+          transformOrigin={{
+            vertical: 'top',  // Meni se transformiše sa gornje strane
+            horizontal: 'center',  // Poravnanje na sredinu
+          }}
           MenuListProps={{
             'aria-labelledby': 'basic-button',
           }}

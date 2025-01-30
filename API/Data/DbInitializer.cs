@@ -33,6 +33,10 @@ namespace API.Data
                 var user = new User {
                     UserName="dejana@test.com",
                     Email="dejana@test.com",
+                    FirstName="Dejana",
+                    LastName="Pjevic",
+                    Gender="Z",
+                    DateOfBirth = new DateTime(2001, 11, 12)
                 };
 
                 await userManager.CreateAsync(user,"Pa$$w0rd");
@@ -41,6 +45,10 @@ namespace API.Data
                  var admin = new User {
                     UserName="admin@test.com",
                     Email="admin@test.com",
+                     FirstName="Admin",
+                    LastName="Admin",
+                    Gender="M",
+                    DateOfBirth = new DateTime(2001, 11, 12)
                 };
 
                 await userManager.CreateAsync(admin,"Pa$$w0rd");
