@@ -39,7 +39,7 @@ export const baseQueryWithErrorHandling = async (args:string | FetchArgs, api: B
                     break;
                 case 401:
                     if ( typeof responseData === 'object' && 'title'  in responseData) {
-                        toast.error(responseData.title); // Sada je pristup validan
+                        toast.error(responseData.title + "!Ne postoji registrovan korisnik sa tim podacima"); // Sada je pristup validan
                     }
                     break;
                 case 404:

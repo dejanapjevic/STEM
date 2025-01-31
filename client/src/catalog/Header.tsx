@@ -1,16 +1,16 @@
 
-import { AppBar, Box, Button, LinearProgress, List, ListItem, Toolbar, Typography } from '@mui/material';
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { AppBar, Box, Button, LinearProgress,  Toolbar, Typography } from '@mui/material';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useUserInfoQuery } from '../features/account/accountApi';
 import UserMenu from '../features/logged_in/UserMenu';
 import { useAppSelector } from '../store/store';
 import { ArrowBackIos } from '@mui/icons-material';
 
-
+/* 
 const midLinks = [
   {title:'Prijavi se', path:'/login'},
   {title:'Registruj se', path:'/register'}
-]
+] */
 
 export default function Header() {
    const {isLoading} = useAppSelector(state => state.ui);

@@ -24,7 +24,7 @@ export default function UserMenu({user}:Props) {
           onClick={handleClick}
           style={{fontWeight:'bold' }}
           size="large"
-          sx={{fontSize:'1.1rem', display:'flex', gap:2, color: '#8631a1'}}
+          sx={{fontSize:'1.1rem', display:'flex', gap:2, color: 'black'}}
 
         >
           <AccountCircle sx={{fontSize:40}}/>

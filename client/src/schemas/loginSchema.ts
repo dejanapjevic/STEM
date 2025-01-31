@@ -1,7 +1,7 @@
 import {z} from 'zod';
 
 export const loginSchema = z.object( {
-    email:z.string().email(),
+    email:z.string().email({ message: 'E-mail adresa nije validna' }),
     password:z.string().min(6, {
         message:'Lozinka mora imati barem 6 karaktera'
     })

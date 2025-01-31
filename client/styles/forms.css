@@ -1,0 +1,33 @@
+/* loginForm.css */
+@keyframes slideInFromCenter {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.5); /* Početak u centru, manja veličina */
+    }
+    100% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1); /* Kraj u centru, normalna veličina */
+    }
+  }
+  
+  .container-form-login {
+    animation: slideInFromCenter 1s ease-out;
+    position: fixed; /* Koristi fixed da ostane u centru ekrana */
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%; /* Možeš dodati širinu, da odgovara tvojoj strukturi */
+    max-width: 500px; /* Maksimalna širina (ako je potrebno) */
+  }
+  .container-form-register {
+    animation: slideInFromCenter 1s ease-out;
+    position: fixed;
+    top: 50%;  /* Podesite top da bude u centru ekrana */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 500px;
+    height: 80vh; /* Podesite visinu na 80% visine ekrana */
+    overflow-y: auto; /* Omogućite skrolovanje unutar forme */
+  }
+  

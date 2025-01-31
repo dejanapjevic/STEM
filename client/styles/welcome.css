@@ -1,30 +1,36 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+* {
+  scroll-behavior: smooth;
+  font-family: "Playfair Display", serif;
+}
 
-@keyframes zoom-and-move {
+@keyframes slide-in-from-right {
   0% {
-    transform: scale(0.5) translateZ(-500px) translateY(20px);
-    opacity: 0;
-    left: 0;
-  }
-  50% {
-    transform: scale(1) translateZ(-200px) translateY(50px);
-    opacity: 0.7;
+    transform: translateX(
+      100vw
+    ); /* Početno stanje - potpuno van ekrana desno */
+    opacity: 0; /* Nevidljiv */
   }
   100% {
-    transform: scale(1) translateZ(0) translateY(0);
-    opacity: 1;
-    left: 50%;
+    transform: translateX(0); /* Dolazi na normalnu poziciju */
+    opacity: 1; /* Postaje potpuno vidljiv */
   }
 }
 
-@keyframes fade-in {
+/* Animacija za ljubicasti div */
+.animate-slide-in {
+  animation: slide-in-from-right 2s ease-out forwards;
+}
+
+@keyframes slide-in-from-left {
   0% {
-    opacity: 0;
+    transform: translateX(
+      -100vw
+    ); /* Početno stanje - potpuno van ekrana sa leve strane */
+    opacity: 0; /* Nevidljiv */
   }
   100% {
-    opacity: 1;
+    transform: translateX(0); /* Dolazi na normalnu poziciju */
+    opacity: 1; /* Postaje potpuno vidljiv */
   }
 }
 
@@ -33,54 +39,15 @@
   perspective: 1000px;
 }
 
-/* Animacija za crni div */
-.animate-zoom-and-move {
-  animation: zoom-and-move 3s ease-out forwards;
+/* Animacija za ljubicasti div */
+.animate-slide-in-from-right {
+  animation: slide-in-from-right 2s ease-out forwards;
   transform-style: preserve-3d; /* Očuvanje 3D efekta */
 }
 
-/* Animacija za žuti div */
-.animate-fade-in {
-  animation: fade-in 3s ease-out forwards 1s;
-}
-@keyframes zoom-and-move {
-  0% {
-    transform: scale(0.3) translateZ(-1000px); /* Početno stanje - manji i izdaleka */
-    opacity: 0; /* Početna nevidljivost */
-  }
-  50% {
-    transform: scale(1) translateZ(-500px); /* Povećanje i delimično približavanje */
-    opacity: 0.7; /* Polovična vidljivost */
-  }
-  100% {
-    transform: scale(1) translateZ(0); /* Normalna veličina i na normalnoj udaljenosti */
-    opacity: 1; /* Potpuna vidljivost */
-  }
-}
-
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-/* Omotaj div u perspektivu */
-.container {
-  perspective: 1000px;
-}
-
-/* Animacija za crni div */
-.animate-zoom-and-move {
-  animation: zoom-and-move 3s ease-out forwards;
-  transform-style: preserve-3d; /* Očuvanje 3D efekta */
-}
-
-/* Animacija za žuti div */
-.animate-fade-in {
-  animation: fade-in 3s ease-out forwards 1s;
+/* Animacija za bijeli div */
+.animate-slide-in-from-left {
+  animation: slide-in-from-left 2s ease-out forwards;
 }
 
 @keyframes appear {
@@ -95,7 +62,145 @@
 }
 
 .ani {
-  animation: appear linear;
+  animation: appear 1.5s ease-out;
   animation-timeline: view();
-  animation-range: entry 0% cover 40%;
+  animation-range: entry 0% cover 35%;
 }
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: "white";
+  border-bottom: 4px solid #9f7aea;
+}
+
+.bg-purple {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  background-color: #9f7aea;
+  animation: slide-in-from-right 1.5s ease-out forwards;
+  transform-style: preserve-3d;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.white-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  opacity: 0;
+  animation: slide-in-from-left 1.5s ease-out forwards;
+  z-index: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.text-container {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1.text-main {
+  font-family: "Poppins", sans-serif;
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+h2.text-sub {
+  font-family: "Playfair Display", serif;
+  font-size: 1.8rem;
+  text-align: center;
+  animation: fade-in 2.2s ease-out forwards;
+}
+
+.bottom-first-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: white;
+  padding-left: 80px;
+  color:'#9F7AEA'
+}
+
+.icon-img {
+  width: 33.33%;
+  height: auto;
+  margin-right: 2rem;
+}
+
+.text-bottom {
+  width: 50%;
+  font-size: 22px;
+  margin-left: 80px;
+}
+#item {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  position: fixed;
+  top: 1%;
+  left:1%;
+  width: 50%;
+  z-index: 1000;
+  animation: fade-in 1.5s ease-out forwards;
+}
+
+#item li {
+  display: inline;
+  background-color: white;
+  border: 2px solid #9f7aea;
+  border-radius: 30px;
+  text-align: center;
+  width: 200px;
+}
+
+#item a {
+  text-decoration: none;
+  color: #9f7aea;
+  font-weight: bold;
+  padding: 10px ;
+  display: block;
+}
+#item a:hover {
+  border: 4px solid;
+  border-radius: 30px;
+}
+.stem-img {
+  width: 60%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  margin-left: 250px;
+}
+.bottom-second-section {
+  position: relative;
+  width: 80%;
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+}
+

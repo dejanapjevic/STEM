@@ -7,5 +7,8 @@ export default defineConfig({
   plugins: [react()], 
   server: {
     port: 3000  // Postavite port na 3000
-  }
+  },
+  css: {
+    postcss: './postcss.config.js',
+  },
 })

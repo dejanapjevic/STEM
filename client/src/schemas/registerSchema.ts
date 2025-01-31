@@ -5,7 +5,7 @@ const passwordValidation = new RegExp (
 )
 
 export const registerSchema = z.object( {
-    email:z.string().email(),
+    email:z.string().email({ message: 'Molimo unesite validnu email adresu.' }), 
     password:z.string().regex(passwordValidation, {
         message:'Lozinka mora sadržati 1 mali karakter, 1 veliki karakter, 1 broj, 1 specijalni karakter i biti dužine 6-10'
     }),

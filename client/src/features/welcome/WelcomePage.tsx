@@ -1,34 +1,45 @@
-
 import "../../../styles/welcome.css";
+
 import { Button } from "@mui/material";
 import { NavLink } from "react-router-dom";
 
 export default function WelcomePage() {
   return (
     <div>
-      <div className="relative w-full h-screen border-b-4 border-purple-400">
-        {/* ljubicasti div sa animacijom, umesto boje pozadine koristi sliku */}
-        <div  className="absolute w-1/2 h-full bg-purple-400 animate-zoom-and-move z-10 flex flex-col justify-center items-center gap-4 left-1/2 transform -translate-x-1/2  ">
+      <ul id="item">
+        <li>
+          <a href="#home">Početna</a>
+        </li>
+        <li>
+          <a href="#about">O nama</a>
+        </li>
+        <li>
+          <a href="#future">Budućnost STEM-a</a>
+        </li>
+      </ul>
+      <div
+        className="container"
+        style={{ backgroundColor: "#9F7AEA" }}
+        id="home"
+      >
+        {/* Ljubičasti div sa animacijom */}
+        <div className="bg-purple">
           <Button
+            component={NavLink} // Postavljanje tipa na NavLink
+            to="/login"
             variant="outlined"
-            component={NavLink}
-            to={"/login"}
-            key={"/login"}
             sx={{
-              borderRadius: 15,
-              borderColor: "white", // Beli okvir
-              color: "white", // Beli tekst
-              fontWeight: "bold", // Boldovani tekst
-              width: "80%", // Veća širina
-              height: "50px", // Povećanje visine
-              padding: "10px", // Dodatno povećanje unutar dugmadi
-              ":active": {
-                borderWidth: "3px", // Deblji okvir kada je dugme aktivno
-                backgroundColor: "transparent", // Zadrži proziran pozadinski kolor
+              borderRadius: "25px",
+              border: "3px solid white",
+              color: "white",
+              fontWeight: "bold",
+              width: "80%",
+              "&:hover": {
+                border: "6px solid white",
+                color: "white",
               },
-              ":hover": {
-                border: 4,
-                borderColor: "white",
+              "&:active": {
+                border: "6px solid white",
                 color: "white",
               },
             }}
@@ -38,23 +49,19 @@ export default function WelcomePage() {
           <Button
             component={NavLink}
             to={"/register"}
-            key={"/register"}
             variant="outlined"
             sx={{
-              borderRadius: 15,
-              borderColor: "white",
+              borderRadius: "25px",
+              border: "3px solid white",
               color: "white",
               fontWeight: "bold",
               width: "80%",
-              height: "50px",
-              padding: "10px",
-              ":active": {
-                borderWidth: "3px",
-                backgroundColor: "transparent",
+              "&:hover": {
+                border: "6px solid white",
+                color: "white",
               },
-              ":hover": {
-                border: 4,
-                borderColor: "white",
+              "&:active": {
+                border: "6px solid white",
                 color: "white",
               },
             }}
@@ -63,41 +70,65 @@ export default function WelcomePage() {
           </Button>
         </div>
 
-        {/* bijeli div sa paddingom i pomerajem ispod crnog diva */}
-        <div className="absolute w-full h-full bg-white opacity-0 animate-fade-in z-0 flex justify-start items-start pt-20 pb-12">
-          {/* Levo poravnati div, sa vertikalnim centriranjem */}
-          <div className="text-black w-1/2 h-full flex flex-col justify-center items-center">
-            <h1 className="text-5xl md:text-6xl font-bold mb-3 text-center">
-              Inovacije počinju sa vama
-            </h1>
-            <h2 className="text-3xl md:text-3xl font-medium text-center">
-              istražujte STEM i stvorite budućnost
+        {/* Bijeli div sa fade-in animacijom */}
+        <div className="white-bg">
+          <div className="text-container">
+            <h1 className="text-main">Inovacije počinju sa vama</h1>
+            <h2 className="text-sub">
+              Izgradite budućnost kroz STEM edukaciju
             </h2>
           </div>
         </div>
       </div>
 
-      {/* Divovi HELLO i HI sa istim stilovima */}
-      <div className="relative w-full h-screen flex justify-start items-center bg-white ani border-b-purple-400 border-b-4">
-  <img src="icon.avif" className="w-1/3 h-auto mr-8 ml-12" />
-  <div className="flex flex-col w-1/2">
-    <h1 className="text-xl md:text-xl font-bold">
-      Otkrij svijet nauke, tehnologije, inženjeringa i matematike.
-    </h1>
-    <h1 className="text-xl md:text-xl font-bold">
-      Nauči kako da koristiš svoju radoznalost i kreativnost za rešavanje problema, stvaranje inovacija i oblikovanje budućnosti. Zajedno možemo istražiti nepoznato, testirati granice i inspirišemo sledeću generaciju lidera u STEM oblasti.
-    </h1>
-  </div>
-</div>
+      {/* Div sa ikonom i tekstom */}
+      <div id="about" className="bottom-first-section ">
+        <img src="stem.jpg" className="icon-img ani" alt="Stem image" />
+        <div className="text-bottom ">
+          <h1
+            className="ani "
+            style={{ fontSize: "22px", marginBottom: "80px" }}
+          >
+            Aplikacija za STEM učenje predstavlja inovativnu platformu koja
+            omogućava korisnicima pristup bogatom naučnom sadržaju iz oblasti
+            nauke, tehnologije, inženjeringa i matematike. Kroz interaktivne
+            testove validacije, korisnici mogu precizno odrediti koja oblast
+            najbolje odgovara njihovim interesovanjima i sposobnostima.
+          </h1>
+          <h1 className="ani " style={{ fontSize: "22px" }}>
+            Platforma nudi besplatnu registraciju, omogućavajući svim
+            korisnicima nesmetan pristup različitim resursima i edukativnim
+            materijalima. Učesnici takođe imaju priliku da učestvuju u forum
+            diskusijama, razmenjujući ideje i iskustva sa kolegama, čime se
+            dodatno podstiče aktivno učenje i zajednički razvoj.
+          </h1>
+        </div>
+      </div>
+      {/* Div sa ikonom i tekstom */}
+      <div id="future" className="bottom-second-section">
+        <div
+          className="text-bottom"
+          style={{ width: "100%", marginLeft: "120px" }}
+        >
+          <h1 className="ani" style={{ fontSize: "22px" }}>
+            STEM oblasti – nauka, tehnologija, inženjering i matematika –
+            predstavljaju ključne komponente budućnosti globalnog tržišta rada.
+            Sa stalnim napretkom u tehnologijama i naučnim istraživanjima, ove
+            discipline postavljaju temelje za stvaranje inovacija koje će
+            oblikovati buduće industrije
+          </h1>
+          <h1 className="ani" style={{ fontSize: "22px", marginTop: "100px" }}>
+            Ulaganje u STEM obrazovanje nije samo ulaganje u pojedinca, već i u
+            održivi razvoj i ekonomski napredak. Ove oblasti će oblikovati nove
+            profesije, omogućujući stvaranje veće vrijednosti i unaprijeđenje
+            kvaliteta života u svim sektorima društva.
+          </h1>
+        </div>
 
-
-
-
-
-<div className="relative w-full h-screen flex justify-center items-center bg-white  ani">
-  <h1 className="text-xl md:text-xl font-bold">Pridruži nam se sada i pristupi besplatnom, inovativnom sadržaju! Otkrij aktuelne informacije koje će te pokrenuti ka budućnosti.</h1>
-</div>
-
+        <div className="image-container ">
+          <img src="stem1.jpg" className="stem-img ani" alt="Stem image" />
+        </div>
+      </div>
     </div>
   );
 }
