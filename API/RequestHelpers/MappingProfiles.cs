@@ -1,0 +1,16 @@
+
+using API.DTOs;
+using API.Entities;
+using AutoMapper;
+
+namespace API.RequestHelpers
+{
+    public class MappingProfiles : Profile
+    {
+        public MappingProfiles()
+        {
+            CreateMap<CreateArticleDTO, Article>();
+            CreateMap<UpdateArticleDTO, Article>();
+        }
+    }
+}

@@ -11,7 +11,7 @@ export default function NotFound() {
         >
        <SearchOff sx={{fontSize:100}} color="primary"/>
        <Typography gutterBottom variant="h3">Ne možemo pronaći ono što tražite...</Typography>
-       <Button fullWidth component={Link} to='/catalog'>Vrati se nazad</Button>
+       <Button fullWidth component={Link} to='/home'>Vrati se nazad</Button>
         </Paper>
     )
 }
