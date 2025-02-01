@@ -25,14 +25,14 @@ export default function Catalog() {
         </Grid2>
 
         <Grid2 size={9}>
-          <AppPagination
+          <AppPagination 
             metadata={data.pagination}
             onPageChange={(page: number) => {
               dispatch(setPageNumber(page));
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
           />
-          <ArticleList articles={data.items} />
+          <ArticleList articles={data.items}  />
         </Grid2>
       </Grid2>
     </>

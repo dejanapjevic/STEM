@@ -6,20 +6,7 @@ export default function ArticleDetails() {
   const { id } = useParams();
   const { data, isLoading } = useFetchArticleDetailsQuery(id ? +id : 0);
 
-  const getRoute = (category: string) => {
-    switch (category) {
-      case "Tehnologija":
-        return "/technology";
-      case "Nauka":
-        return "/science";
-      case "Matematika":
-        return "/mathematics";
-      case "Inženjerstvo":
-        return "/engineering";
-      default:
-        return "/catalog";
-    }
-  };
+
   return (
     <>
       {isLoading && !data && <div>Loading...</div>}
@@ -31,7 +18,7 @@ export default function ArticleDetails() {
           <Button
             component={Link}
             variant="outlined"
-            to={getRoute(data.category)}
+            to={'/catalog'}
           >
             {" "}
             Vrati se nazad

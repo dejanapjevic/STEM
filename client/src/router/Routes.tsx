@@ -14,6 +14,7 @@ import LoginForm from "../features/account/LoginForm";
 import RegisterForm from "../features/account/registerForm";
 import RequireAuth from "./RequireAuth";
 import WelcomePage from "../features/welcome/WelcomePage";
+import Forum from "../features/logged_in/Forum";
 
 export const router = createBrowserRouter([
   {
@@ -35,6 +36,7 @@ export const router = createBrowserRouter([
       { path: "login", element: <LoginForm/> },
       { path: "register", element: <RegisterForm/> },
       { path: "welcome", element: <WelcomePage/> },
+      { path: "forum", element: <Forum /> },
       { path: "*", element: <Navigate replace to="/not-found" /> },
     ],
   },

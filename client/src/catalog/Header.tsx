@@ -25,6 +25,7 @@ export default function Header() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: '#9C27B0', textTransform: 'uppercase', fontWeight:'bold' }} >
             Dobrodošli u STEM istraživač
           </Typography>
+          <img src='icon.avif' style={{width:'3.8%', height:'auto', position:'absolute', left:'24%'}}></img>
           {user ? ( 
             <UserMenu user={user}/>
           ) : (

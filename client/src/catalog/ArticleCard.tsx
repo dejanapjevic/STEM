@@ -25,6 +25,7 @@ export default function ArticleCard({ article }: Props) {
         display: 'flex',
         flexDirection: 'column',
         height: '100%',
+        animation:'appear 0.7s ease-out'
       }}
     >
       <CardMedia
