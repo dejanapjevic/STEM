@@ -44,7 +44,6 @@ export default function ArticleForm({
     });
 
   const watchFile = watch("file");
-  console.log("ucitana slika" + watchFile);
   //console.log(watchFile);
 
   //"file" je naziv polja u formi koju prati watch().
@@ -59,7 +58,7 @@ export default function ArticleForm({
     return () => {
       if (watchFile) URL.revokeObjectURL(watchFile.preview);
     };
-  }, [article, reset, watchFile]);
+  }, [article]); //ovde je bilo i watchFile i reset
 
   const createFormData = (items: FieldValues) => {
     const formData = new FormData();
@@ -73,25 +72,33 @@ export default function ArticleForm({
     try {
       const formData = createFormData(data);
       const formDataObj = Object.fromEntries(formData.entries());
-      console.log("FormData kao objekat:", formDataObj);
 
       if (watchFile) {
-        console.log("ima fajl");
         const formDataImage = new FormData();
-
+         
         formDataImage.append("file", watchFile);
 
         const imageUrl = await storeImage(formDataImage).unwrap();
-        console.log("url slike" + imageUrl);
         //formData.append("file", watchFile);
+        //formData.append("pictureUrl", imageUrl.pictureUrl);
+        formData.delete("pictureUrl"); // Ukloni prethodni ako postoji
         formData.append("pictureUrl", imageUrl.pictureUrl);
       } //ovo
 
-      if (article)
+      if (article) {
+      //  formData.delete("file"); 
+        console.log("Podaci za apdejt")
+        for (let pair of formData.entries()) {
+          console.log(`${pair[0]}: ${pair[1]}`);
+        }
+        
         await updateArticle({ id: article.id, data: formData }); //ovo
+      }
       else {
-        console.log("Podaci");
-        console.log(formData);
+        console.log("Podaci za kreiranje");
+        for (let pair of formData.entries()) {
+          console.log(`${pair[0]}: ${pair[1]}`);
+        }
         await createArticle(formData).unwrap();
       }
 

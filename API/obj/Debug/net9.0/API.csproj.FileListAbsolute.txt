@@ -165,3 +165,4 @@ C:\Users\PC\Desktop\STEMObrazovanje\API\bin\Debug\net9.0\Azure.Storage.Common.dl
 C:\Users\PC\Desktop\STEMObrazovanje\API\bin\Debug\net9.0\System.ClientModel.dll
 C:\Users\PC\Desktop\STEMObrazovanje\API\bin\Debug\net9.0\System.IO.Hashing.dll
 C:\Users\PC\Desktop\STEMObrazovanje\API\bin\Debug\net9.0\System.Memory.Data.dll
+C:\Users\PC\Desktop\STEMObrazovanje\API\bin\Debug\net9.0\Data\questions.json

@@ -97,7 +97,7 @@ namespace API.Controllers
             _mapper.Map(articleDto, article);
             var result = await _context.SaveChangesAsync() > 0;
             if (result) return NoContent();
-            return BadRequest(new ProblemDetails { Title = "Problem pri ažuriranju članka" });
+            return BadRequest(new ProblemDetails { Title = "Problem pri ažuriranju članka.Niste unijeli nikakvu promjenu" });
 
         }
         /*article je entitet (tip Article) koji je već prisutan u bazi 
