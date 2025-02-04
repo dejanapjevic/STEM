@@ -15,6 +15,7 @@ import RegisterForm from "../features/account/registerForm";
 import RequireAuth from "./RequireAuth";
 import WelcomePage from "../features/welcome/WelcomePage";
 import Forum from "../features/logged_in/Forum";
+import Inventory from "../features/admin/Inventory";
 
 export const router = createBrowserRouter([
   {
@@ -24,6 +25,7 @@ export const router = createBrowserRouter([
       {element: <RequireAuth/>, children: [
         { path: "catalog", element: <Catalog /> },
         { path: "catalog/:id", element: <ArticleDetails /> },
+        { path: "inventory", element: <Inventory /> },
       ]},
       { path: "home", element: <WelcomePage /> },
       { path: "about", element: <AboutPage /> },

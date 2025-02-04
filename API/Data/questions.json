@@ -1,0 +1,83 @@
+[
+    {
+      "question": "Koji je hemijski simbol za vodonik?",
+      "option1": "O",
+      "option2": "H",
+      "option3": "N",
+      "option4": "C",
+      "answer": "H"
+    },
+    {
+      "question": "Koji je najveći planet u Sunčevom sistemu?",
+      "option1": "Zemlja",
+      "option2": "Mars",
+      "option3": "Jupiter",
+      "option4": "Saturn",
+      "answer": "Jupiter"
+    },
+    {
+      "question": "Koji je matematički simbol za zbir?",
+      "option1": "+",
+      "option2": "-",
+      "option3": "*",
+      "option4": "/",
+      "answer": "+"
+    },
+    {
+      "question": "Koji element je najzastupljeniji u Zemljinoj atmosferi?",
+      "option1": "Kiseonik",
+      "option2": "Azot",
+      "option3": "Ugljen-dioksid",
+      "option4": "Helijum",
+      "answer": "Azot"
+    },
+    {
+      "question": "Koji je autor zakona gravitacije?",
+      "option1": "Nikola Tesla",
+      "option2": "Albert Ajnštajn",
+      "option3": "Isaac Njutn",
+      "option4": "Galileo Galilej",
+      "answer": "Isaac Njutn"
+    },
+    {
+      "question": "Koji je hemijski simbol za zlato?",
+      "option1": "Ag",
+      "option2": "Au",
+      "option3": "Fe",
+      "option4": "Pb",
+      "answer": "Au"
+    },
+    {
+      "question": "Koja je brzina svetlosti u vakuumu?",
+      "option1": "300,000 km/s",
+      "option2": "150,000 km/s",
+      "option3": "1,000,000 km/s",
+      "option4": "1,000 km/s",
+      "answer": "300,000 km/s"
+    },
+    {
+      "question": "Koji je naziv formule za zapreminu sfere?",
+      "option1": "V = 4/3 * π * r^3",
+      "option2": "V = π * r^2 * h",
+      "option3": "V = 1/2 * b * h",
+      "option4": "V = l * w * h",
+      "answer": "V = 4/3 * π * r^3"
+    },
+    {
+      "question": "Koja je jedinica za električnu otpornost?",
+      "option1": "Volt",
+      "option2": "Ohm",
+      "option3": "Ampere",
+      "option4": "Joule",
+      "answer": "Ohm"
+    },
+    {
+      "question": "Koji je osnovni gradivni element u biologiji?",
+      "option1": "Molekul",
+      "option2": "Atom",
+      "option3": "Ćelija",
+      "option4": "Organel",
+      "answer": "Ćelija"
+    }
+  ]
+  

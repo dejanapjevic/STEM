@@ -1,7 +1,7 @@
 import { Button, Divider, ListItemIcon, ListItemText, Menu, MenuItem } from "@mui/material";
 import {useState} from "react";
 import { User } from "../../models/user";
-import { AccountCircle, Favorite, Logout, Person } from "@mui/icons-material";
+import { AccountCircle, Favorite, Logout, People, Person, Quiz, Rule } from "@mui/icons-material";
 import { useLogoutMutation } from "../account/accountApi";
 
 type Props = {
@@ -47,17 +47,30 @@ export default function UserMenu({user}:Props) {
             'aria-labelledby': 'basic-button',
           }}
         >
-          <MenuItem>
+         <MenuItem>
            <ListItemIcon>
-            <Person/>
-           </ListItemIcon>
-             <ListItemText>Moj profil</ListItemText>
-          </MenuItem>
-          <MenuItem>
-          <ListItemIcon>
             <Favorite/>
            </ListItemIcon>
              <ListItemText>Omiljeno</ListItemText>
+          </MenuItem>
+          <MenuItem>
+           <ListItemIcon>
+            <Rule/>
+           </ListItemIcon>
+             <ListItemText>Igraj STEM kviz</ListItemText>
+          </MenuItem>
+          <MenuItem>
+          <ListItemIcon>
+            <Quiz/>
+           </ListItemIcon>
+             <ListItemText>Uradi test validacije</ListItemText>
+             </MenuItem>
+          <MenuItem >
+          
+          <ListItemIcon>
+            <People/>
+           </ListItemIcon>
+             <ListItemText>Pridruži se forumu za diskusiju</ListItemText>
              </MenuItem>
           <MenuItem >
           </MenuItem>

@@ -46,6 +46,7 @@ export default function Filters({ categories: data }: Props) {
       >
         Resetuj filtere
       </Button>
+      
     </Box>
   );
 }

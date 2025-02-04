@@ -14,7 +14,8 @@ namespace API.DTOs
         [Required]
         public String Category { get; set; }
         
-        public IFormFile File { get; set; }
+        //public IFormFile File { get; set; }
+        public string PictureUrl { get; set; }
     }
 }
 /*DTO-ove koristimo umesto direktnog korišćenja entiteta (Article) u API metodama, jer:

@@ -18,6 +18,6 @@ namespace API.DTOs
         [Required]
         public String Category { get; set; }
         
-        public IFormFile File { get; set; }
+        public String PictureUrl { get; set; }
     }
 }

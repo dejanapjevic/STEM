@@ -3,6 +3,7 @@ using API.DTOs;
 using API.Entities;
 using API.Extensions;
 using API.RequestHelpers;
+using API.Services;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -72,7 +73,7 @@ namespace API.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPost]
-        public async Task<ActionResult<Article>> CreateArticle([FromBody] CreateArticleDTO articleDto)
+        public async Task<ActionResult<Article>> CreateArticle([FromForm] CreateArticleDTO articleDto)
         {
 
             var article = _mapper.Map<Article>(articleDto);
@@ -88,7 +89,7 @@ namespace API.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPut]
-        public async Task<ActionResult> UpdateArticle([FromBody] UpdateArticleDTO articleDto)
+        public async Task<ActionResult> UpdateArticle([FromForm] UpdateArticleDTO articleDto)
         {
 
             var article = await _context.Articles.FindAsync(articleDto.Id);
@@ -112,6 +113,15 @@ namespace API.Controllers
             if (result) return NoContent();
             return BadRequest(new ProblemDetails { Title = "Problem pri brisanju članka" });
         }
+
+        [HttpPost("upload")]
+        public  ActionResult UploadFile(IFormFile file) {
+           // return Ok(new UploadImageHandler().Upload(file));
+            return Ok(new { pictureUrl = new UploadImageHandler().Upload(file) });
+
+        }
+        
+
     }
 
 }

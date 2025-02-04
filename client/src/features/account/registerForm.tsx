@@ -14,6 +14,7 @@ import {
   MenuItem,
   FormControl,
   InputLabel,
+  Grid2,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 
@@ -80,71 +81,81 @@ export default function registerForm() {
           gap={3}
           marginY={3}
         >
-          
-          <TextField
-            fullWidth
-            color="secondary"
-            label="Ime"
-            autoComplete="current-firstName"
-            {...register("firstName")}
-            error={!!errors.firstName}
-            helperText={errors.firstName?.message}
-          />
-          <TextField
-            fullWidth
-            color="secondary"
-            label="Prezime"
-            autoComplete="current-lastName"
-            {...register("lastName")}
-            error={!!errors.lastName}
-            helperText={errors.lastName?.message}
-          />
-
-          <TextField
-            fullWidth
-            color="secondary"
-            autoFocus
-            label="Email"
-            autoComplete="email"
-            {...register("email")}
-            error={!!errors.email}
-            helperText={errors.email?.message}
-          />
-          <TextField
-            fullWidth
-            color="secondary"
-            label="Lozinka"
-            type="password"
-            autoComplete="current-password"
-            {...register("password")}
-            error={!!errors.password}
-            helperText={errors.password?.message}
-          />
-          <FormControl fullWidth error={!!errors.gender}>
-            <InputLabel id="gender-label">Pol</InputLabel>
-            <Select
-              labelId="gender-label"
-              label="Pol"
-              {...register("gender")}
-              defaultValue="" // Početna vrednost može biti prazna ili neko drugo vrednost, npr. "M"
-            >
-              <MenuItem value="M">M</MenuItem>
-              <MenuItem value="Ž">Ž</MenuItem>
-            </Select>
-          </FormControl>
-
-          <TextField
-            fullWidth
-            color="secondary"
-            label="Datum rođenja"
-            type="date"
-            InputLabelProps={{
-              shrink: true, // Pomaže da labela ostane ispravno prikazana kad korisnik izabere datum
-            }}
-            {...register("dateOfBirth")}
-            error={!!errors.dateOfBirth}
-            helperText={errors.dateOfBirth?.message}
-          />
+          <Grid2 container spacing={3}>
+            <Grid2 size={6}>
+              <TextField
+                fullWidth
+                color="secondary"
+                label="Ime"
+                autoComplete="current-firstName"
+                {...register("firstName")}
+                error={!!errors.firstName}
+                helperText={errors.firstName?.message}
+              />
+            </Grid2>
+            <Grid2 size={6}>
+              <TextField
+                fullWidth
+                color="secondary"
+                label="Prezime"
+                autoComplete="current-lastName"
+                {...register("lastName")}
+                error={!!errors.lastName}
+                helperText={errors.lastName?.message}
+              />
+            </Grid2>
+            <Grid2 size={12}>
+              <TextField
+                fullWidth
+                color="secondary"
+                label="Email"
+                autoComplete="email"
+                {...register("email")}
+                error={!!errors.email}
+                helperText={errors.email?.message}
+              />
+            </Grid2>
+            <Grid2 size={12}>
+              <TextField
+                fullWidth
+                color="secondary"
+                label="Lozinka"
+                type="password"
+                autoComplete="current-password"
+                {...register("password")}
+                error={!!errors.password}
+                helperText={errors.password?.message}
+              />
+            </Grid2>
+            <Grid2 size={6}>
+              <FormControl fullWidth error={!!errors.gender}>
+                <InputLabel id="gender-label">Pol</InputLabel>
+                <Select
+                  labelId="gender-label"
+                  label="Pol"
+                  {...register("gender")}
+                  defaultValue="" // Početna vrednost može biti prazna ili neko drugo vrednost, npr. "M"
+                >
+                  <MenuItem value="M">M</MenuItem>
+                  <MenuItem value="Ž">Ž</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid2>
+            <Grid2 size={6}>
+              <TextField
+                fullWidth
+                color="secondary"
+                label="Datum rođenja"
+                type="date"
+                InputLabelProps={{
+                  shrink: true, // Pomaže da labela ostane ispravno prikazana kad korisnik izabere datum
+                }}
+                {...register("dateOfBirth")}
+                error={!!errors.dateOfBirth}
+                helperText={errors.dateOfBirth?.message}
+              />
+            </Grid2>
+          </Grid2>
           <Button
             variant="contained"
             type="submit"

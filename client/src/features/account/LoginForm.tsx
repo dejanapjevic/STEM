@@ -69,7 +69,6 @@ export default function LoginForm() {
             <TextField
               fullWidth
               color="secondary"
-              autoFocus
               label="Email"
               autoComplete="email"
               {...register("email")}
