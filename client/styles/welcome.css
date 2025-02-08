@@ -130,7 +130,7 @@ h2.text-sub {
   font-size: 1.8rem;
   text-align: center;
   animation: fade-in 2.2s ease-out forwards;
-  margin-right: 20px;
+  margin-right: 20wpx;
 }
 
 .bottom-first-section {

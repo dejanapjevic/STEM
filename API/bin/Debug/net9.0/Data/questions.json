@@ -1,83 +1,83 @@
 [
     {
-      "question": "Koji je hemijski simbol za vodonik?",
-      "option1": "O",
-      "option2": "H",
-      "option3": "N",
-      "option4": "C",
-      "answer": "H"
+      "Title": "Koji je hemijski simbol za vodonik?",
+      "Option1": "O",
+      "Option2": "H",
+      "Option3": "N",
+      "Option4": "C",
+      "Answer": "H"
     },
     {
-      "question": "Koji je najveći planet u Sunčevom sistemu?",
-      "option1": "Zemlja",
-      "option2": "Mars",
-      "option3": "Jupiter",
-      "option4": "Saturn",
-      "answer": "Jupiter"
+      "Title": "Koji je najveći planet u Sunčevom sistemu?",
+      "Option1": "Zemlja",
+      "Option2": "Mars",
+      "Option3": "Jupiter",
+      "Option4": "Saturn",
+      "Answer": "Jupiter"
     },
     {
-      "question": "Koji je matematički simbol za zbir?",
-      "option1": "+",
-      "option2": "-",
-      "option3": "*",
-      "option4": "/",
-      "answer": "+"
+      "Title": "Koji je matematički simbol za zbir?",
+      "Option1": "+",
+      "Option2": "-",
+      "Option3": "*",
+      "Option4": "/",
+      "Answer": "+"
     },
     {
-      "question": "Koji element je najzastupljeniji u Zemljinoj atmosferi?",
-      "option1": "Kiseonik",
-      "option2": "Azot",
-      "option3": "Ugljen-dioksid",
-      "option4": "Helijum",
-      "answer": "Azot"
+      "Title": "Koji element je najzastupljeniji u Zemljinoj atmosferi?",
+      "Option1": "Kiseonik",
+      "Option2": "Azot",
+      "Option3": "Ugljen-dioksid",
+      "Option4": "Helijum",
+      "Answer": "Azot"
     },
     {
-      "question": "Koji je autor zakona gravitacije?",
-      "option1": "Nikola Tesla",
-      "option2": "Albert Ajnštajn",
-      "option3": "Isaac Njutn",
-      "option4": "Galileo Galilej",
-      "answer": "Isaac Njutn"
+      "Title": "Koji je autor zakona gravitacije?",
+      "Option1": "Nikola Tesla",
+      "Option2": "Albert Ajnštajn",
+      "Option3": "Isaac Njutn",
+      "Option4": "Galileo Galilej",
+      "Answer": "Isaac Njutn"
     },
     {
-      "question": "Koji je hemijski simbol za zlato?",
-      "option1": "Ag",
-      "option2": "Au",
-      "option3": "Fe",
-      "option4": "Pb",
-      "answer": "Au"
+      "Title": "Koji je hemijski simbol za zlato?",
+      "Option1": "Ag",
+      "Option2": "Au",
+      "Option3": "Fe",
+      "Option4": "Pb",
+      "Answer": "Au"
     },
     {
-      "question": "Koja je brzina svetlosti u vakuumu?",
-      "option1": "300,000 km/s",
-      "option2": "150,000 km/s",
-      "option3": "1,000,000 km/s",
-      "option4": "1,000 km/s",
-      "answer": "300,000 km/s"
+      "Title": "Koja je brzina svetlosti u vakuumu?",
+      "Option1": "300,000 km/s",
+      "Option2": "150,000 km/s",
+      "Option3": "1,000,000 km/s",
+      "Option4": "1,000 km/s",
+      "Answer": "300,000 km/s"
     },
     {
-      "question": "Koji je naziv formule za zapreminu sfere?",
-      "option1": "V = 4/3 * π * r^3",
-      "option2": "V = π * r^2 * h",
-      "option3": "V = 1/2 * b * h",
-      "option4": "V = l * w * h",
-      "answer": "V = 4/3 * π * r^3"
+      "Title": "Koji je naziv formule za zapreminu sfere?",
+      "Option1": "V = 4/3 * π * r^3",
+      "Option2": "V = π * r^2 * h",
+      "Option3": "V = 1/2 * b * h",
+      "Option4": "V = l * w * h",
+      "Answer": "V = 4/3 * π * r^3"
     },
     {
-      "question": "Koja je jedinica za električnu otpornost?",
-      "option1": "Volt",
-      "option2": "Ohm",
-      "option3": "Ampere",
-      "option4": "Joule",
-      "answer": "Ohm"
+      "Title": "Koja je jedinica za električnu otpornost?",
+      "Option1": "Volt",
+      "Option2": "Ohm",
+      "Option3": "Ampere",
+      "Option4": "Joule",
+      "Answer": "Ohm"
     },
     {
-      "question": "Koji je osnovni gradivni element u biologiji?",
-      "option1": "Molekul",
-      "option2": "Atom",
-      "option3": "Ćelija",
-      "option4": "Organel",
-      "answer": "Ćelija"
+      "Title": "Koji je osnovni gradivni element u biologiji?",
+      "Option1": "Molekul",
+      "Option2": "Atom",
+      "Option3": "Ćelija",
+      "Option4": "Organel",
+      "Answer": "Ćelija"
     }
   ]
   

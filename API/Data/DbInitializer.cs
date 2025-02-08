@@ -1,6 +1,5 @@
 
 using System.Text.Json;
-using System.Threading.Tasks;
 using API.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -9,12 +8,16 @@ namespace API.Data
 {
     public class DbInitializer
     {
-        private string _json;
+        private string _jsonArticles;
+        private string _jsonQuestions;
+        private string _jsonCareerOptions;
 
         public DbInitializer()
         {
             // U konstruktoru učitaj JSON fajl
-            _json = File.ReadAllText("Data/articles.json");
+            _jsonArticles = File.ReadAllText("Data/articles.json");
+            _jsonQuestions = File.ReadAllText("Data/questions.json");
+            _jsonCareerOptions = File.ReadAllText("Data/careerOptions.json");
         }
         public static void InitDb(WebApplication app)
         {
@@ -50,8 +53,9 @@ namespace API.Data
                     DateOfBirth = new DateTime(2001, 11, 12)
                 };
 
-                await userManager.CreateAsync(user, "Pa$$w0rd");
+                await userManager.CreateAsync(user, "Pa$$w0rd"); //promjena
                 await userManager.AddToRoleAsync(user, "Member");
+
 
                 var admin = new User
                 {
@@ -65,14 +69,24 @@ namespace API.Data
 
                 await userManager.CreateAsync(admin, "Pa$$w0rd");
                 await userManager.AddToRolesAsync(admin, ["Member", "Admin"]);
+
+                //await context.SaveChangesAsync();
             }
+
 
             if (context.Articles.Any()) return;
 
-            var articles = JsonSerializer.Deserialize<List<Article>>(dbInitializer._json);
+            var articles = JsonSerializer.Deserialize<List<Article>>(dbInitializer._jsonArticles);
+            var questions = JsonSerializer.Deserialize<List<Question>>(dbInitializer._jsonQuestions);
+            var careerOptions = JsonSerializer.Deserialize<List<CareerOption>>(dbInitializer._jsonCareerOptions);
 
-            // Dodaj artikle u bazu, npr:
             context.Articles.AddRange(articles);
+            context.Questions.AddRange(questions);
+            context.CareerOptions.AddRange(careerOptions);
+
+
+
+
             await context.SaveChangesAsync();
 
 

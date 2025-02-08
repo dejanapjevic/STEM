@@ -5,15 +5,17 @@ import { catalogApi } from "../catalog/CatalogApi";
 import { uiSlice } from "../uiSlice";
 import { errorApi } from "../api/ErrorApi";
 import { catalogSlice } from "../catalog/catalogSlice";
-import { accountApi } from "../features/account/accountApi";
-import { adminApi } from "../features/admin/adminApi";
+import { accountApi } from "../account/accountApi";
+import { adminApi } from "../admin/adminApi";
+import { quiztestApi } from "../quiz&test/quiz&testApi";
 
 export const store = configureStore({
   reducer: {
     [catalogApi.reducerPath]: catalogApi.reducer,
     [errorApi.reducerPath]: errorApi.reducer,
     [accountApi.reducerPath]: accountApi.reducer,
-    [adminApi.reducerPath]:adminApi.reducer,
+    [adminApi.reducerPath]: adminApi.reducer,
+    [quiztestApi.reducerPath]:quiztestApi.reducer,
     ui: uiSlice.reducer,
     catalog: catalogSlice.reducer,
   },
@@ -22,7 +24,8 @@ export const store = configureStore({
       catalogApi.middleware,
       errorApi.middleware,
       accountApi.middleware,
-      adminApi.middleware
+      adminApi.middleware,
+      quiztestApi.middleware
     ),
 });
 

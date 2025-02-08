@@ -5,21 +5,27 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
 {
-    public class STEMContext(DbContextOptions options) : IdentityDbContext<User>(options)
+  public class STEMContext(DbContextOptions options) : IdentityDbContext<User>(options)
+  {
+    public required DbSet<Article> Articles { get; set; }
+    public required DbSet<Question> Questions { get; set; }
+    public required DbSet<CareerOption> CareerOptions { get; set; }
+ 
+
+    protected override void OnModelCreating(ModelBuilder builder)
     {
-      public required DbSet<Article> Articles { get; set; }
 
-      protected override void OnModelCreating(ModelBuilder builder) {
+      base.OnModelCreating(builder);
 
-        base.OnModelCreating(builder);
-        
-        builder.Entity<IdentityRole>()
-         .HasData(
-            new IdentityRole {Id="2fb6eef4-e5fc-41c7-ad76-f02658c3fd97", Name="Member", NormalizedName="MEMBER"},
-            new IdentityRole {Id="62c896d5-9b6d-4e8f-80bc-bb6e9c64c357", Name="Admin", NormalizedName="ADMIN"}
-         );
-      }
+      builder.Entity<IdentityRole>()
+       .HasData(
+          new IdentityRole { Id = "2fb6eef4-e5fc-41c7-ad76-f02658c3fd97", Name = "Member", NormalizedName = "MEMBER" },
+          new IdentityRole { Id = "62c896d5-9b6d-4e8f-80bc-bb6e9c64c357", Name = "Admin", NormalizedName = "ADMIN" }
+       );
+     
+      
     }
+  }
 
 }
 /* uilder.Entity<IdentityRole>(): Ovaj kod koristi ModelBuilder da konfiguriše entitet IdentityRole

@@ -20,7 +20,8 @@ function App() {
       <ToastContainer position="bottom-right" hideProgressBar theme="colored" />
       <div className="App" style={{ overflowY: "auto" }}>
 
-         {location.pathname !== "/home" && location.pathname !== "/" && <Header />}
+         {location.pathname !== "/home" && location.pathname !== "/"
+          && location.pathname!=="/quiz" && location.pathname!=="/career" && <Header />}
         <Outlet />
       </div>
     </>

@@ -43,6 +43,61 @@ namespace API.Data.Migrations
                     b.ToTable("Articles");
                 });
 
+            modelBuilder.Entity("API.Entities.CareerOption", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("OptionA")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("OptionB")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("OptionC")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("OptionD")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CareerOptions");
+                });
+
+            modelBuilder.Entity("API.Entities.Question", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Answer")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Option1")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Option2")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Option3")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Option4")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Questions");
+                });
+
             modelBuilder.Entity("API.Entities.User", b =>
                 {
                     b.Property<string>("Id")
