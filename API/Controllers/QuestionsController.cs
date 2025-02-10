@@ -1,5 +1,4 @@
 using API.Data;
-
 using API.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -26,13 +25,14 @@ namespace API.Controllers
         public async Task<ActionResult<List<Question>>> GetRandomQuestions()
         {
 
-            var randomQuestions = _context.Questions
-                                        .AsEnumerable()                // Prebacivanje na klijentsku stranu
-                                        .OrderBy(q => Guid.NewGuid())  // Nasumično sortiranje
-                                        .Take(6)                       // Uzimanje prvih 5
-                                        .ToList();
+           var questions = await _context.Questions.ToListAsync();  // Asinhrono preuzimanje svih pitanja iz baze
 
-            return Ok(randomQuestions);
+    var randomQuestions = questions
+                          .OrderBy(q => Guid.NewGuid())  // Nasumično sortiranje na klijentskoj strani
+                          .Take(6)                       // Uzimanje prvih 6
+                          .ToList();
+
+    return Ok(randomQuestions);
         }
         [HttpGet("careerOptions")]
         public async Task<ActionResult<List<CareerOption>>> GetCareerQuestions()

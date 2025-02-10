@@ -53,8 +53,27 @@ namespace API.Data
                     DateOfBirth = new DateTime(2001, 11, 12)
                 };
 
-                await userManager.CreateAsync(user, "Pa$$w0rd"); //promjena
+                var result = await userManager.CreateAsync(user, "Pa$$w0rd"); //promjena
                 await userManager.AddToRoleAsync(user, "Member");
+
+
+
+               if (result.Succeeded) // Provera da li je korisnik uspešno kreiran
+        {
+            await userManager.AddToRoleAsync(user, "Member");
+
+            // Sada imamo korisnikov ID, možemo kreirati Topic
+            var topic = new Topic
+            {
+                Title = "Koji je najbolji kurs za učenje React-a?",
+                UserId = user.Id, // Korišćenje ID-a tek kreiranog korisnika
+                CreatedAt = DateTime.UtcNow
+            };
+
+            context.Topics.Add(topic);
+           // await context.SaveChangesAsync(); // Čuvamo promene u bazi
+        }
+
 
 
                 var admin = new User

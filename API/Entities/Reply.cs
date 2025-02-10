@@ -3,16 +3,16 @@ namespace API.Entities
 {
     public class Reply
     {
-    public int Id { get; set; }  
-    public string UserId { get; set; }  
-    public int TopicId { get; set; } 
-    public string Text { get; set; }  
-    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public int Id { get; set; } // Primarni ključ
+        public string Text { get; set; } // Tekst odgovora
+        public DateTime Date { get; set; } = DateTime.UtcNow;
 
+        public string UserId { get; set; } // Strani ključ ka korisniku
+        public User User { get; set; } // Navigacija do korisnika
 
-
-    public User User { get; set; }  // Navigacija prema korisniku
-    public Topic Topic { get; set; }  // Navig
-        
+        public int TopicId { get; set; } // Strani ključ ka temi
+        public Topic Topic { get; set; } // Navigacija do teme
     }
+
+
 }

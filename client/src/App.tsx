@@ -21,7 +21,8 @@ function App() {
       <div className="App" style={{ overflowY: "auto" }}>
 
          {location.pathname !== "/home" && location.pathname !== "/"
-          && location.pathname!=="/quiz" && location.pathname!=="/career" && <Header />}
+          && location.pathname!=="/quiz" && location.pathname!=="/career" 
+          && location.pathname!=="/forum" && <Header />}
         <Outlet />
       </div>
     </>

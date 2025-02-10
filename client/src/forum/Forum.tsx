@@ -1,60 +1,157 @@
-import { useState } from "react";
-import { Card, CardContent, Button, Typography, Box } from "@mui/material";
+import {  useState } from "react";
+import {
+  Typography,
+  Box,
+  Card,
+  CardContent,
+  Button,
+  TextField,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
-
-const topics = [
-  { id: 1, title: "Kako učiti React?", author: "Marko", date: "08.02.2025" },
-  { id: 2, title: "Najbolje prakse u .NET-u", author: "Jovana", date: "07.02.2025" },
-];
-
-let replies = [
-  { id: 1, topicId: 1, text: "Ovo je odgovor na temu 1", author: "Autor 1", date: "2025-02-08" },
-  { id: 2, topicId: 1, text: "Ovo je još jedan odgovor na temu 1", author: "Autor 2", date: "2025-02-08" },
-];
+import { useFetchTopicsQuery, useCreateTopicMutation } from "./forumApi";
+import "../../styles/welcome.css";
 
 export default function Forum() {
-  const [forumTopics] = useState(topics);
   const navigate = useNavigate();
+  const { data: topics, isLoading, error, refetch } = useFetchTopicsQuery();
+  const [createTopic] = useCreateTopicMutation();
+  const [newTopicTitle, setNewTopicTitle] = useState("");
+  const [showForm, setShowForm] = useState(false);
 
+  const handleCreateTopic = async () => {
+    if (!newTopicTitle.trim()) return;
+
+    try {
+      await createTopic({ title: newTopicTitle }).unwrap();
+      setNewTopicTitle("");
+      setShowForm(false);
+      refetch(); // Osvežavamo listu tema nakon dodavanja nove
+    } catch (error) {
+      console.error("Greška prilikom kreiranja teme", error);
+    }
+  };
+ 
   const viewTopicDetails = (topicId: number) => {
-    const topic = forumTopics.find((t) => t.id === topicId);
-    const topicReplies = replies.filter((r) => r.topicId === topicId);
-    navigate(`/tema/${topicId}`, { state: { topic, topicReplies } });
+    navigate(`/tema/${topicId}`);
   };
 
+  if (isLoading) return <Typography>Učitavanje tema...</Typography>;
+  if (error)
+    return <Typography>Došlo je do greške pri učitavanju podataka.</Typography>;
 
   return (
-    <Box sx={{ maxWidth: 600, mx: "auto", p: 3 }}>
+    <Box sx={{ width: "100%", p: 1, mt: 3 }}>
       <Typography variant="h4" align="center" gutterBottom>
         Dobrodošli na forum za diskusiju
       </Typography>
-      <Box>
-        {forumTopics.map((topic) => {
-          const topicReplies = replies.filter((r) => r.topicId === topic.id);
-          const repliesCount = topicReplies.length;
+      <Button
+        variant="contained"
+        sx={{ mb: 2, mr: 4 }}
+        onClick={() => navigate("/catalog")}
+      >
+        Napusti forum
+      </Button>
 
-          return (
-            <Card key={topic.id} sx={{ mb: 2, p: 2 }}>
-              <CardContent>
-                <Typography variant="h6">{topic.title}</Typography>
-                <Typography variant="body2" color="textSecondary">
-                  Autor: {topic.author} | Datum: {topic.date}
-                </Typography>
-                <Typography variant="body2" color="textSecondary">
-                  Broj odgovora: {repliesCount}
-                </Typography>
-                <Button
-                  variant="outlined"
-                  sx={{ mt: 1 }}
-                  onClick={() => viewTopicDetails(topic.id)}
-                >
-                  Prikaži sve odgovore
-                </Button>
-              </CardContent>
-            </Card>
-          );
-        })}
-      </Box>
+      <Button
+        variant="contained"
+        sx={{ mb: 2 }}
+        onClick={() => setShowForm(!showForm)}
+      >
+        Dodaj temu
+      </Button>
+
+      {/* Forma za unos nove teme */}
+      {showForm && (
+        <Box sx={{ mb: 2, p: 2, border: "1px solid #ccc", borderRadius: 2 }}>
+          <TextField
+            fullWidth
+            label="Naslov teme"
+            value={newTopicTitle}
+            onChange={(e) => setNewTopicTitle(e.target.value)}
+            sx={{ mb: 2 }}
+          />
+          <Button variant="contained" onClick={handleCreateTopic}>
+            Potvrdi unos
+          </Button>
+        </Box>
+      )}
+
+      {topics?.map((topic) => {
+        return (
+          <Card
+            key={topic.id}
+            sx={{ animation: "appear 1.2s ease-out", height: 160, margin: 2 }}
+          >
+            <CardContent
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "100%",
+                overflow: "hidden", // Prekida prikazivanje teksta koji izlazi izvan kartice
+              }}
+            >
+              <Typography
+                fontSize={16}
+                marginBottom={1}
+                align="center"
+                sx={{
+                  overflow: "hidden", // Skratiti ako je predug
+                  textOverflow: "ellipsis", // Obezbeđuje da se tekst skraćuje sa elipsom
+                  width: "100%",
+                  textAlign: "center",
+                  display: "-webkit-box",
+                  WebkitBoxOrient: "vertical",
+                  WebkitLineClamp: 4, // Ograniči broj linija
+                  fontWeight: "bold",
+                }}
+              >
+                {topic.title}
+              </Typography>
+
+              <Typography
+                fontSize={12}
+                color="textSecondary"
+                align="center"
+                sx={{
+                  display: "-webkit-box",
+                  WebkitBoxOrient: "vertical",
+                  WebkitLineClamp: 2, // Ograniči broj linija
+                  overflow: "hidden",
+                  width: "100%",
+                  textAlign: "center",
+                }}
+              >
+                Autor: {topic.user?.firstName} {topic.user?.lastName} | Datum:{" "}
+                {new Date(topic.createdAt).toLocaleDateString()}
+              </Typography>
+              <Typography
+                fontSize={12}
+                color="textSecondary"
+                align="center"
+                sx={{
+                  display: "-webkit-box",
+                  WebkitBoxOrient: "vertical",
+                  WebkitLineClamp: 2, // Ograniči broj linija
+                  overflow: "hidden",
+                  width: "100%",
+                  textAlign: "center",
+                }}
+              >
+                Broj odgovora: ne znam
+              </Typography>
+              <Button
+                variant="outlined"
+                sx={{ mt: 1 }}
+                onClick={() => viewTopicDetails(topic.id)}
+              >
+                Odgovori
+              </Button>
+            </CardContent>
+          </Card>
+        );
+      })}
     </Box>
   );
 }

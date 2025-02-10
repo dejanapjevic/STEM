@@ -7,16 +7,16 @@ namespace API.Entities
 {
     public class Topic
     {
-        public int Id { get; set; }  // Primarni ključ
-        public String UserId { get; set; }  // Strani ključ ka User tabeli
-        public string Title { get; set; }  // Naslov teme
+        public int Id { get; set; }
+        public String UserId { get; set; }
+        public string Title { get; set; }
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
         // Navigaciono svojstvo ka korisniku
         public User User { get; set; }
 
-        // public ICollection<Reply> Replies { get; set; } = new List<Reply>(); 
+
 
     }
 }

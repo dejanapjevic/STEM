@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { Button } from "@mui/material";
 import { useFetchArticleDetailsQuery } from "./CatalogApi";
+import PdfGenerator from "../forum/PdfGenerator";
 
 export default function ArticleDetails() {
   const { id } = useParams();
@@ -23,8 +24,10 @@ export default function ArticleDetails() {
             {" "}
             Vrati se nazad
           </Button>
+          <PdfGenerator content={data.content} title={data.title} />
         </>
       )}
     </>
+    
   );
 }

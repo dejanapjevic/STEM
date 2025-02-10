@@ -1,74 +1,106 @@
-import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { Card, CardContent, Typography, Box, Button, TextField } from "@mui/material";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import {
+  Card,
+  CardContent,
+  Typography,
+  Box,
+  Button,
+  TextField,
+} from "@mui/material";
+import {
+  useCreateReplyMutation,
+  useFetchTopicDetailsQuery,
+  useGetRepliesByTopicQuery,
+} from "./forumApi";
+import { Reply } from "./reply";
 
-interface Reply {
-  id: number;
-  topicId: number;
-  text: string;
-  author: string;
-  date: string;
-}
+export default function TopicDetails() {
+  const { id } = useParams();
+  const { data, isLoading, error } = useFetchTopicDetailsQuery(id ? +id : 0);
+  const {
+    data: repliesByTopic,
+    isLoading: repliesLoading,
+    error: repliesError,
+  } = useGetRepliesByTopicQuery(id ? +id : 0);
+  console.log(repliesByTopic);
+  const [createReply] = useCreateReplyMutation();
+  const [newReply, setNewReply] = useState("");
+  const [showForm, setShowForm] = useState(false);
+  const [prevRepliesCount, setPrevRepliesCount] = useState(0); // Čuvamo prethodan broj odgovora
 
-interface Topic {
-  id: number;
-  title: string;
-  author: string;
-  date: string;
-}
+  // Kada se broj odgovora poveća, zatvaramo formu
+  useEffect(() => {
+    if (repliesByTopic && repliesByTopic.length > prevRepliesCount) {
+      setShowForm(false);
+      setPrevRepliesCount(repliesByTopic.length);
+    }
+  }, [repliesByTopic, prevRepliesCount]);
 
-export function TopicDetails() {
-  const { state }: { state: { topic: Topic; topicReplies: Reply[] } } = useLocation();
-  const navigate = useNavigate();
-  const { topic, topicReplies } = state || {};
-  
-  const [newReply, setNewReply] = useState(""); // Držimo stanje za novi odgovor
-  const [replies, setReplies] = useState<Reply[]>(topicReplies || []); // Držimo stanje za odgovore
+  const handleCreateReply = async () => {
+    if (!newReply.trim()) return;
 
-  const handleAddReply = () => {
-    if (newReply.trim() === "") return; // Proveri da nije prazan odgovor
-
-    const newReplyData: Reply = {
-      id: replies.length + 1, // Novi ID odgovora
-      topicId: topic.id,
-      text: newReply,
-      author: "Anonimni", // Možemo dodati ime korisnika
-      date: new Date().toLocaleDateString(),
-    };
-
-    const updatedReplies = [...replies, newReplyData]; // Dodajemo novi odgovor u listu
-    setReplies(updatedReplies); // Ažuriraj stanje odgovora
-
-    // Navigiramo nazad sa novim podacima
-    navigate(`/tema/${topic.id}`, {
-      state: { topic, topicReplies: updatedReplies },
-    });
-
-    setNewReply(""); // Očisti polje za unos
+    try {
+      await createReply({ text: newReply, topicId: id ? +id : 0 }).unwrap();
+      setNewReply("");
+    } catch (error) {
+      console.error("Greška prilikom dodavanja odgovora", error);
+    }
   };
 
-  if (!topic) {
-    return <Typography variant="h6">Tema nije pronađena</Typography>;
-  }
+  if (isLoading || repliesLoading)
+    return <Typography>Učitavanje...</Typography>;
+  if (error || repliesError || !data)
+    return <Typography>Greška pri učitavanju podataka.</Typography>;
 
   return (
-    <Box sx={{ maxWidth: 600, mx: "auto", p: 3 }}>
+    <Box sx={{ maxWidth: 1600, p: 3 }}>
       <Card sx={{ mb: 2, p: 2 }}>
         <CardContent>
-          <Typography variant="h5">{topic.title}</Typography>
-          <Typography variant="body2" color="textSecondary">
-            Autor: {topic.author} | Datum: {topic.date}
+          <Typography variant="h5" sx={{ textAlign: "center" }}>
+            {data.title}
+          </Typography>
+
+          <Typography variant="body2" color="textSecondary" sx={{ textAlign: "center" }}>
+            Autor: {data.user?.firstName} {data.user?.lastName} | Datum:{" "}
+            {new Date(data.createdAt).toLocaleDateString()}
           </Typography>
         </CardContent>
       </Card>
+
+      {showForm && (
+        <Box sx={{ mb: 2, p: 2, border: "1px solid #ccc", borderRadius: 2 }}>
+          <TextField
+            fullWidth
+            label="Unesi odgovor"
+            value={newReply}
+            onChange={(e) => setNewReply(e.target.value)}
+            sx={{ mb: 2 }}
+          />
+          <Button variant="contained" onClick={handleCreateReply}>
+            Potvrdi unos
+          </Button>
+        </Box>
+      )}
+
+      <Button
+        variant="contained"
+        sx={{ mb: 2 }}
+        onClick={() => setShowForm(!showForm)}
+      >
+        {showForm ? "Zatvori formu" : "Dodaj odgovor"}
+      </Button>
+
       <Typography variant="h6">Odgovori:</Typography>
-      {replies.length > 0 ? (
-        replies.map((reply: Reply) => (
-          <Card key={reply.id} sx={{ mb: 2, p: 2 }}>
+
+      {repliesByTopic && repliesByTopic.length > 0 ? (
+        repliesByTopic.map((reply: Reply) => (
+          <Card key={reply.id} sx={{ mb: 2, p: 2, maxWidth: 1400,animation: "appear 1.2s ease-out" }}>
             <CardContent>
-              <Typography variant="body1">{reply.text}</Typography>
-              <Typography variant="body2" color="textSecondary">
-                Autor: {reply.author} | Datum: {reply.date}
+              <Typography variant="body1" sx={{ textAlign: "center" }}>{reply.text}</Typography>
+              <Typography variant="body2" sx={{ textAlign: "center" }} color="textSecondary">
+                Autor: {data.user?.firstName} {data.user?.lastName} | Datum:{" "}
+                {new Date(data.createdAt).toLocaleDateString()}
               </Typography>
             </CardContent>
           </Card>
@@ -76,19 +108,6 @@ export function TopicDetails() {
       ) : (
         <Typography variant="body1">Nema odgovora na ovu temu.</Typography>
       )}
-      <Box sx={{ mt: 3 }}>
-        <TextField
-          label="Dodaj odgovor"
-          fullWidth
-          multiline
-          rows={4}
-          value={newReply}
-          onChange={(e) => setNewReply(e.target.value)}
-        />
-        <Button variant="contained" sx={{ mt: 2 }} onClick={handleAddReply}>
-          Dodaj odgovor
-        </Button>
-      </Box>
     </Box>
   );
 }

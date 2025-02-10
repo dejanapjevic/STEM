@@ -10,7 +10,9 @@ namespace API.Data
     public required DbSet<Article> Articles { get; set; }
     public required DbSet<Question> Questions { get; set; }
     public required DbSet<CareerOption> CareerOptions { get; set; }
- 
+    public required DbSet<Topic> Topics { get; set; }
+    public required DbSet<Reply> Replies { get; set; }
+
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -22,8 +24,25 @@ namespace API.Data
           new IdentityRole { Id = "2fb6eef4-e5fc-41c7-ad76-f02658c3fd97", Name = "Member", NormalizedName = "MEMBER" },
           new IdentityRole { Id = "62c896d5-9b6d-4e8f-80bc-bb6e9c64c357", Name = "Admin", NormalizedName = "ADMIN" }
        );
-     
-      
+
+      builder.Entity<Topic>()
+                 .HasOne(t => t.User)  // Topic ima jednog korisnika
+                 .WithMany()  // Nema kolekcije u User-u
+                 .HasForeignKey(t => t.UserId)
+                 .OnDelete(DeleteBehavior.Cascade);
+
+
+      builder.Entity<Reply>()
+                  .HasOne(r => r.User)
+                  .WithMany() // Ako je korisnik može imati više odgovora
+                  .HasForeignKey(r => r.UserId)
+                  .OnDelete(DeleteBehavior.Cascade); // Opcionalno, kako se ponašati pri brisanju korisnika
+
+      builder.Entity<Reply>()
+          .HasOne(r => r.Topic)
+          .WithMany() // Ako tema može imati više odgovora
+          .HasForeignKey(r => r.TopicId)
+          .OnDelete(DeleteBehavior.Cascade);
     }
   }
 

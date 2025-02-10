@@ -16,9 +16,10 @@ import Inventory from "../admin/Inventory";
 import Quiz from "../quiz&test/Quiz";
 import CareerOptions from "../quiz&test/CareerOptions";
 import Forum from "../forum/Forum";
-import { TopicDetails } from "../forum/TopicDetails";
-
-
+import TopicDetails from "../forum/TopicDetails";
+import Chatbot from "../forum/Chatbot";
+import PdfGenerator from "../forum/PdfGenerator";
+import ForumInventory from "../admin/ForumInventory";
 
 export const router = createBrowserRouter([
   {
@@ -46,7 +47,9 @@ export const router = createBrowserRouter([
       { path: "register", element: <RegisterForm /> },
       { path: "welcome", element: <WelcomePage /> },
       { path: "forum", element: <Forum /> },
-      { path:"tema/:id", element:<TopicDetails />},
+      { path: "tema/:id", element: <TopicDetails /> },
+      { path: "chatbot", element: <Chatbot /> },
+      { path: "forumInventory", element: <ForumInventory /> },
       { path: "*", element: <Navigate replace to="/not-found" /> },
     ],
   },

@@ -10,6 +10,7 @@ import { useState } from "react";
 import { User } from "../../models/user";
 import {
   AccountCircle,
+  AdminPanelSettings,
   Favorite,
   Logout,
   People,
@@ -93,12 +94,27 @@ export default function UserMenu({ user }: Props) {
         
         {user &&
           user.roles.includes("Admin") &&
+           <>
            <MenuItem>
+            <ListItemIcon>
+              <AdminPanelSettings  />
+            </ListItemIcon>
+            <ListItemText onClick={() => navigate("/inventory")}>Administracija članaka</ListItemText>
+          </MenuItem><MenuItem>
+              <ListItemIcon>
+                <AdminPanelSettings />
+              </ListItemIcon>
+              <ListItemText onClick={() => navigate("/inventory")}>Administracija korisnika</ListItemText>
+            </MenuItem>
+
+            <MenuItem>
            <ListItemIcon>
-            <Quiz />
+            <AdminPanelSettings  />
           </ListItemIcon>
-          <ListItemText onClick={() => navigate("/inventory")}>Administracija članaka</ListItemText>
-          </MenuItem>}
+          <ListItemText onClick={() => navigate("/foruminventory")}>Administracija foruma</ListItemText>
+          </MenuItem>
+            </>
+          }
 
           <Divider sx={{color:"black"}}/>
         <MenuItem onClick={logout}>

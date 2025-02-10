@@ -8,6 +8,7 @@ import { catalogSlice } from "../catalog/catalogSlice";
 import { accountApi } from "../account/accountApi";
 import { adminApi } from "../admin/adminApi";
 import { quiztestApi } from "../quiz&test/quiz&testApi";
+import { forumApi } from "../forum/forumApi";
 
 export const store = configureStore({
   reducer: {
@@ -15,7 +16,8 @@ export const store = configureStore({
     [errorApi.reducerPath]: errorApi.reducer,
     [accountApi.reducerPath]: accountApi.reducer,
     [adminApi.reducerPath]: adminApi.reducer,
-    [quiztestApi.reducerPath]:quiztestApi.reducer,
+    [quiztestApi.reducerPath]: quiztestApi.reducer,
+    [forumApi.reducerPath]: forumApi.reducer,
     ui: uiSlice.reducer,
     catalog: catalogSlice.reducer,
   },
@@ -25,7 +27,8 @@ export const store = configureStore({
       errorApi.middleware,
       accountApi.middleware,
       adminApi.middleware,
-      quiztestApi.middleware
+      quiztestApi.middleware,
+      forumApi.middleware
     ),
 });
 
