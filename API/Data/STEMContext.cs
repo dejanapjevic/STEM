@@ -43,6 +43,7 @@ namespace API.Data
           .WithMany() // Ako tema može imati više odgovora
           .HasForeignKey(r => r.TopicId)
           .OnDelete(DeleteBehavior.Cascade);
+          
     }
   }
 

@@ -11,7 +11,8 @@ import { User } from "../../models/user";
 import {
   AccountCircle,
   AdminPanelSettings,
-  Favorite,
+  Article,
+
   Logout,
   People,
   Quiz,
@@ -64,9 +65,9 @@ export default function UserMenu({ user }: Props) {
       >
         <MenuItem>
           <ListItemIcon>
-            <Favorite />
+            <Article />
           </ListItemIcon>
-          <ListItemText>Omiljeno</ListItemText>
+          <ListItemText onClick={() => navigate("/catalog")}>Pročitaj STEM novosti</ListItemText>
         </MenuItem>
         <MenuItem>
           <ListItemIcon>
@@ -90,8 +91,8 @@ export default function UserMenu({ user }: Props) {
           </ListItemIcon>
           <ListItemText  onClick={() => navigate("/forum")}>Pridruži se forumu za diskusiju</ListItemText>
         </MenuItem>
-        <MenuItem></MenuItem>
-        
+     
+        <Divider sx={{color:"black"}}/>
         {user &&
           user.roles.includes("Admin") &&
            <>
@@ -104,7 +105,7 @@ export default function UserMenu({ user }: Props) {
               <ListItemIcon>
                 <AdminPanelSettings />
               </ListItemIcon>
-              <ListItemText onClick={() => navigate("/inventory")}>Administracija korisnika</ListItemText>
+              <ListItemText onClick={() => navigate("/userinventory")}>Administracija korisnika</ListItemText>
             </MenuItem>
 
             <MenuItem>
@@ -112,6 +113,12 @@ export default function UserMenu({ user }: Props) {
             <AdminPanelSettings  />
           </ListItemIcon>
           <ListItemText onClick={() => navigate("/foruminventory")}>Administracija foruma</ListItemText>
+          </MenuItem>
+          <MenuItem>
+           <ListItemIcon>
+            <AdminPanelSettings  />
+          </ListItemIcon>
+          <ListItemText onClick={() => navigate("/quizinventory")}>Administracija kviza</ListItemText>
           </MenuItem>
             </>
           }

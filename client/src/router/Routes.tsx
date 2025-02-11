@@ -18,8 +18,8 @@ import CareerOptions from "../quiz&test/CareerOptions";
 import Forum from "../forum/Forum";
 import TopicDetails from "../forum/TopicDetails";
 import Chatbot from "../forum/Chatbot";
-import PdfGenerator from "../forum/PdfGenerator";
 import ForumInventory from "../admin/ForumInventory";
+import UsersInventory from "../admin/UsersInventory";
 
 export const router = createBrowserRouter([
   {
@@ -50,6 +50,7 @@ export const router = createBrowserRouter([
       { path: "tema/:id", element: <TopicDetails /> },
       { path: "chatbot", element: <Chatbot /> },
       { path: "forumInventory", element: <ForumInventory /> },
+      { path: "userInventory", element: <UsersInventory /> },
       { path: "*", element: <Navigate replace to="/not-found" /> },
     ],
   },

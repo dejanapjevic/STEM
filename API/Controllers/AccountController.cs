@@ -1,15 +1,20 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using API.Data;
 using API.DTOs;
 using API.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
-    public class AccountController(SignInManager<User> signInMenager) : BaseApiController
+    public class AccountController(SignInManager<User> signInMenager, STEMContext context) : BaseApiController
     {
+
+        private readonly STEMContext _context = context;
         /*SignInManager<User> je korišćen za upravljanje korisničkom autentifikacijom, 
         a RegisterDTO je objekat koji prenosi podatke sa klijenta, kao što su email i lozinka korisnika.*/
         [HttpPost("register")]
@@ -66,6 +71,50 @@ U suprotnom, vraća odgovarajući statusni kod (kao što je NoContent ili Unauth
             await signInMenager.SignOutAsync();
             //odjavljuje i brise cookie
             return NoContent();
+        }
+
+        [HttpGet("get-users")]
+        public async Task<ActionResult<List<User>>> GetUsers() {
+             var users = await _context.Users.ToListAsync();
+
+    if (users == null || users.Count == 0)
+        return NoContent();
+
+    var usersList = new List<object>();
+
+    foreach (var user in users)
+    {
+        var roles = await signInMenager.UserManager.GetRolesAsync(user);
+        usersList.Add(new
+        {
+            user.Id,
+            user.Email,
+            user.UserName,
+            user.FirstName,
+            user.LastName,
+            user.Gender,
+            user.DateOfBirth,
+            Roles = roles
+        });
+    }
+
+    return Ok(usersList);
+        }
+
+        [HttpGet("get-user-by-id/{id}")]
+        public async Task<ActionResult<User>> GetUserById(string id) {
+            var user = await _context.Users.FindAsync(id);
+            if(user==null) return NotFound();
+            else return Ok(user);
+        }
+        [HttpDelete("delete-user/{id}")]
+        public async Task<ActionResult> DeleteUser(string id) {
+            var user = await _context.Users.FindAsync(id);
+            if(user==null) return NotFound();
+            _context.Users.Remove(user);
+             var result = await _context.SaveChangesAsync() > 0;
+            if (result) return NoContent();
+            return BadRequest(new ProblemDetails { Title = "Problem pri brisanju članka" });
         }
     }
 }

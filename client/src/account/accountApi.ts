@@ -56,7 +56,17 @@ export const accountApi = createApi({
       query: () => "Account/user-info",
       providesTags: ["UserInfo"],
     }),
-
+    fetchUsers: builder.query<User[], void>({
+      query: () => ({ url: "account/get-users" }),
+    }),
+    deleteUser: builder.mutation({
+      query: (id: string) => {
+        return {
+          url: `account/delete-user/${id}`,
+          method: "DELETE",
+        };
+      },
+    }),
     sendWelcomeEmail: builder.mutation<void, { receptor: string }>({
       query: (emailData) => {
         if (!emailData.receptor || emailData.receptor.trim() === "") {
@@ -93,4 +103,6 @@ export const {
   useUserInfoQuery,
   useLazyUserInfoQuery,
   useSendWelcomeEmailMutation,
+  useFetchUsersQuery,
+  useDeleteUserMutation
 } = accountApi;

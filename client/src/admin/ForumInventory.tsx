@@ -14,6 +14,7 @@ import { useDeleteTopicMutation, useFetchTopicsQuery } from "../forum/forumApi";
 
 export default function ForumInventory() {
   const { data, isLoading, refetch } = useFetchTopicsQuery();
+
   const [deleteTopic] = useDeleteTopicMutation();
   const handleDeleteTopic = async (id: number) => {
     try {
@@ -24,6 +25,7 @@ export default function ForumInventory() {
     }
   };
   if (isLoading || !data) return <div>Loading....</div>;
+
   return (
     <TableContainer component={Paper}>
       <Table
