@@ -16,6 +16,7 @@ import {
 } from "../quiz&test/quiz&testApi";
 import { useState } from "react";
 import QuestionForm from "../quiz&test/QuestionForm";
+import { toast } from "react-toastify";
 
 export default function quizInventory() {
   const { data, isLoading, refetch } = useFetchQuizQuestionsQuery();
@@ -26,6 +27,7 @@ export default function quizInventory() {
     try {
       await deleteQuestion(id);
       refetch();
+      toast.success("Uspješno ste obrisali pitanje");
     } catch (error) {
       console.log(error);
     }
@@ -33,11 +35,20 @@ export default function quizInventory() {
   const handleCreateQuestion = () => {
     setAddMode(true);
   };
+
+  const handleSuccess = () => {
+    setAddMode(false);
+    refetch(); // Osvježavamo listu pitanja
+  };
+
   if (isLoading || !data) return <div>Loading....</div>;
-  if(addMode) {
+  if (addMode) {
     return (
-      <QuestionForm/>
-    )
+      <QuestionForm
+        onCancel={() => setAddMode(false)}
+        onSuccess={handleSuccess}
+      />
+    );
   }
   return (
     <>
@@ -80,7 +91,7 @@ export default function quizInventory() {
                   component="th"
                   scope="row"
                   sx={{
-                    maxWidth: "100px",
+                    maxWidth: "40px",
                     height: "50px",
                   }}
                 >
@@ -90,7 +101,7 @@ export default function quizInventory() {
                   component="th"
                   scope="row"
                   sx={{
-                    maxWidth: "50px",
+                    maxWidth: "170px",
                     height: "50px",
                   }}
                 >
@@ -100,7 +111,7 @@ export default function quizInventory() {
                   component="th"
                   scope="row"
                   sx={{
-                    maxWidth: "50px",
+                    maxWidth: "70px",
                     height: "50px",
                   }}
                 >
@@ -109,7 +120,7 @@ export default function quizInventory() {
                 <TableCell
                   align="left"
                   sx={{
-                    maxWidth: "230px",
+                    maxWidth: "70px",
                     whiteSpace: "normal",
                   }}
                 >
@@ -127,7 +138,7 @@ export default function quizInventory() {
                 <TableCell
                   align="left"
                   sx={{
-                    maxWidth: "80px",
+                    maxWidth: "70px",
                     whiteSpace: "normal",
                   }}
                 >
@@ -136,7 +147,7 @@ export default function quizInventory() {
                 <TableCell
                   align="right"
                   sx={{
-                    maxWidth: "60px",
+                    maxWidth: "70px",
                     height: "50px",
                   }}
                 >
@@ -145,7 +156,7 @@ export default function quizInventory() {
                 <TableCell
                   align="right"
                   sx={{
-                    maxWidth: "60px",
+                    maxWidth: "40px",
                     height: "50px",
                   }}
                 >
@@ -154,7 +165,6 @@ export default function quizInventory() {
                     color="error"
                     onClick={() => handleDeleteQuestion(item.id)}
                   />
-                  <Button startIcon={<Edit />} color="primary" />
                 </TableCell>
               </TableRow>
             ))}

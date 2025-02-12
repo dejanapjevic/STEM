@@ -70,7 +70,7 @@ export default function ArticleForm({
   const onSubmit = async (data: CreateArticleSchema) => {
     try {
       const formData = createFormData(data);
-      const formDataObj = Object.fromEntries(formData.entries());
+      // const formDataObj = Object.fromEntries(formData.entries());
 
       if (watchFile) {
         const formDataImage = new FormData();
@@ -185,10 +185,6 @@ export default function ArticleForm({
           >
             {isSubmitting ? <CircularProgress /> : "Sačuvaj članak"}
           </Button>
-
-          {/*  <Button variant="contained" color="success" type="submit">
-            Submit
-          </Button> */}
         </Box>
       </form>
     </Box>

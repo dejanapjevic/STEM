@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 
 import { useDeleteTopicMutation, useFetchTopicsQuery } from "../forum/forumApi";
+import { toast } from "react-toastify";
 
 export default function ForumInventory() {
   const { data, isLoading, refetch } = useFetchTopicsQuery();
@@ -20,6 +21,7 @@ export default function ForumInventory() {
     try {
       await deleteTopic(id);
       refetch();
+      toast.success("Uspješno ste obrisali temu");
     } catch (error) {
       console.log(error);
     }

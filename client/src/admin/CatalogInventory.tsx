@@ -22,6 +22,7 @@ import ArticleForm from "./ArticleForm";
 import { Article } from "../models/article";
 import { useNavigate } from "react-router-dom";
 import { useDeleteArticleMutation } from "./adminApi";
+import { toast } from "react-toastify";
 
 export default function CatalogInventory() {
   const articleParams = useAppSelector((state) => state.catalog);
@@ -44,6 +45,7 @@ export default function CatalogInventory() {
     try {
       await deleteArticle(id);
       refetch();
+      toast.success("Uspješno ste obrisali članak");
     } catch (error) {
       console.log(error);
     }

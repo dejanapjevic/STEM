@@ -1,11 +1,14 @@
 import { useForm } from "react-hook-form";
-import { Box, Paper, Typography, Grid2, Button } from "@mui/material";
+import { Box, Paper, Typography, Grid2, Button, CircularProgress } from "@mui/material";
 import AppTextInput from "../components/AppTextInput";
 import createQuestionSchema from "../schemas/createQuestion";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCreateQuestionMutation } from "./quiz&testApi";
-
-export default function QuestionForm() {
+interface QuestionFormProps {
+  onCancel: () => void;
+  onSuccess: () => void;
+}
+export default function QuestionForm({ onCancel, onSuccess }: QuestionFormProps) {
   const { control, handleSubmit } = useForm({
     resolver: zodResolver(createQuestionSchema), // Povezivanje šeme sa formom
     defaultValues: {
@@ -17,10 +20,14 @@ export default function QuestionForm() {
       answer: "",
     },
   });
-  const [addQuestion] = useCreateQuestionMutation();
-  const onSubmit = (data: any) => {
-    console.log(data); // Ovde šaljemo podatke na server ili ih dalje obrađujemo
-    addQuestion(data);
+  const [addQuestion, {isLoading:isSubmitting}] = useCreateQuestionMutation();
+  const onSubmit = async (data: any) => {
+    try {
+      await addQuestion(data);
+      onSuccess(); // Pozivamo onSuccess nakon dodavanja pitanja
+    } catch (error) {
+      console.error("Greška pri dodavanju pitanja:", error);
+    }
   };
 
   return (
@@ -86,11 +93,12 @@ export default function QuestionForm() {
         </Grid2>
 
         <Box display="flex" justifyContent="space-between" sx={{ mt: 3 }}>
-          <Button variant="contained" color="inherit">
+          <Button variant="contained" color="inherit" onClick={onCancel}>
             Cancel
           </Button>
           <Button color="success" variant="contained" type="submit">
-            Sačuvaj pitanje
+             {isSubmitting ? <CircularProgress /> : "Sačuvaj pitanje"}
+            
           </Button>
         </Box>
       </form>
