@@ -12,14 +12,16 @@ import LoginForm from "../account/LoginForm";
 import RegisterForm from "../account/registerForm";
 import RequireAuth from "./RequireAuth";
 import WelcomePage from "../welcome/WelcomePage";
-import Inventory from "../admin/Inventory";
+
 import Quiz from "../quiz&test/Quiz";
 import CareerOptions from "../quiz&test/CareerOptions";
 import Forum from "../forum/Forum";
 import TopicDetails from "../forum/TopicDetails";
-import Chatbot from "../forum/Chatbot";
+
 import ForumInventory from "../admin/ForumInventory";
 import UsersInventory from "../admin/UsersInventory";
+import QuizInventory from "../admin/quizInventory";
+import CatalogInventory from "../admin/CatalogInventory";
 
 export const router = createBrowserRouter([
   {
@@ -31,7 +33,10 @@ export const router = createBrowserRouter([
         children: [
           { path: "catalog", element: <Catalog /> },
           { path: "catalog/:id", element: <ArticleDetails /> },
-          { path: "inventory", element: <Inventory /> },
+          { path: "catalogInventory", element: <CatalogInventory /> },
+          { path: "forumInventory", element: <ForumInventory /> },
+          { path: "userInventory", element: <UsersInventory /> },
+          { path: "quizInventory", element: <QuizInventory /> },
           { path: "quiz", element: <Quiz /> },
           { path: "career", element: <CareerOptions /> },
         ],
@@ -48,9 +53,8 @@ export const router = createBrowserRouter([
       { path: "welcome", element: <WelcomePage /> },
       { path: "forum", element: <Forum /> },
       { path: "tema/:id", element: <TopicDetails /> },
-      { path: "chatbot", element: <Chatbot /> },
-      { path: "forumInventory", element: <ForumInventory /> },
-      { path: "userInventory", element: <UsersInventory /> },
+     
+
       { path: "*", element: <Navigate replace to="/not-found" /> },
     ],
   },

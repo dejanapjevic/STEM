@@ -29,11 +29,11 @@ export default function UsersInventory() {
     }
   };
   return (
-    <TableContainer component={Paper} >
+    <TableContainer component={Paper}>
       <Table
         sx={{
           minWidth: 650,
-          mb: "1%",
+
           border: "4px solid #9C27B0",
           "& td, & th": { border: "2px solid #9C27B0" },
         }}
@@ -71,7 +71,7 @@ export default function UsersInventory() {
                   height: "50px",
                 }}
               >
-                {item.firstName} 
+                {item.firstName}
               </TableCell>
               <TableCell
                 component="th"
@@ -81,7 +81,7 @@ export default function UsersInventory() {
                   height: "50px",
                 }}
               >
-                {item.lastName} 
+                {item.lastName}
               </TableCell>
               <TableCell
                 align="left"
@@ -128,11 +128,7 @@ export default function UsersInventory() {
                     }
                   }}
                 />
-                <Button
-                  startIcon={<Edit />}
-                  color="primary"
-                 
-                />
+                <Button startIcon={<Edit />} color="primary" />
               </TableCell>
             </TableRow>
           ))}

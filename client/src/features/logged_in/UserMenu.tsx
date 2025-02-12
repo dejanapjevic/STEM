@@ -100,7 +100,7 @@ export default function UserMenu({ user }: Props) {
             <ListItemIcon>
               <AdminPanelSettings  />
             </ListItemIcon>
-            <ListItemText onClick={() => navigate("/inventory")}>Administracija članaka</ListItemText>
+            <ListItemText onClick={() => navigate("/cataloginventory")}>Administracija članaka</ListItemText>
           </MenuItem><MenuItem>
               <ListItemIcon>
                 <AdminPanelSettings />

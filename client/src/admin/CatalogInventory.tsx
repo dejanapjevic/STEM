@@ -23,7 +23,7 @@ import { Article } from "../models/article";
 import { useNavigate } from "react-router-dom";
 import { useDeleteArticleMutation } from "./adminApi";
 
-export default function Inventory() {
+export default function CatalogInventory() {
   const articleParams = useAppSelector((state) => state.catalog);
   const navigate = useNavigate();
   const { data, isLoading, refetch } = useFetchArticlesQuery(articleParams);
@@ -70,7 +70,7 @@ export default function Inventory() {
     <>
       <Box display="flex" justifyContent="space-between">
         <Button
-          // onClick={() => setEditMode(true)}
+          
           onClick={handleCreateNewArticle}
           sx={{ m: 2, color: "white", backgroundColor: "#9C27B0" }}
           size="large"

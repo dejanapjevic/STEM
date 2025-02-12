@@ -11,6 +11,7 @@ namespace API.RequestHelpers
         {
             CreateMap<CreateArticleDTO, Article>();
             CreateMap<UpdateArticleDTO, Article>();
+            CreateMap<CreateQuestionDTO, Question>();
         }
     }
 }
