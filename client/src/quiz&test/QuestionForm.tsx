@@ -1,14 +1,21 @@
 import { useForm } from "react-hook-form";
-import { Box, Paper, Typography, Grid2, Button, CircularProgress } from "@mui/material";
+import {
+  Box,
+  Paper,
+  Typography,
+  Grid2,
+  Button,
+  CircularProgress,
+} from "@mui/material";
 import AppTextInput from "../components/AppTextInput";
 import createQuestionSchema from "../schemas/createQuestion";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCreateQuestionMutation } from "./quiz&testApi";
-interface QuestionFormProps {
+interface Props {
   onCancel: () => void;
   onSuccess: () => void;
 }
-export default function QuestionForm({ onCancel, onSuccess }: QuestionFormProps) {
+export default function QuestionForm({ onCancel, onSuccess }: Props) {
   const { control, handleSubmit } = useForm({
     resolver: zodResolver(createQuestionSchema), // Povezivanje šeme sa formom
     defaultValues: {
@@ -20,7 +27,8 @@ export default function QuestionForm({ onCancel, onSuccess }: QuestionFormProps)
       answer: "",
     },
   });
-  const [addQuestion, {isLoading:isSubmitting}] = useCreateQuestionMutation();
+  const [addQuestion, { isLoading: isSubmitting }] =
+    useCreateQuestionMutation();
   const onSubmit = async (data: any) => {
     try {
       await addQuestion(data);
@@ -30,6 +38,9 @@ export default function QuestionForm({ onCancel, onSuccess }: QuestionFormProps)
     }
   };
 
+  /*U komponenti <QuizInventory> (ili nekoj nadređenoj komponenti), koristiš <QuestionForm> i
+   prosleđuješ onCancel prop. 
+  Kada se onCancel pozove u QuestionForm, on izvršava funkciju koju si mu prosledio iz QuizInventory.*/
   return (
     <Box component={Paper} sx={{ p: 2, m: 40, mt: 2, mx: "auto" }}>
       <Typography variant="h5" sx={{ mb: 4 }}>
@@ -37,14 +48,14 @@ export default function QuestionForm({ onCancel, onSuccess }: QuestionFormProps)
       </Typography>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Grid2 container spacing={3}>
-          <Grid2 size={6}>
+          <Grid2 size={12}>
             <AppTextInput
               name="title"
               label="Pitanje"
               control={control} // Prosleđujemo control za povezivanje sa react-hook-form
             />
           </Grid2>
-          <Grid2 size={6}></Grid2>
+
           <Grid2 size={12}>
             <AppTextInput
               name="option1"
@@ -97,8 +108,7 @@ export default function QuestionForm({ onCancel, onSuccess }: QuestionFormProps)
             Cancel
           </Button>
           <Button color="success" variant="contained" type="submit">
-             {isSubmitting ? <CircularProgress /> : "Sačuvaj pitanje"}
-            
+            {isSubmitting ? <CircularProgress /> : "Sačuvaj pitanje"}
           </Button>
         </Box>
       </form>

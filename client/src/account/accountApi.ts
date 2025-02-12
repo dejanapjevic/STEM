@@ -67,6 +67,15 @@ export const accountApi = createApi({
         };
       },
     }),
+    addUser:builder.mutation<User, FormData>({
+      query: (data: FormData) => {
+        return {
+          url: "account/add-user",
+          method: "POST",
+          body: data,
+        };
+      },
+    }),
     sendWelcomeEmail: builder.mutation<void, { receptor: string }>({
       query: (emailData) => {
         if (!emailData.receptor || emailData.receptor.trim() === "") {
@@ -104,5 +113,6 @@ export const {
   useLazyUserInfoQuery,
   useSendWelcomeEmailMutation,
   useFetchUsersQuery,
-  useDeleteUserMutation
+  useDeleteUserMutation,
+  useAddUserMutation
 } = accountApi;
