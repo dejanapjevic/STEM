@@ -1,12 +1,5 @@
-import { LockOutlined } from "@mui/icons-material";
-import {
-  Box,
-  Button,
-  Container,
-  Paper,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { KeyboardBackspace, LockOutlined } from "@mui/icons-material";
+import { Box, Button, Grid2, TextField, Typography } from "@mui/material";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { LoginSchema, loginSchema } from "../schemas/loginSchema";
@@ -36,25 +29,38 @@ export default function LoginForm() {
     navigate(location.state?.from || "/catalog");
   };
   return (
-    <>
-      <Container
-        component={Paper}
-        maxWidth="sm"
-        sx={{
-          borderRadius: 3,
-          border: 2,
-          borderColor: "#5f4995",
-          marginTop: 12,
-        }}
-        className="container-form-login"
+    <Grid2
+      container
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      style={{
+        height: "100vh",
+      }}
+    >
+      <Grid2
+        size={6}
+        height="100vh"
+        justifyContent="center"
+        alignContent="center"
+        style={{ position: "relative" }}
       >
+        <KeyboardBackspace
+          sx={{
+            position: "absolute", // Fiksirajte poziciju ikone
+            top: "10px", // Postavite razmak od gornjeg dela
+            left: "10px", // Postavite razmak od desnog dela
+            cursor: "pointer", // Opcionalno, za kursor ruke
+          }}
+          onClick={() => navigate("/home")}
+        />
         <Box
           display="flex"
           flexDirection="column"
           alignItems="center"
-          marginTop="8"
+          padding="5%"
         >
-          <LockOutlined sx={{ mt: 3, color: "secondary.main", fontSize: 50 }} />
+          <LockOutlined sx={{ mt: 3, color: "blue", fontSize: 50 }} />
           <Typography variant="h4">Prijavi se</Typography>
 
           <Box
@@ -68,8 +74,7 @@ export default function LoginForm() {
           >
             <TextField
               fullWidth
-              color="secondary"
-              label="Email"
+              label="E-mail"
               autoComplete="email"
               {...register("email")}
               error={!!errors.email}
@@ -77,7 +82,6 @@ export default function LoginForm() {
             />
             <TextField
               fullWidth
-              color="secondary"
               label="Lozinka"
               type="password"
               autoComplete="current-password"
@@ -89,7 +93,7 @@ export default function LoginForm() {
               variant="contained"
               type="submit"
               disabled={isLoading}
-              sx={{ backgroundColor: "#9C27B0" }}
+              sx={{ backgroundColor: "black" }}
             >
               Prijavi se
             </Button>
@@ -101,19 +105,30 @@ export default function LoginForm() {
                   ml: 2,
                   "&:hover": {
                     fontWeight: "bold",
-                    color: "#9C27B0", // postavi bold font na hover
+                    color: "blue", // postavi bold font na hover
                   },
                 }}
                 component={Link}
                 to="/register"
-                color="secondary"
+                color="black"
               >
                 Registruj se
               </Typography>
             </Typography>
           </Box>
         </Box>
-      </Container>
-    </>
+      </Grid2>
+      <Grid2
+        size={6}
+        style={{
+          height: "100vh",
+          backgroundImage:
+            "linear-gradient(to left, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 1) 100%), url('z.jpg')",
+          backgroundSize: "cover", // Slika će pokriti celu površinu
+          backgroundPosition: "center", // Slika će biti centrirana
+          backgroundRepeat: "no-repeat", // Slika se neće ponavljati
+        }}
+      ></Grid2>
+    </Grid2>
   );
 }

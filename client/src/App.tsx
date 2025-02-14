@@ -19,10 +19,13 @@ function App() {
       <ScrollRestoration />
       <ToastContainer position="bottom-right" hideProgressBar theme="colored" />
       <div className="App" style={{ overflowY: "auto" }}>
-
-         {location.pathname !== "/home" && location.pathname !== "/"
-          && location.pathname!=="/quiz" && location.pathname!=="/career" 
-          && location.pathname!=="/forum" && <Header />}
+        {location.pathname !== "/home" &&
+          location.pathname !== "/" &&
+          location.pathname !== "/quiz" &&
+          location.pathname !== "/career" &&
+          location.pathname !== "/forum" &&
+          location.pathname !== "/login" &&
+          location.pathname !== "/register" && <Header />}
         <Outlet />
       </div>
     </>
