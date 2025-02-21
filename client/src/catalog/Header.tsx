@@ -3,15 +3,14 @@ import {
   Box,
   Button,
   LinearProgress,
- 
   Toolbar,
   Typography,
 } from "@mui/material";
-import {  useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useUserInfoQuery } from "../account/accountApi";
-import UserMenu from "../features/logged_in/UserMenu";
 import { useAppSelector } from "../store/store";
 import { ArrowBackIos } from "@mui/icons-material";
+import UserMenu from "./UserMenu";
 
 export default function Header() {
   const { isLoading } = useAppSelector((state) => state.ui);
@@ -22,13 +21,13 @@ export default function Header() {
     location.pathname === "/login" || location.pathname === "/register"; // Proveravamo rutu
   return (
     <AppBar position="static" color="inherit">
-      <Toolbar sx={{ border: 2, borderColor: "#5f4995" }}>
+      <Toolbar>
         <Typography
           variant="h6"
           component="div"
           sx={{
             flexGrow: 1,
-            color: "#9C27B0",
+            color: "black",
             textTransform: "uppercase",
             fontWeight: "bold",
           }}
@@ -38,16 +37,6 @@ export default function Header() {
             ? "ADMINISTRACIJA"
             : "Dobrodošli u STEM istraživač"}
         </Typography>
-        <img
-          src="icon.avif"
-          style={{
-            width: "3.8%",
-            height: "auto",
-            position: "absolute",
-            left: "24%",
-          }}
-        ></img>
-      
 
         {user ? (
           <UserMenu user={user} />
@@ -55,7 +44,7 @@ export default function Header() {
           <>
             {showBackButton && ( // Prikazuje dugme samo ako je korisnik na /login ili /register
               <Button onClick={() => navigate("/home")}>
-                <ArrowBackIos sx={{ color: "#5f4995" }} />
+                <ArrowBackIos sx={{ color: "black" }} />
               </Button>
             )}
           </>
@@ -63,7 +52,14 @@ export default function Header() {
       </Toolbar>
       {isLoading && (
         <Box sx={{ width: "100%" }}>
-          <LinearProgress color="secondary" />
+          <LinearProgress
+            sx={{
+              backgroundColor: "lightgray", // Boja pozadine
+              "& .MuiLinearProgress-bar": {
+                backgroundColor: "black", // Boja same progress trake
+              },
+            }}
+          />
         </Box>
       )}
     </AppBar>

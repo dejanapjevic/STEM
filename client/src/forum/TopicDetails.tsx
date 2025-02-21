@@ -23,7 +23,7 @@ export default function TopicDetails() {
     isLoading: repliesLoading,
     error: repliesError,
   } = useGetRepliesByTopicQuery(id ? +id : 0);
-  console.log(repliesByTopic);
+ // console.log(repliesByTopic);
   const [createReply] = useCreateReplyMutation();
   const [newReply, setNewReply] = useState("");
   const [showForm, setShowForm] = useState(false);

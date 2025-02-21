@@ -2,11 +2,13 @@ using API.Data;
 using API.DTOs;
 using API.Entities;
 using API.Extensions;
+using API.Hubs;
 using API.RequestHelpers;
 using API.Services;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 #nullable enable
 namespace API.Controllers
@@ -15,11 +17,13 @@ namespace API.Controllers
     {
         private readonly STEMContext _context;
         private readonly IMapper _mapper;
+        private readonly IHubContext<NotificationHub> _hubContext;
 
-        public ArticlesController(STEMContext context, IMapper mapper)
+        public ArticlesController(STEMContext context, IMapper mapper, IHubContext<NotificationHub> hubContext)
         {
             _context = context;
             _mapper = mapper;
+            _hubContext = hubContext;
         }
 
         [HttpGet]
@@ -82,9 +86,16 @@ namespace API.Controllers
 
             var result = await _context.SaveChangesAsync() > 0;
 
-            if (result) return CreatedAtRoute("GetArticle", new { Id = article.Id }, article);
+            if (result)
+            {
+                await _hubContext.Clients.All.SendAsync("Notifikacija o člancima", "Novi članci iz STEM oblasti su objavljeni!");
+                return CreatedAtRoute("GetArticle", new { Id = article.Id }, article);
+            }
 
-            return BadRequest(new ProblemDetails { Title = "Problem pri kreiranju novog članka" });
+            else
+            {
+                return BadRequest(new ProblemDetails { Title = "Problem pri kreiranju novog članka" });
+            }
         }
 
         [Authorize(Roles = "Admin")]
@@ -115,12 +126,13 @@ namespace API.Controllers
         }
 
         [HttpPost("upload")]
-        public  ActionResult UploadFile(IFormFile file) {
-           // return Ok(new UploadImageHandler().Upload(file));
+        public ActionResult UploadFile(IFormFile file)
+        {
+            // return Ok(new UploadImageHandler().Upload(file));
             return Ok(new { pictureUrl = new UploadImageHandler().Upload(file) });
 
         }
-        
+
 
     }
 

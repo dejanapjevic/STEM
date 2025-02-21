@@ -4,6 +4,8 @@ import { Outlet, ScrollRestoration, useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Header from "./catalog/Header";
+import { NotificationProvider } from "./forum/NotificationContext";
+import NotificationBar from "./forum/NotificationBar";
 
 function App() {
   const navigate = useNavigate();
@@ -15,6 +17,8 @@ function App() {
   }, [location, navigate]);
 
   return (
+    <NotificationProvider>
+      <NotificationBar/>
     <>
       <ScrollRestoration />
       <ToastContainer position="bottom-right" hideProgressBar theme="colored" />
@@ -29,6 +33,7 @@ function App() {
         <Outlet />
       </div>
     </>
+    </NotificationProvider>
   );
 }
 export default App;

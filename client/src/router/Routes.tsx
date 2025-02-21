@@ -1,10 +1,7 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import App from "../App";
 import Catalog from "../catalog/Catalog";
-import Science from "../features/logged_in/Science";
-import Mathematics from "../features/logged_in/Mathematics";
-import Technology from "../features/logged_in/Technology";
-import Engineering from "../features/logged_in/Engineering";
+
 import ServerError from "../errors/ServerError";
 import NotFound from "../errors/NotFound";
 import ArticleDetails from "../catalog/ArticleDetails";
@@ -22,6 +19,7 @@ import ForumInventory from "../admin/ForumInventory";
 import UsersInventory from "../admin/UsersInventory";
 import QuizInventory from "../admin/quizInventory";
 import CatalogInventory from "../admin/CatalogInventory";
+import HomePage from "../account/HomePage";
 
 export const router = createBrowserRouter([
   {
@@ -31,6 +29,7 @@ export const router = createBrowserRouter([
       {
         element: <RequireAuth />,
         children: [
+          { path: "homepage", element: <HomePage /> },
           { path: "catalog", element: <Catalog /> },
           { path: "catalog/:id", element: <ArticleDetails /> },
           { path: "catalogInventory", element: <CatalogInventory /> },
@@ -42,10 +41,7 @@ export const router = createBrowserRouter([
         ],
       },
       { path: "home", element: <WelcomePage /> },
-      { path: "science", element: <Science /> },
-      { path: "technology", element: <Technology /> },
-      { path: "engineering", element: <Engineering /> },
-      { path: "mathematics", element: <Mathematics /> },
+
       { path: "server-error", element: <ServerError /> },
       { path: "not-found", element: <NotFound /> },
       { path: "login", element: <LoginForm /> },
@@ -53,7 +49,6 @@ export const router = createBrowserRouter([
       { path: "welcome", element: <WelcomePage /> },
       { path: "forum", element: <Forum /> },
       { path: "tema/:id", element: <TopicDetails /> },
-     
 
       { path: "*", element: <Navigate replace to="/not-found" /> },
     ],

@@ -3,8 +3,11 @@ using System.Security.Claims;
 using API.Data;
 using API.DTOs;
 using API.Entities;
+using API.Hubs;
+using Hangfire;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
@@ -12,10 +15,13 @@ namespace API.Controllers
     public class ForumController : BaseApiController
     {
         private readonly STEMContext _context;
-
-        public ForumController(STEMContext context)
+       private readonly ForumService _forumService;
+       private readonly IHubContext<NotificationHub> _hubContext;
+        public ForumController(STEMContext context,ForumService forumService,IHubContext<NotificationHub> hubContext)
         {
             _context = context;
+            _forumService = forumService;
+            _hubContext = hubContext;
         }
 
         [HttpGet("topics")]
@@ -29,6 +35,8 @@ namespace API.Controllers
 
             return Ok(topics);
         }
+
+
 
 
         [HttpGet("{id}")]
@@ -47,13 +55,14 @@ namespace API.Controllers
         }
         [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
-        public async Task<ActionResult> DeleteTopic(int id) {
+        public async Task<ActionResult> DeleteTopic(int id)
+        {
             var topic = await _context.Topics.FindAsync(id);
-            if(topic==null) return NotFound();
+            if (topic == null) return NotFound();
             _context.Topics.Remove(topic);
-            var result = await _context.SaveChangesAsync()>0;
-            if(result) return NoContent();
-            else return BadRequest(new ProblemDetails{Title="Problem prilikom brisanja teme"});
+            var result = await _context.SaveChangesAsync() > 0;
+            if (result) return NoContent();
+            else return BadRequest(new ProblemDetails { Title = "Problem prilikom brisanja teme" });
         }
 
         [Authorize]
@@ -131,6 +140,19 @@ namespace API.Controllers
             };
             _context.Replies.Add(reply);
             await _context.SaveChangesAsync();
+            try
+            {
+                
+                await _hubContext.Clients.All.SendAsync("ReceiveNotification", "Neko je odgovorio na vašu temu.");
+                
+                Console.WriteLine("odgovor...");
+            }
+            catch (Exception ex)
+            {
+                
+                 Console.WriteLine("Greška pri slanju poruke: " + ex.Message);
+            }
+            
             return Ok(new { message = "Odgovor je uspješno dodat." });
 
 
@@ -160,5 +182,21 @@ namespace API.Controllers
 
             return Ok(replies);
         }
+
+        [HttpPost("CreateRecurringJob")]
+        public ActionResult CreateRecurringJob()
+        {
+            var options = new RecurringJobOptions
+            {
+                TimeZone = TimeZoneInfo.Local // Postavljanje vremenske zone
+            };
+            RecurringJob.AddOrUpdate("DeleteOldTopics", () => _forumService.DeleteOldTopics(),
+             "00 15 * * *", options
+           );
+            return Ok();
+        }
+       
+      
+
     }
 }
