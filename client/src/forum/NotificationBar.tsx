@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import { useNotifications } from "./NotificationContext"; // Importuj hook za pristup notifikacijama
+import { Comment } from "@mui/icons-material";
 
 const NotificationBar = () => {
   // Dohvati notifikacije iz konteksta, ali samo poslednju notifikaciju
   const { notifications } = useNotifications();
   const [visible, setVisible] = useState(false);
-  const [currentNotification, setCurrentNotification] = useState<string | null>(null); // Čuvamo samo jednu notifikaciju
+  const [currentNotification, setCurrentNotification] = useState<string | null>(
+    null
+  ); // Čuvamo samo jednu notifikaciju
 
   useEffect(() => {
     if (notifications.length > 0) {
@@ -24,42 +27,38 @@ const NotificationBar = () => {
   return (
     <div
       style={{
+        display: "flex",
+        flexDirection: "column",
         position: "fixed",
         bottom: "3%",
         right: "3%",
         width: "50%",
-        backgroundColor: "lightblue",
+        backgroundColor: "white",
+        border:"2px solid grey",
         zIndex: 1000,
-        padding: "10px",
+        padding: "1%",
         fontSize: "18px",
         fontWeight: "bold",
         borderRadius: "5px",
-        boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
+        alignItems: "center",
+        justifyContent: "center",
       }}
     >
-      <h3>Notifikacije</h3>
-      <ul style={{ paddingLeft: "20px" }}>
-        <li
-          style={{
-            margin: "5px 0",
-            padding: "5px",
-            backgroundColor: "white",
-            border: "1px solid #ccc",
-            borderRadius: "5px",
-          }}
-        >
-          {currentNotification}
-        </li>
-      </ul>
+      <p>
+        <Comment color="info"/>
+        {currentNotification}
+        </p>
+
       <button
         onClick={handleClose}
         style={{
           marginTop: "10px",
           padding: "5px 10px",
-          backgroundColor: "red",
+          backgroundColor: "black",
           color: "white",
           border: "none",
           borderRadius: "3px",
+          width: "40%",
         }}
       >
         Zatvori

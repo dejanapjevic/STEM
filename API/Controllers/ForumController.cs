@@ -15,9 +15,9 @@ namespace API.Controllers
     public class ForumController : BaseApiController
     {
         private readonly STEMContext _context;
-       private readonly ForumService _forumService;
-       private readonly IHubContext<NotificationHub> _hubContext;
-        public ForumController(STEMContext context,ForumService forumService,IHubContext<NotificationHub> hubContext)
+        private readonly ForumService _forumService;
+        private readonly IHubContext<NotificationHub> _hubContext;
+        public ForumController(STEMContext context, ForumService forumService, IHubContext<NotificationHub> hubContext)
         {
             _context = context;
             _forumService = forumService;
@@ -125,6 +125,7 @@ namespace API.Controllers
             {
                 return Unauthorized("Korisnik nije prijavljen.");
             }
+            var user = await _context.Users.FindAsync(userId);
             //da li tema postoji
             var topic = await _context.Topics.FindAsync(replyDto.TopicId);
             if (topic == null)
@@ -137,22 +138,28 @@ namespace API.Controllers
                 Date = DateTime.UtcNow,
                 UserId = userId,
                 TopicId = replyDto.TopicId
+
+
             };
             _context.Replies.Add(reply);
             await _context.SaveChangesAsync();
+
+
             try
             {
-                
-                await _hubContext.Clients.All.SendAsync("ReceiveNotification", "Neko je odgovorio na vašu temu.");
-                
+                var topicOwnerId = topic.UserId;
+
+                //await _hubContext.Clients.All.SendAsync("ReceiveNotification", "Neko je odgovorio na vašu temu.");
+                await _hubContext.Clients.Group(topicOwnerId).SendAsync
+                ("ForumReplyNotification", $"{user.FirstName} {user.LastName} je dodao/la odgovor na Vašu temu '{topic.Title}' ");
                 Console.WriteLine("odgovor...");
             }
             catch (Exception ex)
             {
-                
-                 Console.WriteLine("Greška pri slanju poruke: " + ex.Message);
+
+                Console.WriteLine("Greška pri slanju poruke: " + ex.Message);
             }
-            
+
             return Ok(new { message = "Odgovor je uspješno dodat." });
 
 
@@ -195,8 +202,8 @@ namespace API.Controllers
            );
             return Ok();
         }
-       
-      
+
+
 
     }
 }
