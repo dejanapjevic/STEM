@@ -22,10 +22,10 @@ export default function ArticleCard({ article }: Props) {
         borderColor: "#D3D3D3",
         borderRadius: "10px",
         boxShadow: "10",
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100%',
-        animation:'appear 0.7s ease-out'
+        display: "flex",
+        flexDirection: "column",
+        height: "100%",
+        animation: "appear 0.7s ease-out",
       }}
     >
       <CardMedia
@@ -33,20 +33,28 @@ export default function ArticleCard({ article }: Props) {
         image={article.pictureUrl}
         title={article.category}
       />
-      <CardContent >
-        <Typography 
+      <CardContent>
+        <Typography
           gutterBottom
           variant="h5"
           component="div"
-          sx={{ fontWeight: "bold", marginBottom: '56%', height:'2%', fontSize:23 }}
+          sx={{
+            fontWeight: "bold",
+            marginBottom: "56%",
+            height: "2%",
+            fontSize: 23,
+          }}
         >
           {article.title}
         </Typography>
-        <Typography variant="body2" sx={{ color: "text.secondary", height:'2%', marginBottom:'-40%' }}>
+        <Typography
+          variant="body2"
+          sx={{ color: "text.secondary", height: "2%", marginBottom: "-40%" }}
+        >
           {article.description}
         </Typography>
       </CardContent>
-      <CardActions sx={{marginTop: 'auto'}}>
+      <CardActions sx={{ marginTop: "auto" }}>
         <Button size="medium" color="secondary" sx={{ fontWeight: "bold" }}>
           Dodaj u omiljeno
         </Button>
@@ -55,8 +63,15 @@ export default function ArticleCard({ article }: Props) {
           to={`/catalog/${article.id}`}
           size="medium"
           color="secondary"
-          sx={{ fontWeight: "bold",  textDecoration: "none", "&:hover": {
-              textDecoration: "underline", color:'purple', fontWeight:'bold'}} }
+          sx={{
+            fontWeight: "bold",
+            textDecoration: "none",
+            "&:hover": {
+              textDecoration: "underline",
+              color: "purple",
+              fontWeight: "bold",
+            },
+          }}
         >
           Saznaj više
         </Button>

@@ -1,4 +1,4 @@
-import { Delete, Edit } from "@mui/icons-material";
+import { Delete } from "@mui/icons-material";
 import {
   TableContainer,
   Paper,
@@ -38,13 +38,12 @@ export default function UsersInventory() {
   const handleSuccess = async () => {
     setAddMode(false);
     refetch();
-  }
+  };
   if (addMode) {
+    {
+    }
     return (
-      <UserForm
-        onCancel={() => setAddMode(false)}
-        onSuccess={handleSuccess}
-      />
+      <UserForm onCancel={() => setAddMode(false)} onSuccess={handleSuccess} />
     );
   }
   return (
@@ -158,7 +157,6 @@ export default function UsersInventory() {
                       }
                     }}
                   />
-                  <Button startIcon={<Edit />} color="primary" />
                 </TableCell>
               </TableRow>
             ))}

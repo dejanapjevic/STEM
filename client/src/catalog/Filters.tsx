@@ -41,7 +41,7 @@ export default function Filters({ categories: data }: Props) {
       </Paper>
       <Button
         variant="contained"
-        color="secondary"
+        sx={{backgroundColor:"black"}}
         onClick={() => dispatch(resetParams())}
       >
         Resetuj filtere

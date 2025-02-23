@@ -23,6 +23,7 @@ import {
   useUpdateArticleMutation,
   useUploadImageMutation,
 } from "./adminApi";
+import { toast } from "react-toastify";
 
 type Props = {
   setEditMode: (value: boolean) => void;
@@ -92,6 +93,7 @@ export default function ArticleForm({
         }
 
         await updateArticle({ id: article.id, data: formData }); //ovo
+        handleConfirmation();
       } else {
         console.log("Podaci za kreiranje");
         for (let pair of formData.entries()) {
@@ -107,7 +109,9 @@ export default function ArticleForm({
       console.log(error);
     }
   };
-
+const handleConfirmation = () => {
+  toast.success("Uspješno ste izmijenili postojeći članak");
+}
   return (
     <Box component={Paper} sx={{ p: 2, m: 40, mt: 2, mx: "auto" }}>
       <Typography variant="h4" sx={{ mb: 4 }}>
@@ -182,8 +186,10 @@ export default function ArticleForm({
             variant="contained"
             type="submit"
             disabled={isSubmitting}
+           // onClick={() => handleConfirmation()}
           >
             {isSubmitting ? <CircularProgress /> : "Sačuvaj članak"}
+            
           </Button>
         </Box>
       </form>

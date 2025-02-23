@@ -39,6 +39,7 @@ export default function CatalogInventory() {
   const handleSelectedArticle = (article: Article) => {
     setSelectedArticle(article);
     setEditMode(true);
+    
   };
 
   const handleDeleteArticle = async (id: number) => {

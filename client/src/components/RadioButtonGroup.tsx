@@ -14,7 +14,7 @@ export default function RadioButtonGroup ({options, onChange, selectedValue}:Pro
         {options.map(({ value, label }) => (
           <FormControlLabel
             key={label}
-            control={<Radio sx={{ py: 0.7 }} color="secondary"/>}
+            control={<Radio sx={{ py: 0.7, color: "black", '&.Mui-checked': { color: 'black' } }} />}
             label={label}
             value={value}
           />

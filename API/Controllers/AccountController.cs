@@ -111,7 +111,6 @@ namespace API.Controllers
                     user.Gender,
                     user.DateOfBirth,
 
-
                     Roles = roles
                 });
             }

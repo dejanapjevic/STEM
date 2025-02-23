@@ -20,6 +20,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useAddUserMutation, useFetchUsersQuery } from "../account/accountApi";
 import { toast } from "react-toastify";
 import { addUserSchema } from "../schemas/AddUserSchema";
+import { useEffect } from "react";
 interface UserFormValues {
   roles: string[];
   email: string;
@@ -50,6 +51,7 @@ export default function UserForm({ onCancel, onSuccess }: Props) {
       gender: "",
     },
   });
+
   const [addUser, { isLoading: isSubmitting }] = useAddUserMutation();
   const { refetch } = useFetchUsersQuery();
   const onSubmit = async (data: any) => {
@@ -62,6 +64,7 @@ export default function UserForm({ onCancel, onSuccess }: Props) {
       console.error("Greška pri dodavanju korisnika:", error);
     }
   };
+
   return (
     <Box component={Paper} sx={{ p: 2, m: 40, mt: 2, mx: "auto" }}>
       <Typography variant="h5" sx={{ mb: 4 }}>
