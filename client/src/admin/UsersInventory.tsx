@@ -1,7 +1,6 @@
-import { Delete } from "@mui/icons-material";
+import { DateRange, Delete, Email } from "@mui/icons-material";
 import {
   TableContainer,
-  Paper,
   Table,
   TableHead,
   TableRow,
@@ -21,6 +20,7 @@ import UserForm from "./UserForm";
 
 export default function UsersInventory() {
   const { data, isLoading, refetch } = useFetchUsersQuery();
+  console.log(data);
   const [deleteUser] = useDeleteUserMutation();
   const [addMode, setAddMode] = useState(false);
 
@@ -50,7 +50,12 @@ export default function UsersInventory() {
     <>
       <Box>
         <Button
-          sx={{ m: 2, color: "white", backgroundColor: "#9C27B0" }}
+          sx={{
+            marginTop: "20px",
+            marginLeft: "6%",
+            color: "white",
+            backgroundColor: "black",
+          }}
           size="large"
           variant="contained"
           onClick={() => setAddMode(true)}
@@ -58,46 +63,47 @@ export default function UsersInventory() {
           Dodaj novog korisnika
         </Button>
       </Box>
-      <TableContainer component={Paper}>
+      <TableContainer>
         <Table
           sx={{
             minWidth: 650,
+            maxWidth: "90%",
+            //  border: "none",
 
-            border: "4px solid #9C27B0",
-            "& td, & th": { border: "2px solid #9C27B0" },
+            padding: "0 16px",
+            margin: "0 auto",
           }}
           aria-label="simple table"
         >
           <TableHead>
-            <TableRow>
-              <TableCell align="center">Id</TableCell>
+            <TableRow
+              sx={{
+                borderBottom: "2px solid black", // Dodaj border samo na donji deo prvog reda (header)
+              }}
+            >
+              
               <TableCell align="center">Ime </TableCell>
               <TableCell align="center">Prezime</TableCell>
               <TableCell align="center">E-mail</TableCell>
               <TableCell align="center">Pol</TableCell>
               <TableCell align="center">Datum rođenja</TableCell>
+              <TableCell align="center">Uloge</TableCell>
               <TableCell align="center"></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {data?.map((item) => (
               <TableRow key={item.id}>
-                <TableCell
-                  component="th"
-                  scope="row"
-                  sx={{
-                    maxWidth: "100px",
-                    height: "50px",
-                  }}
-                >
-                  {item.id}
-                </TableCell>
+              
                 <TableCell
                   component="th"
                   scope="row"
                   sx={{
                     maxWidth: "50px",
                     height: "50px",
+                    borderBottom: "none",
+                    textAlign: "center", // Centriranje po horizontali
+                    verticalAlign: "middle",
                   }}
                 >
                   {item.firstName}
@@ -108,6 +114,9 @@ export default function UsersInventory() {
                   sx={{
                     maxWidth: "50px",
                     height: "50px",
+                    borderBottom: "none",
+                    textAlign: "center", // Centriranje po horizontali
+                    verticalAlign: "middle",
                   }}
                 >
                   {item.lastName}
@@ -117,15 +126,25 @@ export default function UsersInventory() {
                   sx={{
                     maxWidth: "230px",
                     whiteSpace: "normal",
+                    borderBottom: "none",
+                    textAlign: "center", // Centriranje po horizontali
+                    verticalAlign: "middle",
                   }}
                 >
-                  {item.email}
+                  <div style={{ display: "inline-flex", alignItems: "center" }}>
+                    <Email sx={{ marginRight: 1 }} />
+                    {item.email}
+                  </div>
                 </TableCell>
+
                 <TableCell
                   align="left"
                   sx={{
                     maxWidth: "70px",
                     whiteSpace: "normal",
+                    borderBottom: "none",
+                    textAlign: "center", // Centriranje po horizontali
+                    verticalAlign: "middle",
                   }}
                 >
                   {item.gender}
@@ -135,15 +154,38 @@ export default function UsersInventory() {
                   sx={{
                     maxWidth: "80px",
                     whiteSpace: "normal",
+                    borderBottom: "none",
+                    textAlign: "center", // Centriranje po horizontali
+                    verticalAlign: "middle",
                   }}
                 >
-                  {new Date(item.dateOfBirth).toLocaleDateString()}
+                  <div style={{ display: "inline-flex", alignItems: "center" }}>
+                    <DateRange sx={{ marginRight: 1 }} />
+                    {new Date(item.dateOfBirth).toLocaleDateString()}
+                  </div>
                 </TableCell>
+
+                <TableCell
+                  align="left"
+                  sx={{
+                    maxWidth: "70px",
+                    whiteSpace: "normal",
+                    borderBottom: "none",
+                    textAlign: "center", // Centriranje po horizontali
+                    verticalAlign: "middle",
+                  }}
+                >
+                  {item.roles.join(",  ")}
+                </TableCell>
+
                 <TableCell
                   align="right"
                   sx={{
                     maxWidth: "60px",
                     height: "50px",
+                    borderBottom: "none",
+                    textAlign: "center", // Centriranje po horizontali
+                    verticalAlign: "middle",
                   }}
                 >
                   <Button

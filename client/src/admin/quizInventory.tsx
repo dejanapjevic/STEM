@@ -1,4 +1,4 @@
-import { Delete } from "@mui/icons-material";
+import { Delete, Quiz } from "@mui/icons-material";
 import {
   TableContainer,
   Paper,
@@ -55,122 +55,136 @@ export default function quizInventory() {
       <Box>
         <Button
           onClick={handleCreateQuestion}
-          sx={{ m: 2, color: "white", backgroundColor: "#9C27B0" }}
+          sx={{
+            marginLeft: "5%",
+            marginTop: "2%",
+            color: "white",
+            backgroundColor: "black",
+          }}
           size="large"
           variant="contained"
         >
           Kreiraj pitanje
         </Button>
       </Box>
-      <TableContainer component={Paper}>
-        <Table
-          sx={{
-            minWidth: 650,
 
-            border: "4px solid #9C27B0",
-            "& td, & th": { border: "2px solid #9C27B0" },
-          }}
-          aria-label="simple table"
-        >
-          <TableHead>
-            <TableRow>
-              <TableCell align="center">Id</TableCell>
-              <TableCell align="center">Pitanje </TableCell>
-              <TableCell align="center">Opcija 1</TableCell>
-              <TableCell align="center">Opcija 2</TableCell>
-              <TableCell align="center">Opcija 3</TableCell>
-              <TableCell align="center">Opcija 4</TableCell>
-              <TableCell align="center">Odgovor</TableCell>
-              <TableCell align="center"></TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {data?.map((item) => (
-              <TableRow key={item.id}>
-                <TableCell
-                  component="th"
-                  scope="row"
-                  sx={{
-                    maxWidth: "40px",
-                    height: "50px",
-                  }}
+      <Table
+        sx={{
+          minWidth: 650,
+
+          maxWidth: "90%",
+
+          padding: "0 16px",
+          margin: "0 auto",
+        }}
+        aria-label="simple table"
+      >
+        <TableHead>
+          <TableRow>
+            <TableCell align="center">Pitanje </TableCell>
+            <TableCell align="center">Opcija 1</TableCell>
+            <TableCell align="center">Opcija 2</TableCell>
+            <TableCell align="center">Opcija 3</TableCell>
+            <TableCell align="center">Opcija 4</TableCell>
+            <TableCell align="center">Odgovor</TableCell>
+            <TableCell align="center"></TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {data?.map((item) => (
+            <TableRow key={item.id}>
+              <TableCell
+                component="th"
+                scope="row"
+                sx={{
+                  maxWidth: "170px",
+                  height: "50px",
+                  textAlign: "center", // Centriranje po horizontali
+                  verticalAlign: "middle",
+                }}
+              >
+                <div
+                  style={{ display: "flex", alignItems: "center", gap: "20px" }}
                 >
-                  {item.id}
-                </TableCell>
-                <TableCell
-                  component="th"
-                  scope="row"
-                  sx={{
-                    maxWidth: "170px",
-                    height: "50px",
-                  }}
-                >
+                  <Quiz />
                   {item.title}
-                </TableCell>
-                <TableCell
-                  component="th"
-                  scope="row"
-                  sx={{
-                    maxWidth: "70px",
-                    height: "50px",
-                  }}
-                >
-                  {item.option1}
-                </TableCell>
-                <TableCell
-                  align="left"
-                  sx={{
-                    maxWidth: "70px",
-                    whiteSpace: "normal",
-                  }}
-                >
-                  {item.option2}
-                </TableCell>
-                <TableCell
-                  align="left"
-                  sx={{
-                    maxWidth: "70px",
-                    whiteSpace: "normal",
-                  }}
-                >
-                  {item.option3}
-                </TableCell>
-                <TableCell
-                  align="left"
-                  sx={{
-                    maxWidth: "70px",
-                    whiteSpace: "normal",
-                  }}
-                >
-                  {item.option4}
-                </TableCell>
-                <TableCell
-                  align="right"
-                  sx={{
-                    maxWidth: "70px",
-                    height: "50px",
-                  }}
-                >
-                  {item.answer}
-                </TableCell>
-                <TableCell
-                  align="right"
-                  sx={{
-                    maxWidth: "40px",
-                    height: "50px",
-                  }}
-                >
-                  <Button
-                    startIcon={<Delete />}
-                    color="error"
-                    onClick={() => handleDeleteQuestion(item.id)}
-                  />
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+                </div>
+              </TableCell>
+              <TableCell
+                component="th"
+                scope="row"
+                sx={{
+                  maxWidth: "70px",
+                  height: "50px",
+                  textAlign: "center", // Centriranje po horizontali
+                  verticalAlign: "middle",
+                }}
+              >
+                {item.option1}
+              </TableCell>
+              <TableCell
+                align="left"
+                sx={{
+                  maxWidth: "70px",
+                  whiteSpace: "normal",
+                  textAlign: "center", // Centriranje po horizontali
+                  verticalAlign: "middle",
+                }}
+              >
+                {item.option2}
+              </TableCell>
+              <TableCell
+                align="left"
+                sx={{
+                  maxWidth: "70px",
+                  whiteSpace: "normal",
+                  textAlign: "center", // Centriranje po horizontali
+                  verticalAlign: "middle",
+                }}
+              >
+                {item.option3}
+              </TableCell>
+              <TableCell
+                align="left"
+                sx={{
+                  maxWidth: "70px",
+                  whiteSpace: "normal",
+                  textAlign: "center", // Centriranje po horizontali
+                  verticalAlign: "middle",
+                }}
+              >
+                {item.option4}
+              </TableCell>
+              <TableCell
+                align="right"
+                sx={{
+                  maxWidth: "70px",
+                  height: "50px",
+                  textAlign: "center", // Centriranje po horizontali
+                  verticalAlign: "middle",
+                }}
+              >
+                {item.answer}
+              </TableCell>
+              <TableCell
+                align="right"
+                sx={{
+                  maxWidth: "40px",
+                  height: "50px",
+                  textAlign: "center", // Centriranje po horizontali
+                  verticalAlign: "middle",
+                }}
+              >
+                <Button
+                  startIcon={<Delete />}
+                  color="error"
+                  onClick={() => handleDeleteQuestion(item.id)}
+                />
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
     </>
   );
 }

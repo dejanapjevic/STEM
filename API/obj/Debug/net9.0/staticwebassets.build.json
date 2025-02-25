@@ -1,12 +1,228 @@
 {
   "Version": 1,
-  "Hash": "A5c6GKfqW+kOYxX7+ezU9WKq8ts6/mK8f4alHUBjdmk=",
+  "Hash": "GWIyVpxVrm3gHkTw4CqQFFbvks/4K9iWJ39Z9yd54SU=",
   "Source": "API",
   "BasePath": "_content/API",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": [],
-  "Endpoints": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "API\\wwwroot",
+      "Source": "API",
+      "ContentRoot": "C:\\Users\\PC\\Desktop\\STEMObrazovanje\\API\\wwwroot\\",
+      "BasePath": "_content/API",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\PC\\Desktop\\STEMObrazovanje\\API\\wwwroot\\videos\\What is an API_.mp4",
+      "SourceId": "API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\PC\\Desktop\\STEMObrazovanje\\API\\wwwroot\\",
+      "BasePath": "_content/API",
+      "RelativePath": "videos/What is an API_#[.{fingerprint}]?.mp4",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "x1h5egxkvq",
+      "Integrity": "lQPa4t9q63x47W4+U6NZGaBvDAtzlRJ59hmN2RAxNac=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\videos\\What is an API_.mp4"
+    },
+    {
+      "Identity": "C:\\Users\\PC\\Desktop\\STEMObrazovanje\\API\\wwwroot\\videos\\What is cyber security_1080p.mp4",
+      "SourceId": "API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\PC\\Desktop\\STEMObrazovanje\\API\\wwwroot\\",
+      "BasePath": "_content/API",
+      "RelativePath": "videos/What is cyber security_1080p#[.{fingerprint}]?.mp4",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "omriu2xs2w",
+      "Integrity": "YJL1dE4xcyo0j+aViZAgmjWIQ6ASiDI6qGT7H2rkrUo=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\videos\\What is cyber security_1080p.mp4"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "videos/What is an API_.mp4",
+      "AssetFile": "C:\\Users\\PC\\Desktop\\STEMObrazovanje\\API\\wwwroot\\videos\\What is an API_.mp4",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4604258"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "video/mp4"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"lQPa4t9q63x47W4+U6NZGaBvDAtzlRJ59hmN2RAxNac=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 25 Feb 2025 10:57:42 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-lQPa4t9q63x47W4+U6NZGaBvDAtzlRJ59hmN2RAxNac="
+        }
+      ]
+    },
+    {
+      "Route": "videos/What is an API_.x1h5egxkvq.mp4",
+      "AssetFile": "C:\\Users\\PC\\Desktop\\STEMObrazovanje\\API\\wwwroot\\videos\\What is an API_.mp4",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4604258"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "video/mp4"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"lQPa4t9q63x47W4+U6NZGaBvDAtzlRJ59hmN2RAxNac=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 25 Feb 2025 10:57:42 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "x1h5egxkvq"
+        },
+        {
+          "Name": "label",
+          "Value": "videos/What is an API_.mp4"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-lQPa4t9q63x47W4+U6NZGaBvDAtzlRJ59hmN2RAxNac="
+        }
+      ]
+    },
+    {
+      "Route": "videos/What is cyber security_1080p.mp4",
+      "AssetFile": "C:\\Users\\PC\\Desktop\\STEMObrazovanje\\API\\wwwroot\\videos\\What is cyber security_1080p.mp4",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "7131490"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "video/mp4"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"YJL1dE4xcyo0j+aViZAgmjWIQ6ASiDI6qGT7H2rkrUo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 25 Feb 2025 12:32:04 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-YJL1dE4xcyo0j+aViZAgmjWIQ6ASiDI6qGT7H2rkrUo="
+        }
+      ]
+    },
+    {
+      "Route": "videos/What is cyber security_1080p.omriu2xs2w.mp4",
+      "AssetFile": "C:\\Users\\PC\\Desktop\\STEMObrazovanje\\API\\wwwroot\\videos\\What is cyber security_1080p.mp4",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "7131490"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "video/mp4"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"YJL1dE4xcyo0j+aViZAgmjWIQ6ASiDI6qGT7H2rkrUo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 25 Feb 2025 12:32:04 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "omriu2xs2w"
+        },
+        {
+          "Name": "label",
+          "Value": "videos/What is cyber security_1080p.mp4"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-YJL1dE4xcyo0j+aViZAgmjWIQ6ASiDI6qGT7H2rkrUo="
+        }
+      ]
+    }
+  ]
 }

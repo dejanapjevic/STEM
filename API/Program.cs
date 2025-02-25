@@ -50,6 +50,8 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 
 app.UseMiddleware<ExceptionMiddleware>();
+app.UseStaticFiles(); // Ovo omogućava pristup fajlovima iz wwwroot
+
 
 if (app.Environment.IsDevelopment())
 {

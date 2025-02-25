@@ -1,11 +1,4 @@
-import {
-  Avatar,
-  Box,
-  Card,
-  CardContent,
-  Grid2,
-  Typography,
-} from "@mui/material";
+import { Avatar, Box, Grid2, Typography } from "@mui/material";
 import { useUserInfoQuery } from "./accountApi";
 
 export default function HomePage() {
@@ -28,7 +21,7 @@ export default function HomePage() {
         alignItems="center"
         style={{ position: "relative" }}
       >
-        <Box display="flex" flexDirection="column" alignItems="center" mt="30%" >
+        <Box display="flex" flexDirection="column" alignItems="center" mt="30%">
           <Avatar
             src="user.jpg"
             sx={{ width: 200, height: 200, margin: "0 auto 10px" }}

@@ -26,9 +26,9 @@ export default function AppPagination({ metadata, onPageChange }: Props) {
       {location.pathname!='/inventory' && (
       <Typography
         sx={{
-          color: "#9C27B0",
+          color: "black",
           fontWeight: "bold",
-          borderBottom: "2px solid #9C27B0",
+          borderBottom: "2px solid black",
           fontSize: "1.2rem",
         }}
       > 
@@ -36,7 +36,7 @@ export default function AppPagination({ metadata, onPageChange }: Props) {
       </Typography>
       )}
       <Pagination
-        color="secondary"
+        
         size="large"
         count={totalPages}
         page={pageNumber}

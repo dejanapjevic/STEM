@@ -1,138 +1,166 @@
 [
-    {
-        "Title" : "Napredak u oblasti nanotehnologije",
-        "Description" : "Nanotehnologija je naučna oblast koja se bavi proučavanjem i manipulisanjem materijala na nanometarskoj skali.",
-        "Content" : "Nanotehnologija je ključna za razvoj novih materijala i uređaja. Kroz kontrolu struktura na molekularnom nivou, inženjeri mogu stvoriti proizvode sa izuzetnim svojstvima. Na primer, u medicini, nanotehnologija omogućava precizno dostavljanje lekova direktno do ciljanih ćelija.",
-        "Category" : "Nauka",
-        "PictureUrl" : "/images/articles/picture2.jpg"
-    },
-    {
-        "Title" : "Održivost u građevinskoj industriji",
-        "Description" : "Korišćenje održivih materijala i tehnologija u građevinskoj industriji postaje ključni faktor za smanjenje ekološkog otiska.",
-        "Content" : "Sustainable building practices are changing the landscape of architecture. The use of recycled materials, energy-efficient designs, and renewable energy sources are becoming standard. Engineers are now focusing on creating buildings that have minimal environmental impact, with advanced insulation and solar panel systems being widely used.",
-        "Category" : "Inženjerstvo",
-        "PictureUrl" : "/images/articles/picture1.jpg"
-    },
-    {
-        "Title" : "Računarske mreže i budućnost interneta",
-        "Description" : "Računarske mreže su osnova za globalnu povezanost, a njihova budućnost je u razvoju 5G i 6G tehnologija.",
-        "Content" : "Računarske mreže omogućavaju prenos podataka širom sveta. Tehnologije kao što su 5G i 6G obećavaju revolucionarne promene u brzini internetske veze, povezanosti uređaja i načinu na koji koristimo internet. Inženjeri rade na izgradnji infrastrukture koja će omogućiti još brži i efikasniji internet.",
-        "Category" : "Inženjerstvo",
-        "PictureUrl" : "/images/articles/picture3.webp"
-    },
-    {
-        "Title" : "Budućnost automobila sa električnim pogonom",
-        "Description" : "Električni automobili predstavljaju budućnost automobilske industrije, a razvoj baterija je ključni faktor za njihov uspeh.",
-        "Content": "S obzirom na sve veću potrebu za smanjenjem emisije ugljen-dioksida, električni automobili postaju ključni element održivog saobraćaja. Napredak u baterijskim tehnologijama omogućava duži domet i brže punjenje, što je omogućilo širu upotrebu električnih vozila u svakodnevnom životu.",
-        "Category" : "Inženjerstvo",
-        "PictureUrl" : "/images/articles/picture4.jpg"
-    },
-    {
-        "Title" : "Kako kvantno računarstvo menja svet tehnologije",
-        "Description" : "Kvantno računarstvo ima potencijal da reši probleme koji su previše složeni za klasične računare.",
-        "Content" : "Kvantno računarstvo koristi principe kvantne mehanike kako bi obradio informacije na način koji nije moguć sa klasičnim računarima. Ova tehnologija može revolucionirati oblasti kao što su sigurnost podataka, simulacije u nauci i optimizacija složenih sistema.",
-        "Category" : "Nauka",
-        "PictureUrl" : "/images/articles/picture5.jpg"
-    },
-    {
-        "Title" : "Revolucija u veštačkoj inteligenciji",
-        "Description" : "Veštačka inteligencija (AI) menja način na koji razmišljamo o računarskim sistemima.",
-        "Content" : "Veštačka inteligencija je tehnologija koja omogućava računarima da obavljaju zadatke koji tradicionalno zahtevaju ljudsku inteligenciju. AI sistemi uče iz podataka, prepoznaju obrasce, i na osnovu toga donose odluke, što im omogućava da unaprede mnoge industrije. U proizvodnji, AI se koristi za automatizaciju procesa i optimizaciju lanaca snabdevanja, dok u medicini omogućava precizniju dijagnostiku i razvoj personalizovanih tretmana. Algoritmi za prepoznavanje slika i prirodnog jezika koriste se u prepoznavanju bolesti kao što su rak ili srčani problemi, dok sistemi za duboko učenje unapređuju tehnologije autonomnih vozila i robota.",
-        "Category" : "Tehnologija",
-        "PictureUrl" : "/images/articles/picture3.webp"
-    },
-    {
-        "Title" : "Napredak u oblasti nanotehnologije",
-        "Description" : "Nanotehnologija je naučna oblast koja se bavi proučavanjem i manipulisanjem materijala na nanometarskoj skali.",
-        "Content" : "Nanotehnologija je ključna za razvoj novih materijala i uređaja. Kroz kontrolu struktura na molekularnom nivou, inženjeri mogu stvoriti proizvode sa izuzetnim svojstvima. Na primer, u medicini, nanotehnologija omogućava precizno dostavljanje lekova direktno do ciljanih ćelija.",
-        "Category" : "Nauka",
-        "PictureUrl" : "/images/articles/picture2.jpg"
-    },
-    {
-        "Title" : "Napredak u oblasti nanotehnologije",
-        "Description" : "Nanotehnologija je naučna oblast koja se bavi proučavanjem i manipulisanjem materijala na nanometarskoj skali.",
-        "Content" : "Nanotehnologija je ključna za razvoj novih materijala i uređaja. Kroz kontrolu struktura na molekularnom nivou, inženjeri mogu stvoriti proizvode sa izuzetnim svojstvima. Na primer, u medicini, nanotehnologija omogućava precizno dostavljanje lekova direktno do ciljanih ćelija.",
-        "Category" : "Nauka",
-        "PictureUrl" : "/images/articles/picture2.jpg"
-    },
-    {
-        "Title" : "Napredak u oblasti nanotehnologije",
-        "Description" : "Nanotehnologija je naučna oblast koja se bavi proučavanjem i manipulisanjem materijala na nanometarskoj skali.",
-        "Content" : "Nanotehnologija je ključna za razvoj novih materijala i uređaja. Kroz kontrolu struktura na molekularnom nivou, inženjeri mogu stvoriti proizvode sa izuzetnim svojstvima. Na primer, u medicini, nanotehnologija omogućava precizno dostavljanje lekova direktno do ciljanih ćelija.",
-        "Category" : "Nauka",
-        "PictureUrl" : "/images/articles/picture2.jpg"
-    },
-    {
-        "Title" : "Napredak u oblasti nanotehnologije",
-        "Description" : "Nanotehnologija je naučna oblast koja se bavi proučavanjem i manipulisanjem materijala na nanometarskoj skali.",
-        "Content" : "Nanotehnologija je ključna za razvoj novih materijala i uređaja. Kroz kontrolu struktura na molekularnom nivou, inženjeri mogu stvoriti proizvode sa izuzetnim svojstvima. Na primer, u medicini, nanotehnologija omogućava precizno dostavljanje lekova direktno do ciljanih ćelija.",
-        "Category" : "Nauka",
-        "PictureUrl" : "/images/articles/picture2.jpg"
-    },
+  {
+    "Title": "Naučnici otkrili način za ubrzavanje proizvodnje hrane korišćenjem genetski modifikovanih organizama",
+    "Description": "Biotehnologija je napravila veliki korak u poboljšanju globalne proizvodnje hrane.",
+    "Content": "Naučnici su razvili novu tehniku genetske modifikacije koja omogućava bržu i efikasniju proizvodnju hrane. Ova tehnologija koristi specijalizovane metode za poboljšanje otpornosti biljaka na sušu, bolesti i ekstremne vremenske uslove, što može značajno doprineti rešavanju problema globalne bezbednosti hrane.",
+    "Category": "Tehnologija",
+    "PictureUrl": "/images/articles/genetic.jpg"
+  },
+  {
+    "Title": "Novi materijali za solarne panele povećavaju efikasnost za čak 30%",
+    "Description": "Otkriveni su revolucionarni materijali koji poboljšavaju proizvodnju solarnih panela.",
+    "Content": "Grupa istraživača razvila je materijale koji omogućavaju solarni panelima da iskorišćavaju mnogo veću količinu sunčeve svetlosti. Ovi materijali mogu povećati efikasnost panela za čak 30%, što bi moglo značiti značajan korak u smanjenju troškova energije iz obnovljivih izvora i bržoj implementaciji solarnih sistema širom sveta.",
+    "Category": "Inženjerstvo",
+    "PictureUrl": "/images/articles/solar.jpg"
+  },
+  {
+    "Title": "Naučnici razvili prvi kvantni računar sposoban da reši probleme u realnom vremenu",
+    "Description": "Kvantni računar napraviće revoluciju u rešavanju složenih matematičkih problema.",
+    "Content": "Tim istraživača je izgradio prvi kvantni računar koji je sposoban da rešava složene matematičke probleme u realnom vremenu. Ovaj računar koristi kvantne bitove (kubite) koji omogućavaju simultano rešavanje nekoliko problema, što je dalji korak ka razvoju kvantnih računara koji mogu da rešavaju probleme koje klasični računari ne mogu.",
+    "Category": "Tehnologija",
+    "PictureUrl": "/images/articles/quantum.jpg"
+  },
+  {
+    "Title": "Prva samostalna misija na Marsu počinje 2026. godine: SpaceX otkriva planove",
+    "Description": "SpaceX najavio planove za prvu misiju sa ljudskom posadom na Mars.",
+    "Content": "SpaceX je otkrio ambiciozne planove za prvu samostalnu misiju na Marsu, koja je zakazana za 2026. godinu. Misija će biti deo šireg plana za uspostavljanje ljudske kolonije na crvenoj planeti. Očekuje se da će misija doneti ključne informacije o opstanku ljudi na Marsu i kako bi mogao izgledati život u svemiru.",
+    "Category": "Nauka",
+    "PictureUrl": "/images/articles/space.jpg"
+  },
+  {
+    "Title": "Facebook testira napredne algoritme za detekciju dezinformacija u realnom vremenu",
+    "Description": "Novi algoritmi na društvenim mrežama omogućavaju bolju borbu protiv širenja lažnih vesti.",
+    "Content": "Facebook je započeo testiranje novih algoritama za automatsko prepoznavanje i uklanjanje dezinformacija u realnom vremenu. Ovi algoritmi koriste mašinsko učenje kako bi identifikovali lažne vesti i sprečili njihovo širenje na platformi. Ovaj korak predstavlja značajan napredak u borbi protiv širenja dezinformacija i promovisanju odgovornijeg sadržaja na mrežama.",
+    "Category": "Tehnologija",
+    "PictureUrl": "/images/articles/facebook.jpg"
+  },
+  {
+    "Title": "Prototip pametnog materijala koji menja oblik na temperaturu stvoren u laboratoriji",
+    "Description": "Novi materijal otvara mogućnosti za razvoj dinamičnih struktura u građevinskoj industriji.",
+    "Content": "Naučnici su stvorili prototip pametnog materijala koji menja oblik na osnovu promena temperature. Ovaj materijal može da se koristi za izradu objekata koji menjaju oblik u zavisnosti od spoljnog okruženja, što otvara mogućnosti za dinamične zgrade i mostove koji mogu prilagoditi svoj oblik kako bi povećali efikasnost i sigurnost u različitim uslovima.",
+    "Category": "Inženjerstvo",
+    "PictureUrl": "/images/articles/smart_materials.jpg"
+  },
+  {
+    "Title": "Prvi put u istoriji: Ljudski DNK uspešno editovan pomoću CRISPR tehnologije",
+    "Description": "CRISPR tehnologija omogućiće lečenje genetskih bolesti.",
+    "Content": "Tim biotehničkih istraživača je uspešno izveo genetsku modifikaciju ljudskog DNK korišćenjem CRISPR tehnologije, koja omogućava precizno editovanje gena. Ovaj napredak otvara mogućnosti za lečenje genetskih bolesti kao što su cistična fibroza i hemofilija. Ovaj uspeh označava veliku prekretnicu u genetici i medicini.",
+    "Category": "Tehnologija",
+    "PictureUrl": "/images/articles/crispr_technology.jpg"
+  },
 
-    {
-        "Title" : "Napredak u oblasti nanotehnologije",
-        "Description" : "Nanotehnologija je naučna oblast koja se bavi proučavanjem i manipulisanjem materijala na nanometarskoj skali.",
-        "Content" : "Nanotehnologija je ključna za razvoj novih materijala i uređaja. Kroz kontrolu struktura na molekularnom nivou, inženjeri mogu stvoriti proizvode sa izuzetnim svojstvima. Na primer, u medicini, nanotehnologija omogućava precizno dostavljanje lekova direktno do ciljanih ćelija.",
-        "Category" : "Nauka",
-        "PictureUrl" : "/images/articles/picture2.jpg"
-    },
-    {
-        "Title" : "Veze između matematike i prirodnih nauka",
-    "Description" : "Matematika je temelj za razumevanje zakona prirode.",
-    "Content" : "Matematika je jezik prirodnih nauka. Kroz matematičke modele, naučnici mogu da precizno predviđaju ponašanje prirodnih sistema. Na primer, zakon gravitacije, koji je formulisan pomoću diferencijalnih jednadžbi, opisuje kako tela u svemiru utiču jedno na drugo. Slično tome, matematički modeli predviđaju širenje bolesti u populacijama, što pomaže u oblikovanju javnozdravstvenih politika. Matematičke teorije kao što su statistika, verovatnoća i analiza podataka ključne su u fizici, biologiji, hemiji i ekologiji. Sa novim alatima kao što su računarski programi i simulacije, matematika omogućava da se testiraju hipoteze i predviđaju efekti promena u sistemima, čineći naučno istraživanje preciznijim i bržim.",
-    "Category" : "Matematika",
-    "PictureUrl" : "/images/articles/picture1.jpg"
-    },
-    {
-        "Title" : "Napredak u oblasti nanotehnologije",
-        "Description" : "Nanotehnologija je naučna oblast koja se bavi proučavanjem i manipulisanjem materijala na nanometarskoj skali.",
-        "Content" : "Nanotehnologija je ključna za razvoj novih materijala i uređaja. Kroz kontrolu struktura na molekularnom nivou, inženjeri mogu stvoriti proizvode sa izuzetnim svojstvima. Na primer, u medicini, nanotehnologija omogućava precizno dostavljanje lekova direktno do ciljanih ćelija.",
-        "Category" : "Nauka",
-        "PictureUrl" : "/images/articles/picture2.jpg"
-    },
-    {
-        "Title" : "Napredak u oblasti nanotehnologije",
-        "Description" : "Nanotehnologija je naučna oblast koja se bavi proučavanjem i manipulisanjem materijala na nanometarskoj skali.",
-        "Content" : "Nanotehnologija je ključna za razvoj novih materijala i uređaja. Kroz kontrolu struktura na molekularnom nivou, inženjeri mogu stvoriti proizvode sa izuzetnim svojstvima. Na primer, u medicini, nanotehnologija omogućava precizno dostavljanje lekova direktno do ciljanih ćelija.",
-        "Category" : "Nauka",
-        "PictureUrl" : "/images/articles/picture2.jpg"
-    },
-    {
-        "Title" : "Napredak u oblasti nanotehnologije",
-        "Description" : "Nanotehnologija je naučna oblast koja se bavi proučavanjem i manipulisanjem materijala na nanometarskoj skali.",
-        "Content" : "Nanotehnologija je ključna za razvoj novih materijala i uređaja. Kroz kontrolu struktura na molekularnom nivou, inženjeri mogu stvoriti proizvode sa izuzetnim svojstvima. Na primer, u medicini, nanotehnologija omogućava precizno dostavljanje lekova direktno do ciljanih ćelija.",
-        "Category" : "Nauka",
-        "PictureUrl" : "/images/articles/picture2.jpg"
-    },
-    {
-        "Title" : "Napredak u oblasti nanotehnologije",
-        "Description" : "Nanotehnologija je naučna oblast koja se bavi proučavanjem i manipulisanjem materijala na nanometarskoj skali.",
-        "Content" : "Nanotehnologija je ključna za razvoj novih materijala i uređaja. Kroz kontrolu struktura na molekularnom nivou, inženjeri mogu stvoriti proizvode sa izuzetnim svojstvima. Na primer, u medicini, nanotehnologija omogućava precizno dostavljanje lekova direktno do ciljanih ćelija.",
-        "Category" : "Nauka",
-        "PictureUrl" : "/images/articles/picture2.jpg"
-    },
-    {
-        "Title" : "Napredak u oblasti nanotehnologije",
-        "Description" : "Nanotehnologija je naučna oblast koja se bavi proučavanjem i manipulisanjem materijala na nanometarskoj skali.",
-        "Content" : "Nanotehnologija je ključna za razvoj novih materijala i uređaja. Kroz kontrolu struktura na molekularnom nivou, inženjeri mogu stvoriti proizvode sa izuzetnim svojstvima. Na primer, u medicini, nanotehnologija omogućava precizno dostavljanje lekova direktno do ciljanih ćelija.",
-        "Category" : "Nauka",
-        "PictureUrl" : "/images/articles/picture2.jpg"
-    },
-    {
-        "Title" : "Napredak u oblasti nanotehnologije",
-        "Description" : "Nanotehnologija je naučna oblast koja se bavi proučavanjem i manipulisanjem materijala na nanometarskoj skali.",
-        "Content" : "Nanotehnologija je ključna za razvoj novih materijala i uređaja. Kroz kontrolu struktura na molekularnom nivou, inženjeri mogu stvoriti proizvode sa izuzetnim svojstvima. Na primer, u medicini, nanotehnologija omogućava precizno dostavljanje lekova direktno do ciljanih ćelija.",
-        "Category" : "Nauka",
-        "PictureUrl" : "/images/articles/picture2.jpg"
-    },
+  {
+    "Title": "Napredak u oblasti nanotehnologije",
+    "Description": "Nanotehnologija je naučna oblast koja se bavi proučavanjem i manipulisanjem materijala na nanometarskoj skali.",
+    "Content": "Nanotehnologija je ključna za razvoj novih materijala i uređaja. Kroz kontrolu struktura na molekularnom nivou, inženjeri mogu stvoriti proizvode sa izuzetnim svojstvima. Na primer, u medicini, nanotehnologija omogućava precizno dostavljanje lekova direktno do ciljanih ćelija.",
+    "Category": "Nauka",
+    "PictureUrl": "/images/articles/picture2.jpg"
+  },
 
-    {
-        "Title" : "Napredak u oblasti nanotehnologije",
-        "Description" : "Nanotehnologija je naučna oblast koja se bavi proučavanjem i manipulisanjem materijala na nanometarskoj skali.",
-        "Content" : "Nanotehnologija je ključna za razvoj novih materijala i uređaja. Kroz kontrolu struktura na molekularnom nivou, inženjeri mogu stvoriti proizvode sa izuzetnim svojstvima. Na primer, u medicini, nanotehnologija omogućava precizno dostavljanje lekova direktno do ciljanih ćelija.",
-        "Category" : "Nauka",
-        "PictureUrl" : "/images/articles/picture2.jpg"
-    }
-  ]
-  
+  {
+    "Title": "Tehnologija 3D štampe u medicini: Novi pravci u izradi proteza",
+    "Description": "3D štampa se koristi za proizvodnju personalizovanih medicinskih uređaja, uključujući proteze.",
+    "Content": "Tehnologija 3D štampe brzo postaje ključna u medicini, jer omogućava proizvodnju personalizovanih medicinskih uređaja, kao što su proteze i implantati. Ova tehnologija omogućava preciznu prilagodbu uređaja potrebama pacijenta, što poboljšava udobnost i efikasnost lečenja. U budućnosti, 3D štampa bi mogla omogućiti proizvodnju organskih tkiva i drugih bioloških materijala.",
+    "Category": "Nauka",
+    "PictureUrl": "/images/articles/3d_printing_medical.jpg"
+  },
+
+  {
+    "Title": "Novo otkriće u fizici: Tajna tamne materije možda leži u mikroskopskim crnim rupama",
+    "Description": "Naučnici otkrili mogući uzrok tamne materije koji bi mogao promeniti naše razumevanje svemira.",
+    "Content": "Tim astrofizičara je otkrio da mikroskopske crne rupe, koje su manje od atoma, mogu biti ključ za razumevanje misterije tamne materije. Ova otkrića mogu značajno promeniti način na koji razumemo strukturu svemira i dinamiku galaksija, jer se pretpostavlja da tamna materija čini oko 85% materije u svemiru, ali nikada nije direktno uočena.",
+    "Category": "Nauka",
+    "PictureUrl": "/images/articles/dark_matter_black_holes.jpg"
+  },
+  {
+    "Title": "Novi algoritam za optimizaciju ruta omogućava brže i jeftinije transportne sisteme",
+    "Description": "Revolucija u logistici: algoritmi smanjuju troškove i vreme isporuke.",
+    "Content": "Istraživači su razvili novi algoritam za optimizaciju transportnih ruta koji omogućava značajno smanjenje troškova isporuke i vremena transporta. Ovaj algoritam koristi napredne matematičke modele i mašinsko učenje kako bi predvidio najbrže rute, čak i u uslovima gustog saobraćaja i promenljivih vremenskih uslova. Očekuje se da će ovaj algoritam značajno unaprediti globalnu logistiku.",
+    "Category": "Matematika",
+    "PictureUrl": "/images/articles/transport_algorithm.jpg"
+  },
+  {
+    "Title": "Računari sa kvantnim entanglmentom obećavaju revoluciju u sigurnosti podataka",
+    "Description": "Kvantni računari mogu potpuno promeniti paradigmu u zaštiti podataka.",
+    "Content": "Kvantni računari koji koriste princip kvantnog entanglmenta nude neverovatne mogućnosti u oblasti sigurnosti podataka. Ovi računari mogu instantano slati i primati informacije sa apsolutnim nivoom sigurnosti, što bi moglo eliminisati sve oblike hakovanja i špijunaže. Kvantna kriptografija može ponuditi neprelazne barijere za cyber bezbednost u budućnosti.",
+    "Category": "Tehnologija",
+    "PictureUrl": "/images/articles/quantum_security.jpg"
+  },
+  {
+    "Title": "Inženjering zasnovan na prirodnim sistemima omogućava samostalne ekološke gradove",
+    "Description": "Novi pristupi u inženjeringu omogućavaju održive i energetski efikasne gradove.",
+    "Content": "Grupa inženjera razvila je nove tehnologije zasnovane na prirodnim sistemima, koje omogućavaju gradovima da postanu samostalni i ekološki održivi. Korišćenjem biomimikrije, ovi gradovi mogu generisati sopstvenu energiju, reciklirati vodu i smanjiti emisiju ugljen-dioksida. Ovaj pristup može postati temelj budućih održivih urbanih zajednica.",
+    "Category": "Inženjerstvo",
+    "PictureUrl": "/images/articles/eco_cities.jpg"
+  },
+  {
+    "Title": "Matematičari razvili novu metodu za predviđanje klimatskih promena sa većom tačnošću",
+    "Description": "Precizniji modeli za prognozu klimatskih promena mogu pomoći u borbi protiv globalnog zagrevanja.",
+    "Content": "Matematičari su razvili novi model koji koristi napredne metode statistike i dubokog učenja za predviđanje klimatskih promena. Ova metoda omogućava preciznije prognoze o tome kako će se promeniti temperature, padavine i drugi klimatski faktori u narednim decenijama. Ovi podaci mogu pomoći vladama i organizacijama da bolje planiraju adaptaciju na klimatske promene i smanjenje emisija.",
+    "Category": "Matematika",
+    "PictureUrl": "/images/articles/climate_prediction_model.jpg"
+  },
+  {
+    "Title": "Tehnologija 5G omogućava stvaranje pametnih gradova sa samostalnim infrastrukturnim sistemima",
+    "Description": "5G mreže postavljaju temelje za gradove budućnosti.",
+    "Content": "Sposobnost 5G tehnologije da brzo i efikasno poveže milijarde uređaja omogućava razvoj pametnih gradova sa samostalnim infrastrukturnim sistemima. Ova tehnologija omogućava automatsko upravljanje saobraćajem, javnim uslugama i energetske mreže, sve u realnom vremenu. Pametni gradovi mogu smanjiti zagađenje, poboljšati kvalitet života i omogućiti lakše upravljanje resursima.",
+    "Category": "Tehnologija",
+    "PictureUrl": "/images/articles/5g_smart_cities.jpg"
+  },
+  {
+    "Title": "Nova teorija o poreklu svemira mogla bi rešiti misteriju Big Benga",
+    "Description": "Naučnici predlažu revolucionarnu teoriju o nastanku svemira.",
+    "Content": "Grupa astrofizičara je predstavila novu teoriju koja objašnjava poreklo svemira, sugerišući da je Big Bang možda samo jedan od niza ciklusa koji se ponavljaju. Ova teorija bi mogla rešiti mnoge nepoznanice u vezi sa velikim praskom i pomoći u razumevanju stvaranja galaksija i drugih kosmičkih objekata.",
+    "Category": "Nauka",
+    "PictureUrl": "/images/articles/origin_of_universe.jpg"
+  },
+  {
+    "Title": "Naučnici stvorili prvi potpuno sintetički organizam sa genetskim kodom na bazi umetnutih baza",
+    "Description": "Revolucija u genetici: stvoren je sintetički organizam sa potpuno novim genetskim kodom.",
+    "Content": "Tim naučnika je uspešno stvorio sintetički organizam koji koristi genetski kod sa umetnutim novim molekulama, umesto tradicionalnih baza. Ovo otkriće omogućava mogućnost stvaranja novih oblika života sa potpuno novim biološkim svojstvima. Ova tehnologija može imati dalekosežne posledice u biotehnologiji i medicini, uključujući proizvodnju novih lekova i razvoj otpornijih biljaka.",
+    "Category": "Nauka",
+    "PictureUrl": "/images/articles/synthetic_organism.jpg"
+  },
+  {
+    "Title": "Pametni materijali omogućavaju razvoj samoregulirajućih struktura za pametne zgrade",
+    "Description": "Inženjeri razvijaju materijale koji reaguju na spoljne uticaje i menjaju svoja svojstva.",
+    "Content": "Inženjeri su razvili pametne materijale koji mogu da menjaju svoje fizičke osobine u odgovoru na spoljne faktore kao što su temperatura, svetlost ili vlažnost. Ovi materijali se mogu koristiti za izradu pametnih zgrada koje će automatski prilagoditi svoj oblik ili strukturu u zavisnosti od spoljnog okruženja, čime će se značajno povećati energetska efikasnost i sigurnost građevinskih objekata.",
+    "Category": "Inženjerstvo",
+    "PictureUrl": "/images/articles/smart_building_materials.jpg"
+  },
+  {
+    "Title": "Nova aplikacija koristi veštačku inteligenciju za predviđanje vremenskih nepogoda u realnom vremenu",
+    "Description": "Veštačka inteligencija menja pristup predviđanju vremenskih uslova.",
+    "Content": "Istraživači su razvili aplikaciju koja koristi veštačku inteligenciju i mašinsko učenje za predviđanje vremenskih nepogoda u realnom vremenu. Aplikacija analizira ogromne količine podataka sa meteoroloških stanica i satelita kako bi predvidela potencijalne oluje, poplave ili suše sa visokim stepenom preciznosti. Ovaj razvoj bi mogao da poboljša efikasnost sistema za upravljanje prirodnim katastrofama.",
+    "Category": "Tehnologija",
+    "PictureUrl": "/images/articles/ai_weather_prediction.jpg"
+  },
+  {
+    "Title": "Matematički modeli pokazuju da bi crne rupe mogle imati 'dupli' horizont događaja",
+    "Description": "Nova istraživanja o crnim rupama otkrivaju mogućnost postojanja duplog horizonta događaja.",
+    "Content": "Matematičari su razvili modele koji sugerišu da bi crne rupe mogle imati dva horizonta događaja, što bi moglo promeniti naše razumevanje ove misteriozne pojave. Ovo otkriće dolazi nakon godina istraživanja u oblasti astrofizike, a moglo bi omogućiti bolje razumevanje gravitacije, prostor-vremena i zakona univerzuma.",
+    "Category": "Matematika",
+    "PictureUrl": "/images/articles/black_hole_theory.jpg"
+  },
+  {
+    "Title": "Naučnici stvorili prvi 3D štampani organ za transplantaciju",
+    "Description": "Revolucija u medicini: 3D štampanje ljudskih organa postaje stvarnost.",
+    "Content": "Tim istraživača je uspešno stvorio prvi ljudski organ korišćenjem 3D štampe. Ovaj organ, koji se koristi za transplantaciju, izrađen je korišćenjem biokompatibilnih materijala i ljudskih ćelija, što otvara mogućnost za personalizovane medicinske tretmane. Ovo otkriće može značajno smanjiti listu čekanja za transplantaciju i smanjiti rizik od odbacivanja organa od strane imunog sistema pacijenta.",
+    "Category": "Tehnologija",
+    "PictureUrl": "/images/articles/3d_printed_organ.jpg"
+  },
+  {
+    "Title": "Nova tehnologija za reciklažu plastičnog otpada koristi enzime za razgradnju plastike",
+    "Description": "Tehnologija koja koristi enzime za razgradnju plastike može rešiti problem globalnog zagađenja.",
+    "Content": "Istraživači su razvili tehnologiju koja koristi specijalizovane enzime za razgradnju plastike i njeno recikliranje na efikasniji način. Ova inovacija bi mogla da revolucioniše industriju reciklaže, omogućavajući reciklažu svih vrsta plastike, uključujući teške plastične materijale koji su trenutno gotovo nemogući za recikliranje. Uzimajući u obzir globalni problem zagađenja plastikom, ovo je korak ka očuvanju planete.",
+    "Category": "Inženjerstvo",
+    "PictureUrl": "/images/articles/plastic_recycling_enzymes.jpg"
+  },
+  {
+    "Title": "Nova teorija u matematici objašnjava svepoznatost brojeva u prirodi",
+    "Description": "Matematičari predlažu novu teoriju koja objašnjava kako brojevi objašnjavaju zakone prirode.",
+    "Content": "Novi matematički rad istražuje ulogu brojeva u prirodi i kako se njihova prisutnost manifestuje u svim oblicima života. Matematičari sugerišu da bi mogao postojati 'univerzalni' broj koji je osnova za mnoge prirodne pojave. Ova teorija se temelji na teoriji brojeva i može ponuditi nova objašnjenja za zakonitosti prirodnih i fizičkih procesa.",
+    "Category": "Matematika",
+    "PictureUrl": "/images/articles/natural_numbers_theory.jpg"
+  }
+]

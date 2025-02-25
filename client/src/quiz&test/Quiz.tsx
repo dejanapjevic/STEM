@@ -104,7 +104,7 @@ export default function Quiz() {
             alignItems: "center",
             height: "100vh",
             width: "100%",
-            backgroundColor:"#9f7aea",
+            backgroundImage: "url('background.jpg')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             
@@ -221,7 +221,7 @@ export default function Quiz() {
           alignItems: "center", // Centriranje vertikalno
           height: "100vh", // Postavlja visinu na celu visinu ekrana
           width: "100%",
-          backgroundColor:"#9f7aea",
+          backgroundImage: "url('background.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",

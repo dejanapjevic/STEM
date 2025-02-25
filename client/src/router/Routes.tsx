@@ -20,6 +20,11 @@ import UsersInventory from "../admin/UsersInventory";
 import QuizInventory from "../admin/quizInventory";
 import CatalogInventory from "../admin/CatalogInventory";
 import HomePage from "../account/HomePage";
+import Quiz2 from "../quiz&test/Quiz2";
+import VideoUpload from "../video-lectures/videoUpload";
+import VideoList from "../video-lectures/videoList";
+import Tutorials from "../video-lectures/tutorials";
+import VideoLessons from "../video-lectures/VideoLesson";
 
 export const router = createBrowserRouter([
   {
@@ -37,7 +42,11 @@ export const router = createBrowserRouter([
           { path: "userInventory", element: <UsersInventory /> },
           { path: "quizInventory", element: <QuizInventory /> },
           { path: "quiz", element: <Quiz /> },
+          { path: "quiz2", element: <Quiz2 /> },
           { path: "career", element: <CareerOptions /> },
+          { path: "videoupload", element: <VideoUpload /> },
+          { path: "videos", element: <VideoList/> },
+          { path: "tutorials", element: <VideoLessons/> },
         ],
       },
       { path: "home", element: <WelcomePage /> },

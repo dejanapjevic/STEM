@@ -246,3 +246,4 @@ C:\Users\PC\Desktop\STEMObrazovanje\API\obj\Debug\net9.0\refint\API.dll
 C:\Users\PC\Desktop\STEMObrazovanje\API\obj\Debug\net9.0\API.pdb
 C:\Users\PC\Desktop\STEMObrazovanje\API\obj\Debug\net9.0\API.genruntimeconfig.cache
 C:\Users\PC\Desktop\STEMObrazovanje\API\obj\Debug\net9.0\ref\API.dll
+C:\Users\PC\Desktop\STEMObrazovanje\API\bin\Debug\net9.0\API.staticwebassets.runtime.json

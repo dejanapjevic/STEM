@@ -12,6 +12,8 @@ namespace API.Data
     public required DbSet<CareerOption> CareerOptions { get; set; }
     public required DbSet<Topic> Topics { get; set; }
     public required DbSet<Reply> Replies { get; set; }
+    public required DbSet<Video> Videos { get; set; }
+    public required DbSet<Tutorial> Tutorials {get; set;}
 
 
     protected override void OnModelCreating(ModelBuilder builder)
@@ -30,7 +32,7 @@ namespace API.Data
             .HasOne(t => t.User)
             .WithMany()
             .HasForeignKey(t => t.UserId)
-            .OnDelete(DeleteBehavior.Restrict); 
+            .OnDelete(DeleteBehavior.Restrict);
 
 
 
@@ -38,16 +40,20 @@ namespace API.Data
                   .HasOne(r => r.User)
                   .WithMany() // Ako je korisnik može imati više odgovora
                   .HasForeignKey(r => r.UserId)
-                    .OnDelete(DeleteBehavior.Cascade); 
+                    .OnDelete(DeleteBehavior.Cascade);
 
 
       builder.Entity<Reply>()
           .HasOne(r => r.Topic)
           .WithMany() // Ako tema može imati više odgovora
           .HasForeignKey(r => r.TopicId)
-          .OnDelete(DeleteBehavior.Cascade); 
+          .OnDelete(DeleteBehavior.Cascade);
 
-
+      builder.Entity<Video>()
+                 .HasOne(v=>v.tutorial)
+                 .WithMany() // Jer jedan tutorial može imati više videa
+                 .HasForeignKey(v => v.TutorialId)
+                 .OnDelete(DeleteBehavior.Cascade); 
     }
   }
 

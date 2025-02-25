@@ -135,11 +135,9 @@ namespace API.Controllers
             var reply = new Reply
             {
                 Text = replyDto.Text,
-                Date = DateTime.UtcNow,
+                CreatedAt = DateTime.UtcNow,
                 UserId = userId,
-                TopicId = replyDto.TopicId
-
-
+                TopicId = replyDto.TopicId,
             };
             _context.Replies.Add(reply);
             await _context.SaveChangesAsync();
@@ -170,14 +168,14 @@ namespace API.Controllers
         {
             var replies = await _context.Replies
        .Where(r => r.TopicId == topicId)
-       .OrderByDescending(r => r.Date) // Opcionalno: sortiranje najnovijih odgovora na vrh
+       .OrderByDescending(r => r.CreatedAt) // Opcionalno: sortiranje najnovijih odgovora na vrh
        .Select(r => new
        {
            r.Id,
            r.Text,
-           r.Date,
+           r.CreatedAt,
            r.UserId,
-           firstname = r.User.FirstName,
+           firstName = r.User.FirstName,
            lastName = r.User.LastName
        })
        .ToListAsync();

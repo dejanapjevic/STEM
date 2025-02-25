@@ -1,0 +1,28 @@
+﻿<Project>
+  <ItemGroup>
+    <StaticWebAssetEndpoint Include="_content/API/videos/What is an API_.mp4">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\videos\What is an API_.mp4'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-lQPa4t9q63x47W4\u002BU6NZGaBvDAtzlRJ59hmN2RAxNac="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"4604258"},{"Name":"Content-Type","Value":"video/mp4"},{"Name":"ETag","Value":"\u0022lQPa4t9q63x47W4\u002BU6NZGaBvDAtzlRJ59hmN2RAxNac=\u0022"},{"Name":"Last-Modified","Value":"Tue, 25 Feb 2025 10:57:42 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/API/videos/What is an API_.x1h5egxkvq.mp4">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\videos\What is an API_.mp4'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"x1h5egxkvq"},{"Name":"integrity","Value":"sha256-lQPa4t9q63x47W4\u002BU6NZGaBvDAtzlRJ59hmN2RAxNac="},{"Name":"label","Value":"_content/API/videos/What is an API_.mp4"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"4604258"},{"Name":"Content-Type","Value":"video/mp4"},{"Name":"ETag","Value":"\u0022lQPa4t9q63x47W4\u002BU6NZGaBvDAtzlRJ59hmN2RAxNac=\u0022"},{"Name":"Last-Modified","Value":"Tue, 25 Feb 2025 10:57:42 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/API/videos/What is cyber security_1080p.mp4">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\videos\What is cyber security_1080p.mp4'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-YJL1dE4xcyo0j\u002BaViZAgmjWIQ6ASiDI6qGT7H2rkrUo="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"7131490"},{"Name":"Content-Type","Value":"video/mp4"},{"Name":"ETag","Value":"\u0022YJL1dE4xcyo0j\u002BaViZAgmjWIQ6ASiDI6qGT7H2rkrUo=\u0022"},{"Name":"Last-Modified","Value":"Tue, 25 Feb 2025 12:32:04 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/API/videos/What is cyber security_1080p.omriu2xs2w.mp4">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\videos\What is cyber security_1080p.mp4'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"omriu2xs2w"},{"Name":"integrity","Value":"sha256-YJL1dE4xcyo0j\u002BaViZAgmjWIQ6ASiDI6qGT7H2rkrUo="},{"Name":"label","Value":"_content/API/videos/What is cyber security_1080p.mp4"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"7131490"},{"Name":"Content-Type","Value":"video/mp4"},{"Name":"ETag","Value":"\u0022YJL1dE4xcyo0j\u002BaViZAgmjWIQ6ASiDI6qGT7H2rkrUo=\u0022"},{"Name":"Last-Modified","Value":"Tue, 25 Feb 2025 12:32:04 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+  </ItemGroup>
+</Project>

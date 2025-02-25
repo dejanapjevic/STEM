@@ -26,38 +26,45 @@ export default function ArticleCard({ article }: Props) {
         flexDirection: "column",
         height: "100%",
         animation: "appear 0.7s ease-out",
+        overflow: "hidden", // Ovaj deo će pomoći da se izbegne preklapanje
       }}
     >
       <CardMedia
-        sx={{ height: 200 }}
+        sx={{
+          height: 200,
+          objectFit: "cover", // Ovaj deo čini da slika lepo popuni prostor
+        }}
         image={article.pictureUrl}
         title={article.category}
       />
-      <CardContent>
+      <CardContent sx={{ flexGrow: 1 }}>
+        {" "}
+        {/* Povećali smo fleksibilnost prostora */}
         <Typography
           gutterBottom
           variant="h5"
           component="div"
           sx={{
             fontWeight: "bold",
-            marginBottom: "56%",
-            height: "2%",
+            marginBottom: "16px", // Smanjili smo marginu između naslova i opisa
             fontSize: 23,
+            height: "auto", // Osiguravamo da se tekst lepo prikazuje
           }}
         >
           {article.title}
         </Typography>
         <Typography
           variant="body2"
-          sx={{ color: "text.secondary", height: "2%", marginBottom: "-40%" }}
+          sx={{
+            color: "text.secondary",
+            height: "auto", // Omogućavamo da tekst raste u visinu
+            marginBottom: "16px", // Razmak između opisa i dugmadi
+          }}
         >
           {article.description}
         </Typography>
       </CardContent>
       <CardActions sx={{ marginTop: "auto" }}>
-        <Button size="medium" color="secondary" sx={{ fontWeight: "bold" }}>
-          Dodaj u omiljeno
-        </Button>
         <Button
           component={Link}
           to={`/catalog/${article.id}`}

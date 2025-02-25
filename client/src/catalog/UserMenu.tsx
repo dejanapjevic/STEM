@@ -17,6 +17,7 @@ import {
   People,
   Quiz,
   Rule,
+  VideoLibrary,
 } from "@mui/icons-material";
 
 import { useNavigate } from "react-router-dom";
@@ -73,7 +74,14 @@ export default function UserMenu({ user }: Props) {
             Početna
           </ListItemText>
         </MenuItem>
-
+        <MenuItem>
+          <ListItemIcon>
+            <VideoLibrary />
+          </ListItemIcon>
+          <ListItemText onClick={() => navigate("/tutorials")}>
+            Video lekcije
+          </ListItemText>
+        </MenuItem>
         <MenuItem>
           <ListItemIcon>
             <Article />
@@ -141,6 +149,14 @@ export default function UserMenu({ user }: Props) {
               </ListItemIcon>
               <ListItemText onClick={() => navigate("/quizinventory")}>
                 Administracija kviza
+              </ListItemText>
+            </MenuItem>
+            <MenuItem>
+              <ListItemIcon>
+                <AdminPanelSettings />
+              </ListItemIcon>
+              <ListItemText onClick={() => navigate("/videoupload")}>
+                Administracija video lekcija
               </ListItemText>
             </MenuItem>
           </>

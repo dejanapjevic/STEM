@@ -20,7 +20,7 @@ export default function Filters({ categories: data }: Props) {
   const dispatch = useAppDispatch();
 
   return (
-    <Box display="flex" flexDirection="column" gap={3}>
+    <Box display="flex" flexDirection="column" gap={3} >
       <Paper>
         <Search />
       </Paper>
@@ -41,12 +41,11 @@ export default function Filters({ categories: data }: Props) {
       </Paper>
       <Button
         variant="contained"
-        sx={{backgroundColor:"black"}}
+        sx={{ backgroundColor: "black" }}
         onClick={() => dispatch(resetParams())}
       >
         Resetuj filtere
       </Button>
-      
     </Box>
   );
 }
