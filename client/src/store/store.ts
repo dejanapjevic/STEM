@@ -9,6 +9,7 @@ import { accountApi } from "../account/accountApi";
 import { adminApi } from "../admin/adminApi";
 import { quiztestApi } from "../quiz&test/quiz&testApi";
 import { forumApi } from "../forum/forumApi";
+import { tutorialApi } from "../video-lectures/tutorialApi";
 
 export const store = configureStore({
   reducer: {
@@ -18,6 +19,7 @@ export const store = configureStore({
     [adminApi.reducerPath]: adminApi.reducer,
     [quiztestApi.reducerPath]: quiztestApi.reducer,
     [forumApi.reducerPath]: forumApi.reducer,
+    [tutorialApi.reducerPath]:tutorialApi.reducer,
     ui: uiSlice.reducer,
     catalog: catalogSlice.reducer,
   },
@@ -28,7 +30,8 @@ export const store = configureStore({
       accountApi.middleware,
       adminApi.middleware,
       quiztestApi.middleware,
-      forumApi.middleware
+      forumApi.middleware,
+      tutorialApi.middleware
     ),
 });
 

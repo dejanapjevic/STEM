@@ -29,7 +29,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 25 Feb 2025 10:57:42 GMT"
+          "Value": "Tue, 25 Feb 2025 12:39:29 GMT"
         }
       ],
       "EndpointProperties": [
@@ -66,7 +66,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 25 Feb 2025 10:57:42 GMT"
+          "Value": "Tue, 25 Feb 2025 12:39:29 GMT"
         }
       ],
       "EndpointProperties": [
@@ -111,7 +111,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 25 Feb 2025 12:32:04 GMT"
+          "Value": "Tue, 25 Feb 2025 12:36:03 GMT"
         }
       ],
       "EndpointProperties": [
@@ -148,7 +148,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 25 Feb 2025 12:32:04 GMT"
+          "Value": "Tue, 25 Feb 2025 12:36:03 GMT"
         }
       ],
       "EndpointProperties": [
@@ -163,6 +163,88 @@
         {
           "Name": "label",
           "Value": "videos/What is cyber security_1080p.mp4"
+        }
+      ]
+    },
+    {
+      "Route": "videos/WhatsApp Video 2025-02-25 at 10.39.01_c8b6f98c.aociqg82sv.mp4",
+      "AssetFile": "videos/WhatsApp Video 2025-02-25 at 10.39.01_c8b6f98c.mp4",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "401669"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "video/mp4"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"VlWRp6irCay8s+BAw7a1yqQ2vG0YwTKTDWV/028VcMs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 25 Feb 2025 13:00:57 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "aociqg82sv"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-VlWRp6irCay8s+BAw7a1yqQ2vG0YwTKTDWV/028VcMs="
+        },
+        {
+          "Name": "label",
+          "Value": "videos/WhatsApp Video 2025-02-25 at 10.39.01_c8b6f98c.mp4"
+        }
+      ]
+    },
+    {
+      "Route": "videos/WhatsApp Video 2025-02-25 at 10.39.01_c8b6f98c.mp4",
+      "AssetFile": "videos/WhatsApp Video 2025-02-25 at 10.39.01_c8b6f98c.mp4",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "401669"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "video/mp4"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"VlWRp6irCay8s+BAw7a1yqQ2vG0YwTKTDWV/028VcMs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 25 Feb 2025 13:00:57 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-VlWRp6irCay8s+BAw7a1yqQ2vG0YwTKTDWV/028VcMs="
         }
       ]
     }

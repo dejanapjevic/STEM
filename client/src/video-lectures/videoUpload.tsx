@@ -50,7 +50,7 @@ const VideoUpload = () => {
   };
 
   return (
-    <div>
+    <div style={{margin:"10px"}}>
       <input
         type="text"
         placeholder="Unesite naslov videa"
@@ -75,7 +75,7 @@ const VideoUpload = () => {
       {uploadedVideo && (
         <div>
           <h3>{videoTitle || "Video"} je uspešno uploadovan:</h3>
-          <video width="600" controls>
+          <video width="100" controls>
             <source src={uploadedVideo} type="video/mp4" />
             Your browser does not support the video tag.
           </video>

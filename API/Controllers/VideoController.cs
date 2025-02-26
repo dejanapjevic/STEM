@@ -89,7 +89,9 @@ namespace API.Controllers
             var tutorial = new Tutorial
             {
                 Name = tutorialDto.Name,
-                ImagePath = tutorialDto.ImagePath,
+               
+                Category=tutorialDto.Category,
+                Description=tutorialDto.Description,
             };
             _context.Tutorials.Add(tutorial);
             await _context.SaveChangesAsync();

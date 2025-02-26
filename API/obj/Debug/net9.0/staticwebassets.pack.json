@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\videos\\What is cyber security_1080p.mp4"
     },
     {
+      "Id": "C:\\Users\\PC\\Desktop\\STEMObrazovanje\\API\\wwwroot\\videos\\WhatsApp Video 2025-02-25 at 10.39.01_c8b6f98c.mp4",
+      "PackagePath": "staticwebassets\\videos\\WhatsApp Video 2025-02-25 at 10.39.01_c8b6f98c.mp4"
+    },
+    {
       "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.API.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },

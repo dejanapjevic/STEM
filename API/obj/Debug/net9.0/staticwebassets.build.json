@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "GWIyVpxVrm3gHkTw4CqQFFbvks/4K9iWJ39Z9yd54SU=",
+  "Hash": "aBmXi8dzbSiKMiFM6iyyO4k/irLV9nXmszWHuGbEVms=",
   "Source": "API",
   "BasePath": "_content/API",
   "Mode": "Default",
@@ -57,6 +57,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\videos\\What is cyber security_1080p.mp4"
+    },
+    {
+      "Identity": "C:\\Users\\PC\\Desktop\\STEMObrazovanje\\API\\wwwroot\\videos\\WhatsApp Video 2025-02-25 at 10.39.01_c8b6f98c.mp4",
+      "SourceId": "API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\PC\\Desktop\\STEMObrazovanje\\API\\wwwroot\\",
+      "BasePath": "_content/API",
+      "RelativePath": "videos/WhatsApp Video 2025-02-25 at 10.39.01_c8b6f98c#[.{fingerprint}]?.mp4",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "aociqg82sv",
+      "Integrity": "VlWRp6irCay8s+BAw7a1yqQ2vG0YwTKTDWV/028VcMs=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\videos\\WhatsApp Video 2025-02-25 at 10.39.01_c8b6f98c.mp4"
     }
   ],
   "Endpoints": [
@@ -83,7 +104,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 25 Feb 2025 10:57:42 GMT"
+          "Value": "Tue, 25 Feb 2025 12:39:29 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -120,7 +141,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 25 Feb 2025 10:57:42 GMT"
+          "Value": "Tue, 25 Feb 2025 12:39:29 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -165,7 +186,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 25 Feb 2025 12:32:04 GMT"
+          "Value": "Tue, 25 Feb 2025 12:36:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -202,7 +223,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 25 Feb 2025 12:32:04 GMT"
+          "Value": "Tue, 25 Feb 2025 12:36:03 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -221,6 +242,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-YJL1dE4xcyo0j+aViZAgmjWIQ6ASiDI6qGT7H2rkrUo="
+        }
+      ]
+    },
+    {
+      "Route": "videos/WhatsApp Video 2025-02-25 at 10.39.01_c8b6f98c.aociqg82sv.mp4",
+      "AssetFile": "C:\\Users\\PC\\Desktop\\STEMObrazovanje\\API\\wwwroot\\videos\\WhatsApp Video 2025-02-25 at 10.39.01_c8b6f98c.mp4",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "401669"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "video/mp4"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"VlWRp6irCay8s+BAw7a1yqQ2vG0YwTKTDWV/028VcMs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 25 Feb 2025 13:00:57 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "aociqg82sv"
+        },
+        {
+          "Name": "label",
+          "Value": "videos/WhatsApp Video 2025-02-25 at 10.39.01_c8b6f98c.mp4"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-VlWRp6irCay8s+BAw7a1yqQ2vG0YwTKTDWV/028VcMs="
+        }
+      ]
+    },
+    {
+      "Route": "videos/WhatsApp Video 2025-02-25 at 10.39.01_c8b6f98c.mp4",
+      "AssetFile": "C:\\Users\\PC\\Desktop\\STEMObrazovanje\\API\\wwwroot\\videos\\WhatsApp Video 2025-02-25 at 10.39.01_c8b6f98c.mp4",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "401669"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "video/mp4"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"VlWRp6irCay8s+BAw7a1yqQ2vG0YwTKTDWV/028VcMs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 25 Feb 2025 13:00:57 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-VlWRp6irCay8s+BAw7a1yqQ2vG0YwTKTDWV/028VcMs="
         }
       ]
     }

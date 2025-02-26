@@ -155,7 +155,7 @@ export default function UserMenu({ user }: Props) {
               <ListItemIcon>
                 <AdminPanelSettings />
               </ListItemIcon>
-              <ListItemText onClick={() => navigate("/videoupload")}>
+              <ListItemText onClick={() => navigate("/tutorialInventory")}>
                 Administracija video lekcija
               </ListItemText>
             </MenuItem>
