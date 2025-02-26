@@ -1,10 +1,21 @@
-import { debounce, TextField } from "@mui/material";
+import { RootState } from "../store/store"; // Import `RootState`
+import { debounce, InputAdornment, TextField } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../store/store";
-import { setSearchTerm } from "./catalogSlice";
 import { useEffect, useState } from "react";
+import { setSearchTerm as setArticleSearchTerm } from "./catalogSlice";
+import { setUserSearchTerm } from "../account/userSlice";
+import { Search } from "@mui/icons-material";
 
-export default function Search() {
-  const { searchTerm } = useAppSelector((state) => state.catalog);
+interface SearchProps {
+  type: "articles" | "users";
+}
+
+export default function MySearch({ type }: SearchProps) {
+  const searchSelector = (state: RootState) =>
+    type === "articles" ? state.catalog.searchTerm : state.users.searchTerm;
+
+  const searchTerm = useAppSelector(searchSelector);
+  console.log("SearchTerm from state:", searchTerm);
   const dispatch = useAppDispatch();
   const [term, setTerm] = useState(searchTerm);
 
@@ -13,21 +24,34 @@ export default function Search() {
   }, [searchTerm]);
 
   const debouncedSearch = debounce((event) => {
-    dispatch(setSearchTerm(event.target.value));
+    if (type === "articles") {
+      dispatch(setArticleSearchTerm(event.target.value));
+    } else {
+      dispatch(setUserSearchTerm(event.target.value));
+    }
   }, 500);
 
   return (
-    <TextField
-      label="Pretraži članke"
-      variant="outlined"
-      fullWidth
-      type="search"
-      sx={{ color: "black" }}
-      value={term}
-      onChange={(e) => {
-        setTerm(e.target.value);
-        debouncedSearch(e);
-      }}
-    />
+    <>
+     <TextField
+  label={`Pretraži ${type === "articles" ? "članke" : "korisnike"}`}
+  variant="outlined"
+  fullWidth
+  type="search"
+  sx={{ color: "black", maxWidth: "300px" }}
+  value={term}
+  onChange={(e) => {
+    setTerm(e.target.value);
+    debouncedSearch(e);
+  }}
+  InputProps={{
+    startAdornment: (
+      <InputAdornment position="start">
+        <Search />
+      </InputAdornment>
+    ),
+  }}
+/>
+    </>
   );
 }

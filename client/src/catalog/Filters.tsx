@@ -1,6 +1,6 @@
 import { Box, Button, Paper } from "@mui/material";
 
-import Search from "./Search";
+import MySearch from "./Search";
 import RadioButtonGroup from "../components/RadioButtonGroup";
 import { useAppDispatch, useAppSelector } from "../store/store";
 import { resetParams, setCategories, setOrderBy } from "./catalogSlice";
@@ -22,7 +22,7 @@ export default function Filters({ categories: data }: Props) {
   return (
     <Box display="flex" flexDirection="column" gap={3} >
       <Paper>
-        <Search />
+        <MySearch type="articles"/>
       </Paper>
       <Paper sx={{ padding: 3 }}>
         <RadioButtonGroup

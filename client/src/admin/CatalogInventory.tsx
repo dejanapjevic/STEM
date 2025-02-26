@@ -20,6 +20,7 @@ import ArticleForm from "./ArticleForm";
 import { Article } from "../models/article";
 import { useDeleteArticleMutation } from "./adminApi";
 import { toast } from "react-toastify";
+import MySearch from "../catalog/Search";
 
 export default function CatalogInventory() {
   const articleParams = useAppSelector((state) => state.catalog);
@@ -67,27 +68,30 @@ export default function CatalogInventory() {
 
   return (
     <>
-      <Box display="flex" justifyContent="space-between">
-        <Button
-          onClick={handleCreateNewArticle}
-          sx={{ m: 2, color: "white", backgroundColor: "black" }}
-          size="large"
-          variant="contained"
-        >
-          Kreiraj članak
-        </Button>
+      <Box display="flex" justifyContent="space-between" alignItems="center" gap={2} margin="1%">
+  <Button
+    onClick={handleCreateNewArticle}
+    sx={{  color: "white", backgroundColor: "black" }}
+    size="large"
+    variant="contained"
+  >
+    Kreiraj članak
+  </Button>
 
-        {filtersData && (
-          <Box sx={{ pt: 3 }}>
-            <AppPagination
-              metadata={data.pagination}
-              onPageChange={(page: number) => {
-                dispatch(setPageNumber(page));
-              }}
-            />
-          </Box>
-        )}
-      </Box>
+  <MySearch type="articles"  />
+
+  {filtersData && (
+    <Box>
+      <AppPagination
+        metadata={data.pagination}
+        onPageChange={(page: number) => {
+          dispatch(setPageNumber(page));
+        }}
+      />
+    </Box>
+  )}
+</Box>
+
 
       <Table
         sx={{

@@ -65,6 +65,9 @@ const VideoLesson = () => {
               <Typography variant="h6" fontWeight="bold">
                 {tutorial?.name || "Unknown Tutorial"}
               </Typography>
+              <Typography >
+                {tutorial?.description || "Unknown Tutorial"}
+              </Typography>
             </Box>
 
             {/* Glavni deo sa videom */}

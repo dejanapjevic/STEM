@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using API.Extensions;
 
 namespace API.Controllers
 {
@@ -89,9 +90,10 @@ namespace API.Controllers
         }
 
         [HttpGet("get-users")]
-        public async Task<ActionResult<List<User>>> GetUsers()
+        public async Task<ActionResult<List<User>>> GetUsers(string searchTerm)
         {
-            var users = await _context.Users.ToListAsync();
+            var usersQuery = _context.Users.AsQueryable().SearchUsers(searchTerm);
+            var users = await usersQuery.ToListAsync();
 
             if (users == null || users.Count == 0)
                 return NoContent();

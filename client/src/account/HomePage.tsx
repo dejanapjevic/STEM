@@ -1,60 +1,84 @@
-import { Avatar, Box, Grid2, Typography } from "@mui/material";
-import { useUserInfoQuery } from "./accountApi";
+import { Avatar, Box, Typography, Grid } from "@mui/material";
 
-export default function HomePage() {
+import { useUserInfoQuery } from "./accountApi";
+import {
+  GitHub,
+  Twitter,
+  LinkedIn,
+  Instagram,
+  Facebook,
+  YouTube,
+} from "@mui/icons-material";
+
+export default function ProfilePage() {
   const { data: user } = useUserInfoQuery();
 
   return (
-    <Grid2
-      container
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-      style={{
-        height: "100vh",
-      }}
-    >
-      <Grid2
-        size={6}
-        height="100vh"
-        justifyContent="center"
-        alignItems="center"
-        style={{ position: "relative" }}
-      >
-        <Box display="flex" flexDirection="column" alignItems="center" mt="30%">
-          <Avatar
-            src="user.jpg"
-            sx={{ width: 200, height: 200, margin: "0 auto 10px" }}
-          />
-          <Typography variant="h6">
-            {user?.firstName} {user?.lastName}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Email: {user?.email}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Pol: {user?.gender}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Datum rođenja:
-            {user?.dateOfBirth
-              ? new Date(user.dateOfBirth).toLocaleDateString()
-              : "N/A"}
-          </Typography>
-        </Box>
-      </Grid2>
-
-      <Grid2
-        size={6}
-        style={{
-          height: "100vh",
-          backgroundImage:
-            "linear-gradient(to left, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 1) 100%), url('z.jpg')",
+    <Box>
+      {/* Header Image */}
+      <Box
+        sx={{
+          height: 300,
+          backgroundImage: "url('background.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
         }}
-      ></Grid2>
-    </Grid2>
+      />
+
+      {/* Profile Section */}
+      <Grid
+        container
+        justifyContent="center"
+        sx={{ position: "relative", top: -30 }}
+      >
+        <Avatar
+          src="user.jpg"
+          sx={{ width: 100, height: 100, border: "4px solid white" }}
+        />
+      </Grid>
+
+      <Box textAlign="center" mt={1}>
+        <Typography variant="h6">
+          {user?.firstName} {user?.lastName}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          {user?.dateOfBirth
+            ? new Date(user.dateOfBirth).toLocaleDateString()
+            : "April 14th, 2018"}
+        </Typography>
+      </Box>
+
+      {/* Social Icons */}
+      <Box display="flex" justifyContent="center" gap={2} mt={1}>
+        <Facebook color="primary" />
+        <Twitter color="primary" />
+        <LinkedIn color="primary" />
+        <Instagram color="secondary" />
+        <YouTube color="error" />
+        <GitHub />
+      </Box>
+
+      {/* User Info Table */}
+      <Box
+        display="flex"
+        flexDirection="column"
+        gap="4px"
+        alignItems="center"
+        
+        mt="6px"
+        
+      >
+        <Typography variant="body2">
+          <strong>Ime i prezime:</strong> {user?.firstName} {user?.lastName}
+        </Typography>
+        <Typography variant="body2">
+          <strong>E-mail:</strong> {user?.email}
+        </Typography>
+
+        <Typography variant="body2">
+          <strong>Pol:</strong> {user?.gender}
+        </Typography>
+      </Box>
+    </Box>
   );
 }

@@ -10,6 +10,7 @@ import { adminApi } from "../admin/adminApi";
 import { quiztestApi } from "../quiz&test/quiz&testApi";
 import { forumApi } from "../forum/forumApi";
 import { tutorialApi } from "../video-lectures/tutorialApi";
+import { userSlice } from "../account/userSlice";
 
 export const store = configureStore({
   reducer: {
@@ -20,8 +21,10 @@ export const store = configureStore({
     [quiztestApi.reducerPath]: quiztestApi.reducer,
     [forumApi.reducerPath]: forumApi.reducer,
     [tutorialApi.reducerPath]:tutorialApi.reducer,
+    
     ui: uiSlice.reducer,
     catalog: catalogSlice.reducer,
+    users: userSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
