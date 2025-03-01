@@ -6,12 +6,12 @@ namespace API.RequestHelpers
         private const int MaxPageSize = 50;
         public int PageNumber { get; set; } = 1;
 
-        private int _pageSize=8; //defaultno, broj elemenata po stranici
+        private int _pageSize = 8; //defaultno, broj elemenata po stranici, ako ne naglasimo drugačije
         public int PageSize
         {
             get => _pageSize; //return _pageSize; alternativno
-            set => _pageSize = value > MaxPageSize ?  MaxPageSize : value;
+            set => _pageSize = value > MaxPageSize ? MaxPageSize : value;
         }
-        
+
     }
 }

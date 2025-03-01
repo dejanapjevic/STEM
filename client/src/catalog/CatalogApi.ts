@@ -9,18 +9,24 @@ export const catalogApi = createApi({
   reducerPath: "catalogApi",
   baseQuery: baseQueryWithErrorHandling,
   endpoints: (builder) => ({
-    fetchArticles: builder.query<{items:Article[], pagination:Pagination}, ArticleParams>({
+    fetchArticles: builder.query<
+      { items: Article[]; pagination: Pagination },
+      ArticleParams
+    >({
       query: (articleParams) => {
+        const safeParams = articleParams || {};
         return {
           url: "articles",
-          params: filterEmptyValues(articleParams), //ovo ce ih 'nakaciti' na query string
-        }
+          params: filterEmptyValues(safeParams), //ovo ce ih 'nakaciti' na query string
+        };
       },
-      transformResponse:(items:Article[], meta ) => {
-        const paginationHeader = meta?.response?.headers.get('Pagination');
-        const pagination = paginationHeader ? JSON.parse(paginationHeader) : null;
-        return{items, pagination}
-      }
+      transformResponse: (items: Article[], meta) => {
+        const paginationHeader = meta?.response?.headers.get("Pagination");
+        const pagination = paginationHeader
+          ? JSON.parse(paginationHeader)
+          : null;
+        return { items, pagination };
+      },
     }),
     fetchArticleDetails: builder.query<Article, number>({
       query: (articleId) => ({ url: `articles/${articleId}` }),

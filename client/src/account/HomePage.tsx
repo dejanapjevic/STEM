@@ -18,7 +18,7 @@ export default function ProfilePage() {
       {/* Header Image */}
       <Box
         sx={{
-          height: 300,
+          height: 250,
           backgroundImage: "url('background.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",

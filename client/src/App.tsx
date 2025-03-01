@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Header from "./catalog/Header";
 import { NotificationProvider } from "./forum/NotificationContext";
 import NotificationBar from "./forum/NotificationBar";
+import { store } from "./store/store";
 
 function App() {
   const navigate = useNavigate();
@@ -16,6 +17,9 @@ function App() {
     }
   }, [location, navigate]);
 
+
+  console.log("Redux state:", store.getState());
+  
   return (
     <NotificationProvider>
       <NotificationBar/>

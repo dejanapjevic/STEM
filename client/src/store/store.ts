@@ -12,6 +12,7 @@ import { forumApi } from "../forum/forumApi";
 import { tutorialApi } from "../video-lectures/tutorialApi";
 import { userSlice } from "../account/userSlice";
 
+
 export const store = configureStore({
   reducer: {
     [catalogApi.reducerPath]: catalogApi.reducer,
@@ -24,7 +25,7 @@ export const store = configureStore({
     
     ui: uiSlice.reducer,
     catalog: catalogSlice.reducer,
-    users: userSlice.reducer,
+   users:userSlice.reducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(

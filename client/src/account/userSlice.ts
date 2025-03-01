@@ -1,26 +1,41 @@
 // features/users/userSlice.ts
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface UserState {
-  searchTerm: string;
+import { createSlice } from "@reduxjs/toolkit";
+
+
+
+
+ interface UserState {
+  searchTerm: string ;
+  pageNumber: number, // podrazumjevano se prikazuje prva stranica.
+  pageSize: number,
 }
 
-const initialState: UserState = {
+const initialStateUser: UserState = {
   searchTerm: "",
+  pageNumber: 1, // podrazumjevano se prikazuje prva stranica.
+  pageSize: 8,
 };
 
 export const userSlice = createSlice({
   name: "users",
-  initialState,
+  initialState:initialStateUser,
   reducers: {
-    setUserSearchTerm: (state, action: PayloadAction<string>) => {
+    setUserSearchTerm: (state, action) => {
       state.searchTerm = action.payload;
     },
     resetSearchTerm(state) {
-        state.searchTerm = "";  // Reset na prazan string
-      },
+      state.searchTerm = ""; // Reset na prazan string
+    },
+    setPageSize(state, action) {
+      state.pageSize = action.payload;
+    },
+    setPageNumber(state, action) {
+      state.pageNumber = action.payload; //payload-podaci koji se prosleđuju akciji.
+    },
   },
 });
 
-export const { setUserSearchTerm , resetSearchTerm} = userSlice.actions;
+export const { setUserSearchTerm, resetSearchTerm, setPageNumber, setPageSize } = userSlice.actions;
 export default userSlice.reducer;
+ 

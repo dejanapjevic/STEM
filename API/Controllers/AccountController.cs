@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using API.Extensions;
+using API.RequestHelpers;
 
 namespace API.Controllers
 {
@@ -90,11 +91,12 @@ namespace API.Controllers
         }
 
         [HttpGet("get-users")]
-        public async Task<ActionResult<List<User>>> GetUsers(string searchTerm)
+        public async Task<ActionResult<List<User>>> GetUsers([FromQuery] UserParams userParams)
         {
-            var usersQuery = _context.Users.AsQueryable().SearchUsers(searchTerm);
-            var users = await usersQuery.ToListAsync();
-
+            var usersQuery = _context.Users.AsQueryable().SearchUsers(userParams.SearchTerm);
+            //var users = await usersQuery.ToListAsync();
+            var users = await PagedList<User>.ToPagedList(usersQuery, userParams.PageNumber, userParams.PageSize);
+ 
             if (users == null || users.Count == 0)
                 return NoContent();
 
@@ -116,6 +118,7 @@ namespace API.Controllers
                     Roles = roles
                 });
             }
+            Response.AddPaginationHeader(users.Metadata);
 
             return Ok(usersList);
         }

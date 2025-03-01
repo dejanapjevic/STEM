@@ -4,8 +4,8 @@ namespace API.RequestHelpers
     {
         public int TotalCount { get; set; }
         public int PageSize { get; set; }
-         public int CurrentPage { get; set; }
-          public int TotalPages { get; set; } //zavisno od total count i page size
+        public int CurrentPage { get; set; }
+        public int TotalPages { get; set; } //zavisno od total count i page size
     }
 }
 /*Ova klasa služi za čuvanje informacija o paginaciji i obično se koristi u API odgovorima 

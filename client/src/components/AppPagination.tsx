@@ -23,20 +23,19 @@ export default function AppPagination({ metadata, onPageChange }: Props) {
       alignItems="center"
       marginBottom={1.5}
     >
-      {location.pathname!='/inventory' && (
-      <Typography
-        sx={{
-          color: "black",
-          fontWeight: "bold",
-          borderBottom: "2px solid black",
-          fontSize: "1.2rem",
-        }}
-      > 
-        Pratite najaktuelnije novosti iz STEM oblasti
-      </Typography>
+      {location.pathname != "/inventory" && (
+        <Typography
+          sx={{
+            color: "black",
+            fontWeight: "bold",
+            borderBottom: "2px solid black",
+            fontSize: "1.2rem",
+          }}
+        >
+          Pratite najaktuelnije novosti iz STEM oblasti
+        </Typography>
       )}
       <Pagination
-        
         size="large"
         count={totalPages}
         page={pageNumber}

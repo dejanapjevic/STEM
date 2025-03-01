@@ -138,17 +138,33 @@ export default function Quiz() {
                     <FormControlLabel
                       key={index}
                       value={option}
-                      control={<Radio sx={{ color: isAnswered && option === questions[currentIndex].answer ? "green" : "black" }} />}
+                      control={
+                        <Radio
+                          sx={{
+                            color:
+                              isAnswered &&
+                              option === questions[currentIndex].answer
+                                ? "green"
+                                : "black",
+                          }}
+                        />
+                      }
                       label={
                         <Typography
                           sx={{
                             color:
-                              isAnswered && option === questions[currentIndex].answer
+                              isAnswered &&
+                              option === questions[currentIndex].answer
                                 ? "green"
-                                : isAnswered && userAnswers[currentIndex] === option
+                                : isAnswered &&
+                                  userAnswers[currentIndex] === option
                                 ? "red"
                                 : "black",
-                            fontWeight: isAnswered && option === questions[currentIndex].answer ? "bold" : "normal",
+                            fontWeight:
+                              isAnswered &&
+                              option === questions[currentIndex].answer
+                                ? "bold"
+                                : "normal",
                           }}
                         >
                           {option}
@@ -160,7 +176,9 @@ export default function Quiz() {
                 </RadioGroup>
               </Grid>
             </Grid>
-            <Box sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}>
+            <Box
+              sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}
+            >
               <IconButton onClick={handlePrev} disabled={currentIndex === 0}>
                 <ArrowBack />
               </IconButton>
@@ -168,7 +186,10 @@ export default function Quiz() {
                 {currentIndex + 1} / {questions.length}
               </Typography>
               {currentIndex === questions.length - 1 ? (
-                <Button variant="contained" onClick={() => setCurrentIndex(questions.length)}>
+                <Button
+                  variant="contained"
+                  onClick={() => setCurrentIndex(questions.length)}
+                >
                   Završi kviz
                 </Button>
               ) : (

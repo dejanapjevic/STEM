@@ -4,6 +4,8 @@ import { User } from "../models/user";
 import { LoginSchema } from "../schemas/loginSchema";
 import { router } from "../router/Routes";
 import { toast } from "react-toastify";
+import { UserParams } from "../models/userParams";
+import { Pagination } from "../models/pagination";
 
 export const accountApi = createApi({
   reducerPath: "acountApi",
@@ -56,8 +58,18 @@ export const accountApi = createApi({
       query: () => "Account/user-info",
       providesTags: ["UserInfo"],
     }),
-    fetchUsers: builder.query<User[], void>({
-      query: () => ({ url: "account/get-users" }),
+    fetchUsers: builder.query<{users:User[], pagination:Pagination}, UserParams>({
+      query: (userParams) => { 
+        return {
+        url: "account/get-users" ,
+        params:userParams
+      }
+    },
+    transformResponse:(users:User[], meta) => {
+      const paginationHeader = meta?.response?.headers.get('Pagination');
+      const pagination = paginationHeader? JSON.parse(paginationHeader) : null;
+      return {users, pagination};
+    }
     }),
     deleteUser: builder.mutation({
       query: (id: string) => {

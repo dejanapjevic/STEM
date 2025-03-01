@@ -8,6 +8,7 @@ import {
   TableRow,
   TableCell,
   TableBody,
+  Pagination,
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
@@ -18,11 +19,14 @@ import {
 import { useAppSelector } from "../store/store";
 import UserForm from "./UserForm";
 import MySearch from "../catalog/Search";
-import { resetSearchTerm } from "../account/userSlice";
+import { resetSearchTerm, setPageNumber } from "../account/userSlice";
 import { useDispatch } from "react-redux";
+import AppPagination from "../components/AppPagination";
 
 export default function UsersInventory() {
-  const { data: users, isLoading, refetch } = useFetchUsersQuery();
+  const userParams = useAppSelector(state=>state.users);
+
+  const { data, isLoading, refetch } = useFetchUsersQuery(userParams);
   const [deleteUser] = useDeleteUserMutation();
   const [addMode, setAddMode] = useState(false);
   const searchTerm = useAppSelector((state) => state.users.searchTerm);
@@ -30,7 +34,9 @@ export default function UsersInventory() {
   useEffect(() => {
     dispatch(resetSearchTerm()); // Reset pretrage pri učitavanju stranice
   }, [dispatch]);
-  if (isLoading || !users) return <div>Loading....</div>;
+  if (isLoading) return <div>Loading....</div>;
+  
+  
 
   const handleDeleteUser = async (id: string) => {
     try {
@@ -48,12 +54,13 @@ export default function UsersInventory() {
   };
 
   // 🔍 Filtriranje korisnika prema searchTerm
-  const filteredUsers = users.filter(
+  const users = data?.users || [];
+  const filteredUsers =users.filter(
     (user) =>
-      user.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.roles.some((role) =>
+      user.firstName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.lastName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.roles?.some((role) =>
         role.toLowerCase().includes(searchTerm.toLowerCase())
       )
   );
@@ -66,6 +73,7 @@ export default function UsersInventory() {
 
   return (
     <>
+    
       <Box
         sx={{
           display: "flex",
@@ -87,6 +95,13 @@ export default function UsersInventory() {
           Dodaj novog korisnika
         </Button>
         <MySearch type="users" />
+        {data?.pagination && (
+  <AppPagination
+    metadata={data.pagination}
+    onPageChange={(page: number) => dispatch(setPageNumber(page))}
+  />
+)}
+
       </Box>
 
       <TableContainer>

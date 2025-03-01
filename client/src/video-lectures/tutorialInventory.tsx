@@ -38,7 +38,7 @@ export default function TutorialInventory() {
           <TableCell align="center">Kategorija</TableCell>
           <TableCell align="center">Video zapisi</TableCell>
           <TableCell align="center">Dodaj video</TableCell>
-          <TableCell align="center">Dodaj video</TableCell>
+          <TableCell align="center"></TableCell>
         </TableRow>
       </TableHead>
       <TableBody>

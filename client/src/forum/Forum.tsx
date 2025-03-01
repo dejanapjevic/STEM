@@ -47,7 +47,7 @@ export default function Forum() {
       <Button
         variant="contained"
         sx={{ mb: 2, mr: 4 }}
-        onClick={() => navigate("/catalog")}
+        onClick={() => navigate("/homepage")}
       >
         Napusti forum
       </Button>
