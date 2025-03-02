@@ -1,7 +1,7 @@
 
 
 using API.Entities;
-
+#nullable enable
 namespace API.Extensions
 {
     public static class UserExtensions

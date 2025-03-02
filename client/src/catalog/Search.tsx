@@ -5,14 +5,27 @@ import { useEffect, useState } from "react";
 import { setSearchTerm as setArticleSearchTerm } from "./catalogSlice";
 import { setUserSearchTerm } from "../account/userSlice";
 import { Search } from "@mui/icons-material";
+import { setForumSearchTerm } from "../forum/forumSlice";
 
 interface SearchProps {
-  type: "articles" | "users";
+  type: "articles" | "users" | "forum" | "tutorials";
 }
 
 export default function MySearch({ type }: SearchProps) {
-  const searchSelector = (state: RootState) =>
-    type === "articles" ? state.catalog.searchTerm : state.users.searchTerm;
+  const searchSelector = (state: RootState) => {
+    switch (type) {
+      case "articles":
+        return state.catalog.searchTerm;
+      case "users":
+        return state.users.searchTerm;
+      case "forum":
+        return state.forum.searchTerm;
+        case "tutorials":
+          return state.tutorial.searchTerm;
+      default:
+        return "";
+    }
+  };
 
   const searchTerm = useAppSelector(searchSelector);
   console.log("SearchTerm from state:", searchTerm);
@@ -24,34 +37,38 @@ export default function MySearch({ type }: SearchProps) {
   }, [searchTerm]);
 
   const debouncedSearch = debounce((event) => {
-    if (type === "articles") {
-      dispatch(setArticleSearchTerm(event.target.value));
-    } else {
-      dispatch(setUserSearchTerm(event.target.value));
+    switch (type) {
+      case "articles":
+        dispatch(setArticleSearchTerm(event.target.value));
+        break;
+      case "users":
+        dispatch(setUserSearchTerm(event.target.value));
+        break;
+      case "forum":
+        dispatch(setForumSearchTerm(event.target.value));
+        break;
     }
   }, 500);
 
   return (
-    <>
-     <TextField
-  label={`Pretraži ${type === "articles" ? "članke" : "korisnike"}`}
-  variant="outlined"
-  fullWidth
-  type="search"
-  sx={{ color: "black", maxWidth: "300px" }}
-  value={term}
-  onChange={(e) => {
-    setTerm(e.target.value);
-    debouncedSearch(e);
-  }}
-  InputProps={{
-    startAdornment: (
-      <InputAdornment position="start">
-        <Search />
-      </InputAdornment>
-    ),
-  }}
-/>
-    </>
+    <TextField
+      label={`Pretraži ${type === "articles" ? "članke" : type === "users" ? "korisnike" : "forum"}`}
+      variant="outlined"
+      fullWidth
+      type="search"
+      sx={{ color: "black", maxWidth: "300px" }}
+      value={term}
+      onChange={(e) => {
+        setTerm(e.target.value);
+        debouncedSearch(e);
+      }}
+      InputProps={{
+        startAdornment: (
+          <InputAdornment position="start">
+            <Search />
+          </InputAdornment>
+        ),
+      }}
+    />
   );
 }

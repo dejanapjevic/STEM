@@ -71,6 +71,16 @@ export const accountApi = createApi({
       return {users, pagination};
     }
     }),
+    updateUser: builder.mutation<void, { id: string; data: FormData }>({
+      query: ({ id, data }) => {
+        data.append("id", id);
+        return {
+          url: "account/update-user",
+          method: "PUT",
+          body: data,
+        };
+      },
+    }),
     deleteUser: builder.mutation({
       query: (id: string) => {
         return {
@@ -126,5 +136,6 @@ export const {
   useSendWelcomeEmailMutation,
   useFetchUsersQuery,
   useDeleteUserMutation,
-  useAddUserMutation
+  useAddUserMutation,
+  useUpdateUserMutation
 } = accountApi;

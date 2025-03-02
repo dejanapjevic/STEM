@@ -23,7 +23,7 @@ export default function TopicDetails() {
     isLoading: repliesLoading,
     error: repliesError,
   } = useGetRepliesByTopicQuery(id ? +id : 0);
-   console.log(repliesByTopic);
+  console.log(repliesByTopic);
   const [createReply] = useCreateReplyMutation();
   const [newReply, setNewReply] = useState("");
   const [showForm, setShowForm] = useState(false);
@@ -55,7 +55,7 @@ export default function TopicDetails() {
 
   return (
     <Box sx={{ maxWidth: 1600, p: 3 }}>
-      <Card  sx={{ mb: 2, p: 2 }}>
+      <Card sx={{ mb: 2, p: 2 }}>
         <CardContent>
           <Typography variant="h5" sx={{ textAlign: "center" }}>
             {data.title}
@@ -98,35 +98,34 @@ export default function TopicDetails() {
       <Typography variant="h6">Odgovori:</Typography>
 
       {repliesByTopic && repliesByTopic.length > 0 ? (
-  repliesByTopic.map((reply: Reply) => (
-    <Card
-      key={reply.id}
-      sx={{
-        mb: 2,
-        p: 2,
-        maxWidth: 1400,
-        animation: "appear 1.2s ease-out",
-      }}
-    >
-      <CardContent>
-        <Typography variant="body1" sx={{ textAlign: "center" }}>
-          {reply.text}
-        </Typography>
-        <Typography
-          variant="body2"
-          sx={{ textAlign: "center" }}
-          color="textSecondary"
-        >
-          Autor: {reply.firstName} {reply.lastName} | Datum:{" "}
-          {new Date(reply.createdAt).toLocaleDateString()}
-        </Typography>
-      </CardContent>
-    </Card>
-  ))
-) : (
-  <Typography variant="body1">Nema odgovora na ovu temu.</Typography>
-)}
-
+        repliesByTopic.map((reply: Reply) => (
+          <Card
+            key={reply.id}
+            sx={{
+              mb: 2,
+              p: 2,
+              maxWidth: 1400,
+              animation: "appear 1.2s ease-out",
+            }}
+          >
+            <CardContent>
+              <Typography variant="body1" sx={{ textAlign: "center" }}>
+                {reply.text}
+              </Typography>
+              <Typography
+                variant="body2"
+                sx={{ textAlign: "center" }}
+                color="textSecondary"
+              >
+                Autor: {reply.firstName} {reply.lastName} | Datum:{" "}
+                {new Date(reply.createdAt).toLocaleDateString()}
+              </Typography>
+            </CardContent>
+          </Card>
+        ))
+      ) : (
+        <Typography variant="body1">Nema odgovora na ovu temu.</Typography>
+      )}
     </Box>
   );
 }

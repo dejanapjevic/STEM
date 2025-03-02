@@ -12,14 +12,26 @@ import {
 import { useFetchTutorialsQuery, useFetchVideosQuery } from "./tutorialApi";
 import VideoUpload from "./videoUpload";
 import { Delete } from "@mui/icons-material";
+import { useAppDispatch, useAppSelector } from "../store/store";
+import { setPageNumber } from "./tutorialSlice";
+import AppPagination from "../components/AppPagination";
 
 export default function TutorialInventory() {
-  const { data: tutorials, isLoading } = useFetchTutorialsQuery();
+  const dispatch=useAppDispatch();
+ const tutorialParams = useAppSelector((state) => state.tutorial);
+  const { data:tutorial, isLoading } = useFetchTutorialsQuery(tutorialParams);
+  console.log(tutorial);
   const { data: videos, refetch } = useFetchVideosQuery();
 
-  if (isLoading || !tutorials) return <div>Loading....</div>;
+  if (isLoading || !tutorial) return <div>Loading....</div>;
 
   return (
+   <>
+   {tutorial?.pagination && (
+           <AppPagination
+             metadata={tutorial.pagination}
+             onPageChange={(page: number) => dispatch(setPageNumber(page))} />
+         )}
     <Table
       sx={{
         minWidth: 650,
@@ -42,7 +54,7 @@ export default function TutorialInventory() {
         </TableRow>
       </TableHead>
       <TableBody>
-        {tutorials.map((item) => (
+        {tutorial?.tutorials.map((item) => (
           <TableRow key={item.id}>
             <TableCell align="center">{item.name}</TableCell>
             <TableCell align="center">{item.description}</TableCell>
@@ -76,5 +88,6 @@ export default function TutorialInventory() {
         ))}
       </TableBody>
     </Table>
+    </>
   );
 }

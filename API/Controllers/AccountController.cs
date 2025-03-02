@@ -71,6 +71,7 @@ namespace API.Controllers
 
             return Ok(new
             {
+                user.Id,
                 user.Email,
                 user.UserName,
                 user.FirstName,
@@ -96,7 +97,7 @@ namespace API.Controllers
             var usersQuery = _context.Users.AsQueryable().SearchUsers(userParams.SearchTerm);
             //var users = await usersQuery.ToListAsync();
             var users = await PagedList<User>.ToPagedList(usersQuery, userParams.PageNumber, userParams.PageSize);
- 
+
             if (users == null || users.Count == 0)
                 return NoContent();
 
@@ -172,6 +173,30 @@ namespace API.Controllers
 
             return Ok(user);
         }
+       [HttpPut("update-user")]
+public async Task<ActionResult> UpdateUser([FromForm] UpdateUserDTO userDto) {
+    Console.WriteLine($"Primljen ID: {userDto.Id}");
+    var user = await _context.Users.FindAsync(userDto.Id);
+    
+    if (user == null) return NotFound();
+
+    var originalUser = _context.Entry(user).CurrentValues.Clone(); // Čuvamo originalne vrednosti
+
+    _mapper.Map(userDto, user);
+
+    // Ako nema promena, vraćamo poruku
+    if (_context.Entry(user).CurrentValues.Properties.All(p => 
+        Equals(_context.Entry(user).OriginalValues[p], _context.Entry(user).CurrentValues[p])))
+    {
+       return BadRequest(new ProblemDetails { Title = "Niste unijeli nikakvu promjenu" });
+    }
+
+    var result = await _context.SaveChangesAsync() > 0;
+    
+    if (result) return Ok(new { message = "Korisnik uspešno ažuriran" });
+
+    return BadRequest(new ProblemDetails { Title = "Problem pri ažuriranju korisnika" });
+}
 
 
     }

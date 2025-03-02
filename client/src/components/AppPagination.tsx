@@ -9,7 +9,7 @@ type Props = {
 };
 
 export default function AppPagination({ metadata, onPageChange }: Props) {
-  const { pageSize, totalPages, totalCount, currentPage } = metadata;
+  const { totalPages, currentPage } = metadata;
   const location = useLocation();
   const [pageNumber, setPageNumber] = useState(currentPage);
   function handlePageChange(page: number) {
@@ -23,7 +23,7 @@ export default function AppPagination({ metadata, onPageChange }: Props) {
       alignItems="center"
       marginBottom={1.5}
     >
-      {location.pathname != "/inventory" && (
+      {location.pathname == "/catalog" && (
         <Typography
           sx={{
             color: "black",

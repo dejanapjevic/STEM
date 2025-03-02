@@ -19,7 +19,7 @@ export const adminApi = createApi({
         };
       },
     }),
-    updateArticle: builder.mutation<void, { id: number; data: FormData }>({
+    updateArticle: builder.mutation<void, { id: string; data: FormData }>({
       query: ({ id, data }) => {
         data.append("id", id.toString());
         return {

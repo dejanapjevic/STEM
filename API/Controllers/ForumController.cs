@@ -3,7 +3,9 @@ using System.Security.Claims;
 using API.Data;
 using API.DTOs;
 using API.Entities;
+using API.Extensions;
 using API.Hubs;
+using API.RequestHelpers;
 using Hangfire;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -23,19 +25,47 @@ namespace API.Controllers
             _forumService = forumService;
             _hubContext = hubContext;
         }
+        /* 
+                [HttpGet("topics")]
+                public async Task<ActionResult<List<Topic>>> GetTopics([FromQuery] ForumParams forumParams)
+                {
+                    var forumQuery = _context.Topics.AsQueryable().SearchTopics(forumParams.SearchTerm)
+                    .Include(t => t.User)
+                    .OrderByDescending(t => t.CreatedAt);
+                    var topics = await PagedList<Topic>.ToPagedList(forumQuery, forumParams.PageNumber, forumParams.PageSize);
+                    if (topics == null) return NoContent();
+
+                    Response.AddPaginationHeader(topics.Metadata);
+                    return Ok(topics);
+                } */
 
         [HttpGet("topics")]
-        public async Task<ActionResult<List<Topic>>> GetTopics()
+        public async Task<ActionResult<List<object>>> GetTopics([FromQuery] ForumParams forumParams)
         {
+            var forumQuery = _context.Topics
+                .AsQueryable()
+                .SearchTopics(forumParams.SearchTerm)
+                .Include(t => t.User)
+                .OrderByDescending(t => t.CreatedAt)
+                .Select(t => new
+                {
+                    t.Id,
+                    t.Title,
+                    t.CreatedAt,
+                    User = new
+                    {
+                        t.User.Id,
+                        t.User.UserName
+                    },
+                    ReplyCount = _context.Replies.Count(r => r.TopicId == t.Id) // Brojanje odgovora
+                });
 
-            var topics = await _context.Topics
-                              .Include(t => t.User)  // Učitavanje korisnika
-                              .OrderByDescending(t => t.CreatedAt)
-                              .ToListAsync();
+            var topics = await PagedList<object>.ToPagedList(forumQuery, forumParams.PageNumber, forumParams.PageSize);
+            if (topics == null) return NoContent();
 
+            Response.AddPaginationHeader(topics.Metadata);
             return Ok(topics);
         }
-
 
 
 

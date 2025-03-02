@@ -1,22 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-interface UserState {
+interface TutorialState {
   searchTerm: string;
   pageNumber: number; // podrazumjevano se prikazuje prva stranica.
   pageSize: number;
 }
 
-const initialStateUser: UserState = {
+const initialStateTutorial:     TutorialState = {
   searchTerm: "",
   pageNumber: 1, // podrazumjevano se prikazuje prva stranica.
-  pageSize: 8,
+  pageSize: 2,
 };
 
-export const userSlice = createSlice({
-  name: "users",
-  initialState: initialStateUser,
+export const tutorialSlice = createSlice({
+  name: "tutorials",
+  initialState: initialStateTutorial,
   reducers: {
-    setUserSearchTerm: (state, action) => {
+    setTutorialSearchTerm: (state, action) => {
       state.searchTerm = action.payload;
     },
     resetSearchTerm(state) {
@@ -32,9 +32,9 @@ export const userSlice = createSlice({
 });
 
 export const {
-  setUserSearchTerm,
+  setTutorialSearchTerm,
   resetSearchTerm,
   setPageNumber,
   setPageSize,
-} = userSlice.actions;
-export default userSlice.reducer;
+} = tutorialSlice.actions;
+export default tutorialSlice.reducer;

@@ -1,4 +1,4 @@
-import {  useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Typography,
   Box,
@@ -10,10 +10,20 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useFetchTopicsQuery, useCreateTopicMutation } from "./forumApi";
 import "../../styles/welcome.css";
+import { useAppDispatch, useAppSelector } from "../store/store";
+import AppPagination from "../components/AppPagination";
+import { setPageNumber, setPageSize } from "./forumSlice";
+import MySearch from "../catalog/Search";
 
 export default function Forum() {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { data: topics, isLoading, error, refetch } = useFetchTopicsQuery();
+  const forumParams = useAppSelector((state) => state.forum);
+  useEffect(() => {
+    dispatch(setPageSize(3));
+}, [dispatch]);
+  const { data, isLoading, error, refetch } = useFetchTopicsQuery(forumParams);
+  console.log(data);
   const [createTopic] = useCreateTopicMutation();
   const [newTopicTitle, setNewTopicTitle] = useState("");
   const [showForm, setShowForm] = useState(false);
@@ -30,7 +40,11 @@ export default function Forum() {
       console.error("Greška prilikom kreiranja teme", error);
     }
   };
- 
+
+  /* const viewTopicDetails = (topicId: number) => {
+    navigate(`/tema/${topicId}`, { state: { refetch } }); // Prosleđujemo refetch funkciju
+  };
+   */
   const viewTopicDetails = (topicId: number) => {
     navigate(`/tema/${topicId}`);
   };
@@ -44,6 +58,12 @@ export default function Forum() {
       <Typography variant="h4" align="center" gutterBottom>
         Dobrodošli na forum za diskusiju
       </Typography>
+      {data?.pagination && (
+        <AppPagination
+          metadata={data.pagination}
+          onPageChange={(page: number) => dispatch(setPageNumber(page))}
+        />
+      )}
       <Button
         variant="contained"
         sx={{ mb: 2, mr: 4 }}
@@ -54,12 +74,12 @@ export default function Forum() {
 
       <Button
         variant="contained"
-        sx={{ mb: 2 }}
+        sx={{ mb: 2, mr: 2 }}
         onClick={() => setShowForm(!showForm)}
       >
         Dodaj temu
       </Button>
-
+      <MySearch type="forum" />
       {/* Forma za unos nove teme */}
       {showForm && (
         <Box sx={{ mb: 2, p: 2, border: "1px solid #ccc", borderRadius: 2 }}>
@@ -76,7 +96,7 @@ export default function Forum() {
         </Box>
       )}
 
-      {topics?.map((topic) => {
+      {data?.topics?.map((topic) => {
         return (
           <Card
             key={topic.id}
@@ -139,7 +159,7 @@ export default function Forum() {
                   textAlign: "center",
                 }}
               >
-                Broj odgovora: ne znam
+                Broj odgovora: {topic.replyCount}
               </Typography>
               <Button
                 variant="outlined"

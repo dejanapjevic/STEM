@@ -6,4 +6,5 @@ export interface Topic {
     title:string,
     createdAt:Date,
     user?:User;
+    replyCount: number;
 }

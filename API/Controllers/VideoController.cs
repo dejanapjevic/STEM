@@ -3,6 +3,8 @@
 using API.Data;
 using API.DTOs;
 using API.Entities;
+using API.Extensions;
+using API.RequestHelpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -89,9 +91,9 @@ namespace API.Controllers
             var tutorial = new Tutorial
             {
                 Name = tutorialDto.Name,
-               
-                Category=tutorialDto.Category,
-                Description=tutorialDto.Description,
+
+                Category = tutorialDto.Category,
+                Description = tutorialDto.Description,
             };
             _context.Tutorials.Add(tutorial);
             await _context.SaveChangesAsync();
@@ -99,13 +101,33 @@ namespace API.Controllers
         }
 
         [HttpGet("get-all-tutorials")]
-        public async Task<ActionResult<List<Tutorial>>> GetTutorials()
+        public async Task<ActionResult<List<Tutorial>>> GetTutorials([FromQuery] TutorialParams tutorialParams)
         {
-            var tutorials = await _context.Tutorials.ToListAsync();
+            var query = _context.Tutorials
+            .AsQueryable()
+            .SearchTutorials(tutorialParams.SearchTerm);
+            var tutorials = await PagedList<Tutorial>.ToPagedList(query, tutorialParams.PageNumber, tutorialParams.PageSize);
+
             if (tutorials == null) return NotFound();
+            Response.AddPaginationHeader(tutorials.Metadata);
             return Ok(tutorials);
         }
 
+
+    [HttpGet("get-videos-by-tutorials")]
+public IActionResult GetVideosByTutorials([FromQuery] string ids)
+{
+    if (string.IsNullOrEmpty(ids))
+        return BadRequest("No tutorial IDs provided.");
+
+    var tutorialIds = ids.Split(',').Select(int.Parse).ToList();
+
+    var videos = _context.Videos
+                         .Where(v => tutorialIds.Contains(v.TutorialId))
+                         .ToList();
+
+    return Ok(videos);
+}
 
     }
 }

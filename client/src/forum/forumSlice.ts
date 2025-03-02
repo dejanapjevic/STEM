@@ -1,22 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-interface UserState {
+interface ForumState {
   searchTerm: string;
   pageNumber: number; // podrazumjevano se prikazuje prva stranica.
   pageSize: number;
 }
 
-const initialStateUser: UserState = {
+const initialStateForum: ForumState = {
   searchTerm: "",
   pageNumber: 1, // podrazumjevano se prikazuje prva stranica.
-  pageSize: 8,
+  pageSize: 3,
 };
 
-export const userSlice = createSlice({
-  name: "users",
-  initialState: initialStateUser,
+export const forumSlice = createSlice({
+  name: "forum",
+  initialState: initialStateForum,
   reducers: {
-    setUserSearchTerm: (state, action) => {
+    setForumSearchTerm: (state, action) => {
       state.searchTerm = action.payload;
     },
     resetSearchTerm(state) {
@@ -32,9 +32,8 @@ export const userSlice = createSlice({
 });
 
 export const {
-  setUserSearchTerm,
-  resetSearchTerm,
+  setForumSearchTerm,
   setPageNumber,
   setPageSize,
-} = userSlice.actions;
-export default userSlice.reducer;
+  resetSearchTerm,
+} = forumSlice.actions;

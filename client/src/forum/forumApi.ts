@@ -2,15 +2,27 @@ import { createApi } from "@reduxjs/toolkit/query/react";
 import { baseQueryWithErrorHandling } from "../api/baseApi";
 import { Topic } from "./topic";
 import { Reply } from "./reply";
+import { Pagination } from "../models/pagination";
+import { ForumParams } from "../models/forumParams";
 
 export const forumApi = createApi({
   reducerPath: "forumApi",
   baseQuery: baseQueryWithErrorHandling,
   tagTypes: ["Replies"],
   endpoints: (builder) => ({
-    fetchTopics: builder.query<Topic[], void>({
-      query: () => ({ url: "forum/topics" }),
-    }),
+    fetchTopics: builder.query<{topics:Topic[], pagination:Pagination}, ForumParams>({
+     query: (forumParams) => { 
+             return {
+             url: "forum/topics" ,
+             params:forumParams
+           }
+         },
+         transformResponse:(topics:Topic[], meta) => {
+           const paginationHeader = meta?.response?.headers.get('Pagination');
+           const pagination = paginationHeader? JSON.parse(paginationHeader) : null;
+           return {topics, pagination};
+         }
+         }),
     createTopic: builder.mutation<Topic, { title: string }>({
       query: (newTopic) => ({
         url: "/forum/AddTopic",

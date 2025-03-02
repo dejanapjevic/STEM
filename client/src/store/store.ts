@@ -1,6 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
-
 import { catalogApi } from "../catalog/CatalogApi";
 import { uiSlice } from "../uiSlice";
 import { errorApi } from "../api/ErrorApi";
@@ -11,7 +10,8 @@ import { quiztestApi } from "../quiz&test/quiz&testApi";
 import { forumApi } from "../forum/forumApi";
 import { tutorialApi } from "../video-lectures/tutorialApi";
 import { userSlice } from "../account/userSlice";
-
+import { forumSlice } from "../forum/forumSlice";
+import { tutorialSlice } from "../video-lectures/tutorialSlice";
 
 export const store = configureStore({
   reducer: {
@@ -21,11 +21,13 @@ export const store = configureStore({
     [adminApi.reducerPath]: adminApi.reducer,
     [quiztestApi.reducerPath]: quiztestApi.reducer,
     [forumApi.reducerPath]: forumApi.reducer,
-    [tutorialApi.reducerPath]:tutorialApi.reducer,
-    
+    [tutorialApi.reducerPath]: tutorialApi.reducer,
+
     ui: uiSlice.reducer,
     catalog: catalogSlice.reducer,
-   users:userSlice.reducer
+    users: userSlice.reducer,
+    forum: forumSlice.reducer,
+    tutorial:tutorialSlice.reducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
