@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\PC\\Desktop\\STEMObrazovanje\\API\\API.csproj": {}
+    "C:\\Users\\PC\\Desktop\\PokusajSTEM\\STEM\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\PC\\Desktop\\STEMObrazovanje\\API\\API.csproj": {
+    "C:\\Users\\PC\\Desktop\\PokusajSTEM\\STEM\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PC\\Desktop\\STEMObrazovanje\\API\\API.csproj",
+        "projectUniqueName": "C:\\Users\\PC\\Desktop\\PokusajSTEM\\STEM\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\PC\\Desktop\\STEMObrazovanje\\API\\API.csproj",
+        "projectPath": "C:\\Users\\PC\\Desktop\\PokusajSTEM\\STEM\\API\\API.csproj",
         "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PC\\Desktop\\STEMObrazovanje\\API\\obj\\",
+        "outputPath": "C:\\Users\\PC\\Desktop\\PokusajSTEM\\STEM\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
