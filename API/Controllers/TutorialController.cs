@@ -10,13 +10,25 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
-    public class VideoController : BaseApiController
+    public class TutorialsController : BaseApiController
     {
         private readonly string _videoFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "videos");
         private readonly STEMContext _context;
-        public VideoController(STEMContext context)
+        public TutorialsController(STEMContext context)
         {
             _context = context;
+        }
+
+       
+        [HttpDelete("delete-tutorial/{id}")]
+        public async Task<ActionResult> DeleteTutorial(int id)
+        {
+            var tutorial = await _context.Tutorials.FindAsync(id);
+            if (tutorial == null) return NotFound();
+            _context.Tutorials.Remove(tutorial);
+            var result = await _context.SaveChangesAsync() > 0;
+            if (result) return NoContent();
+            else return BadRequest(new ProblemDetails { Title = "Problem prilikom brisanja tutorijala" });
         }
         [HttpPost("upload")]
         public async Task<IActionResult> UploadVideo([FromForm] VideoUploadDto videoUploadDto)
@@ -67,22 +79,13 @@ namespace API.Controllers
         [HttpGet("get-all-videos")]
         public async Task<ActionResult<List<Video>>> GetAllVideos()
         {
-            /*  var videoDirectory = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "videos");
-             if (!Directory.Exists(videoDirectory))
-                 return Ok(new List<string>()); // Ako nema videa, vraćamo prazan niz
-
-             var videoFiles = Directory.GetFiles(videoDirectory)
-                 .Select(Path.GetFileName)
-                 .Select(fileName => $"/videos/{fileName}") // Kreiramo putanje
-                 .ToList();
-
-             return Ok(videoFiles); */
+            
             var videos = await _context.Videos.ToListAsync();
             if (videos == null) return NotFound();
             return Ok(videos);
         }
         [HttpPost("add-tutorial")]
-        public async Task<IActionResult> CreateTutorial([FromBody] CreateTutorialDTO tutorialDto)
+        public async Task<IActionResult> CreateTutorial([FromForm] CreateTutorialDTO tutorialDto)
         {
             if (tutorialDto == null)
             {
@@ -112,22 +115,36 @@ namespace API.Controllers
             Response.AddPaginationHeader(tutorials.Metadata);
             return Ok(tutorials);
         }
+        [HttpGet("get-tutorials-with-videos")]
+        public async Task<IActionResult> GetTutorialsWithVideos([FromQuery] TutorialParams tutorialParams)
+        {
+
+            var query = _context.Tutorials
+                   .AsQueryable()
+                   .SearchTutorials(tutorialParams.SearchTerm)
+                    .Where(t => _context.Videos.Any(v => v.TutorialId == t.Id)); ;
+            var tutorials = await PagedList<Tutorial>.ToPagedList(query, tutorialParams.PageNumber, tutorialParams.PageSize);
+
+            if (tutorials == null) return NotFound();
+            Response.AddPaginationHeader(tutorials.Metadata);
+            return Ok(tutorials);
+        }
 
 
-    [HttpGet("get-videos-by-tutorials")]
-public IActionResult GetVideosByTutorials([FromQuery] string ids)
-{
-    if (string.IsNullOrEmpty(ids))
-        return BadRequest("No tutorial IDs provided.");
+        [HttpGet("get-videos-by-tutorials")]
+        public IActionResult GetVideosByTutorials([FromQuery] string ids)
+        {
+            if (string.IsNullOrEmpty(ids))
+                return BadRequest("No tutorial IDs provided.");
 
-    var tutorialIds = ids.Split(',').Select(int.Parse).ToList();
+            var tutorialIds = ids.Split(',').Select(int.Parse).ToList();
 
-    var videos = _context.Videos
-                         .Where(v => tutorialIds.Contains(v.TutorialId))
-                         .ToList();
+            var videos = _context.Videos
+                                 .Where(v => tutorialIds.Contains(v.TutorialId))
+                                 .ToList();
 
-    return Ok(videos);
-}
+            return Ok(videos);
+        }
 
     }
 }

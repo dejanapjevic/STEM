@@ -9,23 +9,69 @@ export const tutorialApi = createApi({
   reducerPath: "tutorialApi",
   baseQuery: baseQueryWithErrorHandling,
   endpoints: (builder) => ({
-    fetchTutorials: builder.query<{tutorials:Tutorial[], pagination:Pagination}, TutorialParams>({
-      query: (tutorialParams) => { 
+    fetchTutorials: builder.query<
+      { tutorials: Tutorial[]; pagination: Pagination },
+      TutorialParams
+    >({
+      query: (tutorialParams) => {
         return {
-        url: "video/get-all-tutorials" ,
-        params:tutorialParams
-      }
-    },
-     transformResponse:(tutorials:Tutorial[], meta) => {
-               const paginationHeader = meta?.response?.headers.get('Pagination');
-               const pagination = paginationHeader? JSON.parse(paginationHeader) : null;
-               return {tutorials, pagination};
-             }
-             }),
+          url: "tutorials/get-all-tutorials",
+          params: tutorialParams,
+        };
+      },
+      transformResponse: (tutorials: Tutorial[], meta) => {
+        const paginationHeader = meta?.response?.headers.get("Pagination");
+        const pagination = paginationHeader
+          ? JSON.parse(paginationHeader)
+          : null;
+        return { tutorials, pagination };
+      },
+    }),
+    fetchTutorialsWithVideos: builder.query<
+      { tutorials: Tutorial[]; pagination: Pagination },
+      TutorialParams
+    >({
+      query: (tutorialParams) => {
+        return {
+          url: "tutorials/get-tutorials-with-videos",
+          params: tutorialParams,
+        };
+      },
+      transformResponse: (tutorials: Tutorial[], meta) => {
+        const paginationHeader = meta?.response?.headers.get("Pagination");
+        const pagination = paginationHeader
+          ? JSON.parse(paginationHeader)
+          : null;
+        return { tutorials, pagination };
+      },
+    }),
     fetchVideos: builder.query<Video[], void>({
-      query: () => ({ url: "video/get-all-videos" }),
+      query: () => ({ url: "tutorials/get-all-videos" }),
+    }),
+    deleteTutorial: builder.mutation<void, number>({
+      query: (id: number) => {
+        return {
+          url: `tutorials/delete-tutorial/${id}`,
+          method: "DELETE",
+        };
+      },
+    }),
+    createTutorial: builder.mutation<Tutorial, FormData>({
+      query: (data: FormData) => {
+        return {
+          url: "tutorials/add-tutorial",
+          method: "POST",
+          body: data,
+        };
+      },
     }),
   }),
 });
 
-export const {useFetchTutorialsQuery, useFetchVideosQuery} = tutorialApi;
+export const {
+  useFetchTutorialsQuery,
+  useFetchVideosQuery,
+  useFetchTutorialsWithVideosQuery,
+  useCreateTutorialMutation,
+  useDeleteTutorialMutation,
+} = tutorialApi;

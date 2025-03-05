@@ -67,55 +67,86 @@ export default function CatalogInventory() {
     );
 
   return (
-    <>
-      <Box display="flex" justifyContent="space-between" alignItems="center" gap={2} margin="1%">
-  <Button
-    onClick={handleCreateNewArticle}
-    sx={{  color: "white", backgroundColor: "black" }}
-    size="large"
-    variant="contained"
-  >
-    Kreiraj članak
-  </Button>
+    <div
+      style={{
+        backgroundImage:
+          "linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 1)), url('background.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        minHeight: "100vh",
+        padding: "20px",
+      }}
+    >
+      <Box
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        gap={2}
+      >
+        {/* Grupisanje pretrage i dugmeta */}
+        <Box display="flex" alignItems="center" gap={2}>
+          <MySearch type="articles" />
+          <Button
+            onClick={handleCreateNewArticle}
+            sx={{
+              color: "white",
+              backgroundColor: "black",
+              width: "300px",
+              marginTop: "6px",
+            }}
+            size="large"
+            variant="contained"
+          >
+            Kreiraj članak
+          </Button>
+        </Box>
 
-  <MySearch type="articles"  />
-
-  {filtersData && (
-    <Box>
-      <AppPagination
-        metadata={data.pagination}
-        onPageChange={(page: number) => {
-          dispatch(setPageNumber(page));
-        }}
-      />
-    </Box>
-  )}
-</Box>
-
+        {filtersData && (
+          <Box marginLeft="auto">
+            <AppPagination
+              metadata={data.pagination}
+              onPageChange={(page: number) => {
+                dispatch(setPageNumber(page));
+              }}
+            />
+          </Box>
+        )}
+      </Box>
 
       <Table
         sx={{
           minWidth: 650,
           maxWidth: "90%",
-          //  border: "none",
-
           padding: "0 16px",
           margin: "0 auto",
+          marginTop: "1%",
+          borderCollapse: "collapse",
         }}
         aria-label="simple table"
       >
         <TableHead>
-          <TableRow>
-            <TableCell align="center">Naslov</TableCell>
-            <TableCell align="center">Kategorija</TableCell>
-            <TableCell align="center">Opis</TableCell>
-            <TableCell align="center">Sadržaj</TableCell>
+          <TableRow sx={{ borderBottom: "4px solid rgba(0, 0, 0, 0.6)" }}>
+            <TableCell align="center" sx={{ fontWeight: "bold" }}>
+              NASLOV
+            </TableCell>
+            <TableCell align="center" sx={{ fontWeight: "bold" }}>
+              KATEGORIJA
+            </TableCell>
+            <TableCell align="center" sx={{ fontWeight: "bold" }}>
+              OPIS
+            </TableCell>
+            <TableCell align="center" sx={{ fontWeight: "bold" }}>
+              SADRŽAJ
+            </TableCell>
             <TableCell align="center"></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {data.items.map((article) => (
-            <TableRow key={article.id}>
+            <TableRow
+              key={article.id}
+              sx={{ borderBottom: "2px solid rgba(0, 0, 0, 0.6)" }}
+            >
               <TableCell
                 align="center"
                 sx={{
@@ -134,36 +165,20 @@ export default function CatalogInventory() {
                   <span>{article.title}</span>
                 </Box>
               </TableCell>
-              <TableCell
-                align="center"
-                sx={{
-                  maxWidth: "50px",
-                  height: "50px",
-                  textAlign: "center",
-                  verticalAlign: "middle",
-                }}
-              >
+              <TableCell align="center" >
                 {article.category}
               </TableCell>
-              <TableCell
-                align="center"
-                sx={{
-                  maxWidth: "400px",
-                  textAlign: "center",
-                  verticalAlign: "middle",
-                }}
-              >
+              <TableCell align="center">
                 {article.description}
               </TableCell>
               <TableCell
                 align="center"
                 sx={{
                   maxHeight: "100px",
-                  textAlign: "center",
-                  overflowY: "auto", // Omogućava vertikalni scroll kada sadržaj premaši visinu ćelije
+                  overflowY: "auto",
                   wordBreak: "break-word",
-                  verticalAlign: "middle", // Održava centriranje teksta vertikalno
-                  whiteSpace: "normal", // Dozvoljava prelamanje teksta
+                  verticalAlign: "middle",
+                  whiteSpace: "normal",
                 }}
               >
                 <Box sx={{ maxHeight: "100px", overflowY: "auto" }}>
@@ -171,15 +186,7 @@ export default function CatalogInventory() {
                 </Box>
               </TableCell>
 
-              <TableCell
-                align="right"
-                sx={{
-                  maxWidth: "30px",
-                  height: "50px",
-                  textAlign: "center",
-                  verticalAlign: "middle",
-                }}
-              >
+              <TableCell align="center">
                 <Button
                   onClick={() => handleSelectedArticle(article)}
                   startIcon={<Edit />}
@@ -194,6 +201,6 @@ export default function CatalogInventory() {
           ))}
         </TableBody>
       </Table>
-    </>
+    </div>
   );
 }

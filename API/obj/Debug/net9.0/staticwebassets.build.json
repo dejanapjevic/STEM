@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "YfOSS9U9dWpSQt1NvQ5KjzyHumSZ7OL9p63JvZ7EM2s=",
+  "Hash": "dh3RU9iL+qOtvZ+bpHPUHkTh0336bCstolHmZ0JpZiQ=",
   "Source": "API",
   "BasePath": "_content/API",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "API\\wwwroot",
       "Source": "API",
-      "ContentRoot": "C:\\Users\\PC\\Desktop\\STEMObrazovanje\\API\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\PC\\Desktop\\PokusajSTEM\\STEM\\API\\wwwroot\\",
       "BasePath": "_content/API",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\PC\\Desktop\\STEMObrazovanje\\API\\wwwroot\\videos\\What is an API_.mp4",
+      "Identity": "C:\\Users\\PC\\Desktop\\PokusajSTEM\\STEM\\API\\wwwroot\\videos\\What is an API_.mp4",
       "SourceId": "API",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\PC\\Desktop\\STEMObrazovanje\\API\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\PC\\Desktop\\PokusajSTEM\\STEM\\API\\wwwroot\\",
       "BasePath": "_content/API",
       "RelativePath": "videos/What is an API_#[.{fingerprint}]?.mp4",
       "AssetKind": "All",
@@ -38,10 +38,10 @@
       "OriginalItemSpec": "wwwroot\\videos\\What is an API_.mp4"
     },
     {
-      "Identity": "C:\\Users\\PC\\Desktop\\STEMObrazovanje\\API\\wwwroot\\videos\\What is cyber security_1080p.mp4",
+      "Identity": "C:\\Users\\PC\\Desktop\\PokusajSTEM\\STEM\\API\\wwwroot\\videos\\What is cyber security_1080p.mp4",
       "SourceId": "API",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\PC\\Desktop\\STEMObrazovanje\\API\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\PC\\Desktop\\PokusajSTEM\\STEM\\API\\wwwroot\\",
       "BasePath": "_content/API",
       "RelativePath": "videos/What is cyber security_1080p#[.{fingerprint}]?.mp4",
       "AssetKind": "All",
@@ -59,10 +59,10 @@
       "OriginalItemSpec": "wwwroot\\videos\\What is cyber security_1080p.mp4"
     },
     {
-      "Identity": "C:\\Users\\PC\\Desktop\\STEMObrazovanje\\API\\wwwroot\\videos\\WhatsApp Video 2025-02-25 at 10.39.01_c8b6f98c.mp4",
+      "Identity": "C:\\Users\\PC\\Desktop\\PokusajSTEM\\STEM\\API\\wwwroot\\videos\\WhatsApp Video 2025-02-25 at 10.39.01_c8b6f98c.mp4",
       "SourceId": "API",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\PC\\Desktop\\STEMObrazovanje\\API\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\PC\\Desktop\\PokusajSTEM\\STEM\\API\\wwwroot\\",
       "BasePath": "_content/API",
       "RelativePath": "videos/WhatsApp Video 2025-02-25 at 10.39.01_c8b6f98c#[.{fingerprint}]?.mp4",
       "AssetKind": "All",
@@ -83,7 +83,7 @@
   "Endpoints": [
     {
       "Route": "videos/What is an API_.mp4",
-      "AssetFile": "C:\\Users\\PC\\Desktop\\STEMObrazovanje\\API\\wwwroot\\videos\\What is an API_.mp4",
+      "AssetFile": "C:\\Users\\PC\\Desktop\\PokusajSTEM\\STEM\\API\\wwwroot\\videos\\What is an API_.mp4",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -104,7 +104,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 26 Feb 2025 11:58:29 GMT"
+          "Value": "Wed, 05 Mar 2025 15:38:39 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -120,7 +120,7 @@
     },
     {
       "Route": "videos/What is an API_.x1h5egxkvq.mp4",
-      "AssetFile": "C:\\Users\\PC\\Desktop\\STEMObrazovanje\\API\\wwwroot\\videos\\What is an API_.mp4",
+      "AssetFile": "C:\\Users\\PC\\Desktop\\PokusajSTEM\\STEM\\API\\wwwroot\\videos\\What is an API_.mp4",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -141,7 +141,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 26 Feb 2025 11:58:29 GMT"
+          "Value": "Wed, 05 Mar 2025 15:38:39 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -165,7 +165,7 @@
     },
     {
       "Route": "videos/What is cyber security_1080p.mp4",
-      "AssetFile": "C:\\Users\\PC\\Desktop\\STEMObrazovanje\\API\\wwwroot\\videos\\What is cyber security_1080p.mp4",
+      "AssetFile": "C:\\Users\\PC\\Desktop\\PokusajSTEM\\STEM\\API\\wwwroot\\videos\\What is cyber security_1080p.mp4",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -186,7 +186,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 02 Mar 2025 22:10:05 GMT"
+          "Value": "Wed, 05 Mar 2025 15:38:39 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -202,7 +202,7 @@
     },
     {
       "Route": "videos/What is cyber security_1080p.omriu2xs2w.mp4",
-      "AssetFile": "C:\\Users\\PC\\Desktop\\STEMObrazovanje\\API\\wwwroot\\videos\\What is cyber security_1080p.mp4",
+      "AssetFile": "C:\\Users\\PC\\Desktop\\PokusajSTEM\\STEM\\API\\wwwroot\\videos\\What is cyber security_1080p.mp4",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -223,7 +223,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 02 Mar 2025 22:10:05 GMT"
+          "Value": "Wed, 05 Mar 2025 15:38:39 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -247,7 +247,7 @@
     },
     {
       "Route": "videos/WhatsApp Video 2025-02-25 at 10.39.01_c8b6f98c.aociqg82sv.mp4",
-      "AssetFile": "C:\\Users\\PC\\Desktop\\STEMObrazovanje\\API\\wwwroot\\videos\\WhatsApp Video 2025-02-25 at 10.39.01_c8b6f98c.mp4",
+      "AssetFile": "C:\\Users\\PC\\Desktop\\PokusajSTEM\\STEM\\API\\wwwroot\\videos\\WhatsApp Video 2025-02-25 at 10.39.01_c8b6f98c.mp4",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -268,7 +268,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 26 Feb 2025 12:00:00 GMT"
+          "Value": "Wed, 05 Mar 2025 15:38:39 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -292,7 +292,7 @@
     },
     {
       "Route": "videos/WhatsApp Video 2025-02-25 at 10.39.01_c8b6f98c.mp4",
-      "AssetFile": "C:\\Users\\PC\\Desktop\\STEMObrazovanje\\API\\wwwroot\\videos\\WhatsApp Video 2025-02-25 at 10.39.01_c8b6f98c.mp4",
+      "AssetFile": "C:\\Users\\PC\\Desktop\\PokusajSTEM\\STEM\\API\\wwwroot\\videos\\WhatsApp Video 2025-02-25 at 10.39.01_c8b6f98c.mp4",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -313,7 +313,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 26 Feb 2025 12:00:00 GMT"
+          "Value": "Wed, 05 Mar 2025 15:38:39 GMT"
         },
         {
           "Name": "Cache-Control",

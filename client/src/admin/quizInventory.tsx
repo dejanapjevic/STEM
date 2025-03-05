@@ -1,7 +1,5 @@
 import { Delete, Quiz } from "@mui/icons-material";
 import {
-  TableContainer,
-  Paper,
   Table,
   TableHead,
   TableRow,
@@ -23,6 +21,7 @@ export default function quizInventory() {
   console.log(data);
   const [deleteQuestion] = useDeleteQuestionMutation();
   const [addMode, setAddMode] = useState(false);
+  
   const handleDeleteQuestion = async (id: number) => {
     try {
       await deleteQuestion(id);
@@ -32,13 +31,14 @@ export default function quizInventory() {
       console.log(error);
     }
   };
+  
   const handleCreateQuestion = () => {
     setAddMode(true);
   };
 
   const handleSuccess = () => {
     setAddMode(false);
-    refetch(); // Osvježavamo listu pitanja
+    refetch();
   };
 
   if (isLoading || !data) return <div>Loading....</div>;
@@ -50,8 +50,18 @@ export default function quizInventory() {
       />
     );
   }
+
   return (
-    <>
+    <div
+      style={{
+        backgroundImage:
+          "linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 1)), url('background.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        minHeight: "100vh",
+        
+      }}
+    >
       <Box>
         <Button
           onClick={handleCreateQuestion}
@@ -71,110 +81,43 @@ export default function quizInventory() {
       <Table
         sx={{
           minWidth: 650,
-
           maxWidth: "90%",
-
           padding: "0 16px",
           margin: "0 auto",
+          
+          borderCollapse: "collapse",
         }}
         aria-label="simple table"
       >
         <TableHead>
-          <TableRow>
-            <TableCell align="center">Pitanje </TableCell>
-            <TableCell align="center">Opcija 1</TableCell>
-            <TableCell align="center">Opcija 2</TableCell>
-            <TableCell align="center">Opcija 3</TableCell>
-            <TableCell align="center">Opcija 4</TableCell>
-            <TableCell align="center">Odgovor</TableCell>
-            <TableCell align="center"></TableCell>
+          <TableRow sx={{ borderBottom: "4px solid rgba(0, 0, 0, 0.6)" }}>
+            <TableCell align="center" sx={{ fontWeight: "bold" }}>PITANJE</TableCell>
+            <TableCell align="center" sx={{ fontWeight: "bold" }}>OPCIJA 1</TableCell>
+            <TableCell align="center" sx={{ fontWeight: "bold" }}>OPCIJA 2</TableCell>
+            <TableCell align="center" sx={{ fontWeight: "bold" }}>OPCIJA 3</TableCell>
+            <TableCell align="center" sx={{ fontWeight: "bold" }}>OPCIJA 4</TableCell>
+            <TableCell align="center" sx={{ fontWeight: "bold" }}>ODGOVOR</TableCell>
+            <TableCell align="center" sx={{ fontWeight: "bold" }}></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {data?.map((item) => (
-            <TableRow key={item.id}>
-              <TableCell
-                component="th"
-                scope="row"
-                sx={{
-                  maxWidth: "170px",
-                  height: "50px",
-                  textAlign: "center", // Centriranje po horizontali
-                  verticalAlign: "middle",
-                }}
-              >
-                <div
-                  style={{ display: "flex", alignItems: "center", gap: "20px" }}
-                >
+            <TableRow
+              key={item.id}
+              sx={{ borderBottom: "2px solid rgba(0, 0, 0, 0.6)" }}
+            >
+              <TableCell align="center">
+                <Box display="flex" alignItems="center" gap={2}>
                   <Quiz />
                   {item.title}
-                </div>
+                </Box>
               </TableCell>
-              <TableCell
-                component="th"
-                scope="row"
-                sx={{
-                  maxWidth: "70px",
-                  height: "50px",
-                  textAlign: "center", // Centriranje po horizontali
-                  verticalAlign: "middle",
-                }}
-              >
-                {item.option1}
-              </TableCell>
-              <TableCell
-                align="left"
-                sx={{
-                  maxWidth: "70px",
-                  whiteSpace: "normal",
-                  textAlign: "center", // Centriranje po horizontali
-                  verticalAlign: "middle",
-                }}
-              >
-                {item.option2}
-              </TableCell>
-              <TableCell
-                align="left"
-                sx={{
-                  maxWidth: "70px",
-                  whiteSpace: "normal",
-                  textAlign: "center", // Centriranje po horizontali
-                  verticalAlign: "middle",
-                }}
-              >
-                {item.option3}
-              </TableCell>
-              <TableCell
-                align="left"
-                sx={{
-                  maxWidth: "70px",
-                  whiteSpace: "normal",
-                  textAlign: "center", // Centriranje po horizontali
-                  verticalAlign: "middle",
-                }}
-              >
-                {item.option4}
-              </TableCell>
-              <TableCell
-                align="right"
-                sx={{
-                  maxWidth: "70px",
-                  height: "50px",
-                  textAlign: "center", // Centriranje po horizontali
-                  verticalAlign: "middle",
-                }}
-              >
-                {item.answer}
-              </TableCell>
-              <TableCell
-                align="right"
-                sx={{
-                  maxWidth: "40px",
-                  height: "50px",
-                  textAlign: "center", // Centriranje po horizontali
-                  verticalAlign: "middle",
-                }}
-              >
+              <TableCell align="center">{item.option1}</TableCell>
+              <TableCell align="center">{item.option2}</TableCell>
+              <TableCell align="center">{item.option3}</TableCell>
+              <TableCell align="center">{item.option4}</TableCell>
+              <TableCell align="center">{item.answer}</TableCell>
+              <TableCell align="center">
                 <Button
                   startIcon={<Delete />}
                   color="error"
@@ -185,6 +128,6 @@ export default function quizInventory() {
           ))}
         </TableBody>
       </Table>
-    </>
+    </div>
   );
 }
