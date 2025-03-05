@@ -6,6 +6,7 @@ import {
   CardContent,
   Button,
   TextField,
+  Divider,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useFetchTopicsQuery, useCreateTopicMutation } from "./forumApi";
@@ -21,7 +22,7 @@ export default function Forum() {
   const forumParams = useAppSelector((state) => state.forum);
   useEffect(() => {
     dispatch(setPageSize(3));
-}, [dispatch]);
+  }, [dispatch]);
   const { data, isLoading, error, refetch } = useFetchTopicsQuery(forumParams);
   console.log(data);
   const [createTopic] = useCreateTopicMutation();
@@ -41,10 +42,6 @@ export default function Forum() {
     }
   };
 
-  /* const viewTopicDetails = (topicId: number) => {
-    navigate(`/tema/${topicId}`, { state: { refetch } }); // Prosleđujemo refetch funkciju
-  };
-   */
   const viewTopicDetails = (topicId: number) => {
     navigate(`/tema/${topicId}`);
   };
@@ -54,19 +51,47 @@ export default function Forum() {
     return <Typography>Došlo je do greške pri učitavanju podataka.</Typography>;
 
   return (
-    <Box sx={{ width: "100%", p: 1, mt: 3 }}>
-      <Typography variant="h4" align="center" gutterBottom>
-        Dobrodošli na forum za diskusiju
-      </Typography>
-      {data?.pagination && (
-        <AppPagination
-          metadata={data.pagination}
-          onPageChange={(page: number) => dispatch(setPageNumber(page))}
-        />
-      )}
+    <Box
+      sx={{
+        width: "100%",
+        p: 1,
+        minHeight: "100vh",
+        backgroundImage:
+          "linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 1)), url('background.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+      <Box
+        sx={{ display: "flex", justifyContent: "space-between", width: "100%", mt:"px" }}
+      >
+        <MySearch type="forum" />
+        <Typography
+          variant="h4"
+          align="center"
+          gutterBottom
+          sx={{
+            color: "black",
+            fontWeight: "bold",
+            fontStyle: "italic",
+            fontFamily: "Arial, sans-serif",
+            mt: "12px",
+          }}
+        >
+          Dobrodošli na forum za diskusiju
+          <Divider />
+        </Typography>
+        {data?.pagination && (
+          <AppPagination
+            metadata={data.pagination}
+            onPageChange={(page: number) => dispatch(setPageNumber(page))}
+          />
+        )}
+      </Box>
       <Button
         variant="contained"
-        sx={{ mb: 2, mr: 4 }}
+        sx={{ m: 1 }}
         onClick={() => navigate("/homepage")}
       >
         Napusti forum
@@ -74,12 +99,12 @@ export default function Forum() {
 
       <Button
         variant="contained"
-        sx={{ mb: 2, mr: 2 }}
+        sx={{ m: 1 }}
         onClick={() => setShowForm(!showForm)}
       >
         Dodaj temu
       </Button>
-      <MySearch type="forum" />
+
       {/* Forma za unos nove teme */}
       {showForm && (
         <Box sx={{ mb: 2, p: 2, border: "1px solid #ccc", borderRadius: 2 }}>

@@ -28,7 +28,6 @@ export default function MySearch({ type }: SearchProps) {
   };
 
   const searchTerm = useAppSelector(searchSelector);
-  console.log("SearchTerm from state:", searchTerm);
   const dispatch = useAppDispatch();
   const [term, setTerm] = useState(searchTerm);
 
