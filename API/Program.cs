@@ -5,6 +5,7 @@ using API.Middleware;
 using API.RequestHelpers;
 using API.Services;
 using Hangfire;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
@@ -31,6 +32,12 @@ builder.Services.AddHangfire(config =>
 // Dodavanje Hangfire servera za obradu pozadinskih zadataka
 builder.Services.AddHangfireServer();
 builder.Services.AddSignalR();
+builder.Services.AddScoped<EmailService, EmailService>();
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.Limits.MaxRequestBodySize = 524288000; // 500MB
+});
+
 
 builder.Services.AddCors();
 builder.Services.AddTransient<ExceptionMiddleware>();

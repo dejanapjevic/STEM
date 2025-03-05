@@ -6,9 +6,22 @@ import {
   Button,
   TextField,
   Divider,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
 } from "@mui/material";
 
-import { useUpdateUserMutation, useUserInfoQuery } from "./accountApi";
+import {
+  useChangePasswordMutation,
+  useUpdateUserMutation,
+  useUserInfoQuery,
+} from "./accountApi";
 import {
   GitHub,
   Twitter,
@@ -19,35 +32,74 @@ import {
   Edit,
   Save,
 } from "@mui/icons-material";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 
 export default function ProfilePage() {
   const { data: user, refetch } = useUserInfoQuery();
-  console.log(user);
   const [updateUser] = useUpdateUserMutation();
-  const [isEditing, setEditing] = useState(false);
+  const [changePassword] = useChangePasswordMutation();
+  const [dialogchangePassword, setDialogChangePasswordOpen] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
+
   const formatDateForInput = (date: string | Date | undefined): string => {
-    if (!date) return ""; // Ako nema datuma, vrati prazan string
-    const dateObj = typeof date === "string" ? new Date(date) : date; // Ako je string, konvertuj ga u Date
-    return dateObj.toISOString().split("T")[0]; // Format u YYYY-MM-DD
+    if (!date) return "";
+    const dateObj = typeof date === "string" ? new Date(date) : date;
+    return dateObj.toISOString().split("T")[0];
   };
 
   const [userData, setUserData] = useState({
-    firstName: user?.firstName || "",
-    lastName: user?.lastName || "",
-    email: user?.email || "",
-    dateOfBirth: user?.dateOfBirth ? formatDateForInput(user.dateOfBirth) : "",
-    gender: user?.gender || "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    dateOfBirth: "",
+    gender: "",
   });
+  const [trenutnaLozinka, setTrenutnaLozinka] = useState("");
+  const [novaLozinka, setNovaLozinka] = useState("");
+  const [novaLozinkaPonovno, setNovaLozinkaPonovno] = useState("");
+  // Postavljanje userData kada se podaci učitaju
+  useEffect(() => {
+    if (user) {
+      setUserData({
+        firstName: user.firstName || "",
+        lastName: user.lastName || "",
+        email: user.email || "",
+        dateOfBirth: user.dateOfBirth
+          ? formatDateForInput(user.dateOfBirth)
+          : "",
+        gender: user.gender || "",
+      });
+    }
+  }, [user]);
+  //funkcija za input
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (name === "trenutna lozinka") {
+      setTrenutnaLozinka(value);
+    } else if (name === "nova lozinka") {
+      setNovaLozinka(value);
+    } else if (name === "nova lozika") {
+      setNovaLozinkaPonovno(value);
+    } else {
+      setUserData((prev) => ({
+        ...prev,
+        [name]: value, // Za druge podatke
+      }));
+    }
+  };
+
+  // Funkcija za Select
+  const handleSelectChange = (e: SelectChangeEvent<string>) => {
     const { name, value } = e.target;
     setUserData((prev) => ({
       ...prev,
-      [name]: name === "dateOfBirth" ? formatDateForInput(value) : value,
+      [name]: value,
     }));
   };
-  const handleSave = async () => {
+
+  const handleSaveData = async () => {
     if (!user || !user.id) {
       console.error("Greška: ID korisnika nije definisan.");
       return;
@@ -64,12 +116,29 @@ export default function ProfilePage() {
         formData.append("dateOfBirth", userData.dateOfBirth.toString());
       }
 
-      await updateUser({ id: user.id, data: formData }).unwrap(); // ID je sada string
-      setEditing(false);
-
-      await refetch();
+      await updateUser({ id: user.id, data: formData }).unwrap();
+      setDialogOpen(false);
+      toast.success("Uspješno ste ažurirali lične podatke!");
+      await refetch(); // Osvježavanje podataka nakon ažuriranja
     } catch (error) {
       console.error("Greška pri ažuriranju korisničkih podataka:", error);
+    }
+  };
+  const handleChangePassword = async () => {
+    if (novaLozinka !== novaLozinkaPonovno) {
+      alert("Lozinke se ne poklapaju!");
+      return;
+    }
+
+    try {
+      await changePassword({
+        currentPassword: trenutnaLozinka,
+        newPassword: novaLozinka,
+      }).unwrap();
+      setDialogChangePasswordOpen(false);
+      toast.success("Lozinka je uspješno promijenjena!");
+    } catch (error) {
+      console.error("Greška pri promjeni lozinke:", error);
     }
   };
 
@@ -122,15 +191,60 @@ export default function ProfilePage() {
         width="80%"
         mx="auto"
       >
-        {isEditing ? (
-          <Grid container spacing={2}>
+        <Box textAlign="center">
+          <Typography variant="body2" sx={{ mb: 1 }}>
+            <strong>Ime i prezime:</strong> {userData.firstName}{" "}
+            {userData.lastName}
+          </Typography>
+          <Divider />
+          <Typography variant="body2" sx={{ mb: 1 }}>
+            <strong>E-mail:</strong> {userData.email}
+          </Typography>
+          <Divider />
+          <Typography variant="body2" sx={{ mb: 1 }}>
+            <strong>Datum rođenja:</strong>{" "}
+            {userData.dateOfBirth
+              ? new Date(userData.dateOfBirth).toLocaleDateString()
+              : "N/A"}
+          </Typography>
+          <Divider />
+          <Typography variant="body2">
+            <strong>Pol:</strong> {userData.gender}
+          </Typography>
+          <Divider />
+        </Box>
+
+        {/* Dugme Edit */}
+        <Button
+          startIcon={<Edit />}
+          onClick={() => setDialogOpen(true)}
+          variant="contained"
+          sx={{ mt: 2, width: "250px" }}
+        >
+          Izmjeni podatke
+        </Button>
+        <Button
+          startIcon={<Edit />}
+          onClick={() => setDialogChangePasswordOpen(true)}
+          variant="contained"
+          sx={{ mt: 2, width: "250px" }}
+        >
+          Nova lozinka
+        </Button>
+      </Box>
+
+      {/* Dialog za izmene */}
+      <Dialog open={dialogOpen} onClose={() => setDialogOpen(false)}>
+        <DialogTitle>Izmjena korisničkih podataka</DialogTitle>
+        <DialogContent>
+          <Grid container spacing={2} sx={{ mt: 1 }}>
             <Grid item xs={12} sm={6}>
               <TextField
                 fullWidth
                 name="firstName"
                 label="Ime"
                 value={userData.firstName}
-                onChange={handleChange}
+                onChange={handleInputChange}
                 size="small"
               />
             </Grid>
@@ -140,7 +254,7 @@ export default function ProfilePage() {
                 name="lastName"
                 label="Prezime"
                 value={userData.lastName}
-                onChange={handleChange}
+                onChange={handleInputChange}
                 size="small"
               />
             </Grid>
@@ -150,7 +264,7 @@ export default function ProfilePage() {
                 name="email"
                 label="E-mail"
                 value={userData.email}
-                onChange={handleChange}
+                onChange={handleInputChange}
                 size="small"
               />
             </Grid>
@@ -162,56 +276,92 @@ export default function ProfilePage() {
                 type="date"
                 InputLabelProps={{ shrink: true }}
                 value={userData.dateOfBirth}
-                onChange={handleChange}
+                onChange={handleInputChange}
                 size="small"
               />
             </Grid>
             <Grid item xs={12} sm={6}>
+              <FormControl fullWidth size="small">
+                <InputLabel>Pol</InputLabel>
+                <Select
+                  name="gender"
+                  value={userData.gender}
+                  onChange={handleSelectChange}
+                  label="Pol"
+                >
+                  <MenuItem value="M">Muški</MenuItem>
+                  <MenuItem value="Ž">Ženski</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+          </Grid>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setDialogOpen(false)} color="secondary">
+            Otkaži
+          </Button>
+          <Button
+            onClick={handleSaveData}
+            startIcon={<Save />}
+            variant="contained"
+          >
+            Sačuvaj
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog
+        open={dialogchangePassword}
+        onClose={() => setDialogChangePasswordOpen(false)}
+      >
+        <DialogTitle>Izmjena korisničke lozinke</DialogTitle>
+        <DialogContent>
+          <Grid container spacing={2} sx={{ mt: 1 }}>
+            <Grid item xs={12} sm={12}>
               <TextField
                 fullWidth
-                name="gender"
-                label="Pol"
-                value={userData.gender}
-                onChange={handleChange}
+                variant="standard"
+                name="trenutna lozinka"
+                label="Trenutna lozinka"
+                onChange={handleInputChange}
+                size="small"
+              />
+            </Grid>
+            <Grid item xs={12} sm={12}>
+              <TextField
+                fullWidth
+                variant="standard"
+                name="nova lozinka"
+                label="Nova lozinka"
+                onChange={handleInputChange}
+                size="small"
+              />
+            </Grid>
+            <Grid item xs={12} sm={12}>
+              <TextField
+                fullWidth
+                variant="standard"
+                name="nova lozika"
+                label="Ponovo unesi novu lozinku"
+                onChange={handleInputChange}
                 size="small"
               />
             </Grid>
           </Grid>
-        ) : (
-          <Box textAlign="center">
-            <Typography variant="body2" sx={{ mb: 1 }}>
-              <strong>Ime i prezime:</strong> {userData.firstName}{" "}
-              {userData.lastName}
-            </Typography>
-            <Divider/>
-            <Typography variant="body2" sx={{ mb: 1 }}>
-              <strong>E-mail:</strong> {userData.email}
-            </Typography>
-            <Divider/>
-            <Typography variant="body2" sx={{ mb: 1 }}>
-              <strong>Datum rođenja:</strong>{" "}
-              {userData.dateOfBirth
-                ? new Date(userData.dateOfBirth).toLocaleDateString()
-                : "N/A"}
-            </Typography>
-            <Divider/>
-            <Typography variant="body2">
-              <strong>Pol:</strong> {userData.gender}
-            </Typography>
-            <Divider/>
-          </Box>
-        )}
-
-        {/* Dugme Edit / Save */}
-        <Button
-          startIcon={isEditing ? <Save /> : <Edit />}
-          onClick={isEditing ? handleSave : () => setEditing(true)}
-          variant="contained"
-          sx={{ mt: 2 }}
-        >
-          {isEditing ? "Sačuvaj" : "Izmeni"}
-        </Button>
-      </Box>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setDialogChangePasswordOpen(false)}>
+            Otkaži
+          </Button>
+          <Button
+            onClick={handleChangePassword}
+            startIcon={<Save />}
+            variant="contained"
+          >
+            Sačuvaj
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 }

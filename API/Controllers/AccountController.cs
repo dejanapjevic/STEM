@@ -11,14 +11,26 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using API.Extensions;
 using API.RequestHelpers;
+using API.Services;
 
 namespace API.Controllers
 {
-    public class AccountController(SignInManager<User> signInMenager, STEMContext context, IMapper mapper, UserManager<User> userManager) : BaseApiController
+    public class AccountController : BaseApiController
     {
+        private readonly SignInManager<User> _signInMenager;
+        private readonly STEMContext _context;
+        private readonly IMapper _mapper;
+        private readonly UserManager<User> _userManager;
+        private readonly EmailService _emailService;
 
-        private readonly STEMContext _context = context;
-        private readonly IMapper _mapper = mapper;
+        public AccountController(SignInManager<User> signInManager, STEMContext context, IMapper mapper, UserManager<User> userManager, EmailService emailService)
+        {
+            _context = context;
+            _mapper = mapper;
+            _userManager = userManager;
+            _signInMenager = signInManager;
+            _emailService = emailService;
+        }
         /*SignInManager<User> je korišćen za upravljanje korisničkom autentifikacijom, 
         a RegisterDTO je objekat koji prenosi podatke sa klijenta, kao što su email i lozinka korisnika.*/
         [HttpPost("register")]
@@ -37,7 +49,7 @@ namespace API.Controllers
             };
             //va metoda će pokušati da kreira korisnika i vratiti rezultat, koji može biti uspešan ili neuspešan. 
             //Taj rezultat se čuva u promenljivoj result.
-            var result = await signInMenager.UserManager.CreateAsync(user, registerDto.Password);
+            var result = await _signInMenager.UserManager.CreateAsync(user, registerDto.Password);
 
             if (!result.Succeeded)
             {
@@ -49,7 +61,7 @@ namespace API.Controllers
                 return ValidationProblem();
             }
             //Kada pozoveš AddToRoleAsync, UserManager koristi ove tabele da bi uspostavio vezu između korisnika i uloge u bazi
-            await signInMenager.UserManager.AddToRoleAsync(user, "Member");
+            await _signInMenager.UserManager.AddToRoleAsync(user, "Member");
             return Ok();
 
         }
@@ -63,11 +75,11 @@ namespace API.Controllers
         {
 
             if (User.Identity?.IsAuthenticated == false) return NoContent(); //nece poslati error
-            var user = await signInMenager.UserManager.GetUserAsync(User);
+            var user = await _signInMenager.UserManager.GetUserAsync(User);
 
             if (user == null) return Unauthorized();
 
-            var roles = await signInMenager.UserManager.GetRolesAsync(user);
+            var roles = await _signInMenager.UserManager.GetRolesAsync(user);
 
             return Ok(new
             {
@@ -86,7 +98,7 @@ namespace API.Controllers
 
         public async Task<ActionResult> Logout()
         {
-            await signInMenager.SignOutAsync();
+            await _signInMenager.SignOutAsync();
             //odjavljuje i brise cookie
             return NoContent();
         }
@@ -105,7 +117,7 @@ namespace API.Controllers
 
             foreach (var user in users)
             {
-                var roles = await signInMenager.UserManager.GetRolesAsync(user);
+                var roles = await _signInMenager.UserManager.GetRolesAsync(user);
                 usersList.Add(new
                 {
                     user.Id,
@@ -127,6 +139,7 @@ namespace API.Controllers
         [HttpGet("get-user-by-id/{id}")]
         public async Task<ActionResult<User>> GetUserById(string id)
         {
+            
             var user = await _context.Users.FindAsync(id);
             if (user == null) return NotFound();
             else return Ok(user);
@@ -136,6 +149,13 @@ namespace API.Controllers
         {
             var user = await _context.Users.FindAsync(id);
             if (user == null) return NotFound();
+            var userTopics = _context.Topics.Where(t => t.UserId == id); // pretpostavljam da postoji UserId u ForumTopics
+            _context.Topics.RemoveRange(userTopics);
+            var userReplies=_context.Replies.Where(t=>t.UserId==id);
+            _context.Replies.RemoveRange(userReplies);
+            // Spasi promene (ovo će obrisati sve teme korisnika)
+            await _context.SaveChangesAsync();
+
             _context.Users.Remove(user);
             var result = await _context.SaveChangesAsync() > 0;
             if (result) return NoContent();
@@ -156,7 +176,7 @@ namespace API.Controllers
             };
 
             // Kreiranje korisnika pomoću UserManager-a
-            var result = await userManager.CreateAsync(user, userDto.Password);
+            var result = await _userManager.CreateAsync(user, userDto.Password);
 
             if (!result.Succeeded)
             {
@@ -164,7 +184,7 @@ namespace API.Controllers
             }
             if (userDto.Roles != null && userDto.Roles.Any())
             {
-                var roleResult = await userManager.AddToRolesAsync(user, userDto.Roles);
+                var roleResult = await _userManager.AddToRolesAsync(user, userDto.Roles);
                 if (!roleResult.Succeeded)
                 {
                     return BadRequest(roleResult.Errors);
@@ -173,31 +193,91 @@ namespace API.Controllers
 
             return Ok(user);
         }
-       [HttpPut("update-user")]
-public async Task<ActionResult> UpdateUser([FromForm] UpdateUserDTO userDto) {
-    Console.WriteLine($"Primljen ID: {userDto.Id}");
-    var user = await _context.Users.FindAsync(userDto.Id);
-    
-    if (user == null) return NotFound();
+        [HttpPut("update-user")]
+        public async Task<ActionResult> UpdateUser([FromForm] UpdateUserDTO userDto)
+        {
+            Console.WriteLine($"Primljen ID: {userDto.Id}");
+            var user = await _context.Users.FindAsync(userDto.Id);
 
-    var originalUser = _context.Entry(user).CurrentValues.Clone(); // Čuvamo originalne vrednosti
+            if (user == null) return NotFound();
 
-    _mapper.Map(userDto, user);
+            var originalUser = _context.Entry(user).CurrentValues.Clone(); // Čuvamo originalne vrednosti
 
-    // Ako nema promena, vraćamo poruku
-    if (_context.Entry(user).CurrentValues.Properties.All(p => 
-        Equals(_context.Entry(user).OriginalValues[p], _context.Entry(user).CurrentValues[p])))
-    {
-       return BadRequest(new ProblemDetails { Title = "Niste unijeli nikakvu promjenu" });
-    }
+            _mapper.Map(userDto, user);
 
-    var result = await _context.SaveChangesAsync() > 0;
-    
-    if (result) return Ok(new { message = "Korisnik uspešno ažuriran" });
+            // Ako nema promjena, vraćamo poruku
+            if (_context.Entry(user).CurrentValues.Properties.All(p =>
+                Equals(_context.Entry(user).OriginalValues[p], _context.Entry(user).CurrentValues[p])))
+            {
+                return BadRequest(new ProblemDetails { Title = "Niste unijeli nikakvu promjenu" });
+            }
 
-    return BadRequest(new ProblemDetails { Title = "Problem pri ažuriranju korisnika" });
-}
+            var result = await _context.SaveChangesAsync() > 0;
 
+            if (result) return Ok(new { message = "Korisnik uspešno ažuriran" });
+
+            return BadRequest(new ProblemDetails { Title = "Problem pri ažuriranju korisnika" });
+        }
+        private static string GenerateRandomPassword()
+        {
+            var random = new Random();
+            string upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            string lower = "abcdefghijklmnopqrstuvwxyz";
+            string digits = "0123456789";
+            string special = "!@#$%^&*()-_=+";
+
+            string password =
+                upper[random.Next(upper.Length)].ToString() +
+                lower[random.Next(lower.Length)].ToString() +
+                digits[random.Next(digits.Length)].ToString() +
+                special[random.Next(special.Length)].ToString() +
+                new string(Enumerable.Repeat(upper + lower + digits + special, 4)
+                    .Select(s => s[random.Next(s.Length)]).ToArray()); // Ostali nasumični karakteri
+
+            return new string(password.ToCharArray().OrderBy(x => random.Next()).ToArray());
+        }
+
+
+
+
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordDTO resetPasswordDto)
+        {
+            var user = await _userManager.FindByEmailAsync(resetPasswordDto.Email);
+            if (user == null) return NotFound("Korisnik sa ovom e-mail adresom ne postoji");
+
+            string newPassword = GenerateRandomPassword();
+            var resetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
+            var isValid = await _userManager.VerifyUserTokenAsync(user,
+                 TokenOptions.DefaultProvider, "ResetPassword", resetToken);
+            Console.WriteLine($"Token validan: {isValid}");
+
+            var result = await _userManager.ResetPasswordAsync(user, resetToken, newPassword);
+            if (!result.Succeeded)
+                return BadRequest(result.Errors.Select(e => e.Description));
+
+            await _emailService.SendResetPasswordEmail(user.Email, newPassword);
+            return Ok(new { message = "Nova lozinka je poslata na vašu e-mail adresu." });
+
+        }
+
+        [HttpPost("change-password")]
+        public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordDTO changePasswordDTO)
+        {
+            if (changePasswordDTO == null) return BadRequest("Neispravan zahtjev");
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+                return Unauthorized("Korisnik nije pronađen.");
+            var isPasswordValid = await _userManager.CheckPasswordAsync(user, changePasswordDTO.CurrentPassword);
+            if (!isPasswordValid)
+                return BadRequest("Trenutna lozinka je netačna.");
+            var result = await _userManager.ChangePasswordAsync(user, changePasswordDTO.CurrentPassword, changePasswordDTO.NewPassword);
+
+            if (!result.Succeeded)
+                return BadRequest(result.Errors.Select(e => e.Description));
+
+            return Ok(new { message = "Lozinka je promijenjena." });
+        }
 
     }
 }

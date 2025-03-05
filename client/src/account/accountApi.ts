@@ -58,18 +58,23 @@ export const accountApi = createApi({
       query: () => "Account/user-info",
       providesTags: ["UserInfo"],
     }),
-    fetchUsers: builder.query<{users:User[], pagination:Pagination}, UserParams>({
-      query: (userParams) => { 
+    fetchUsers: builder.query<
+      { users: User[]; pagination: Pagination },
+      UserParams
+    >({
+      query: (userParams) => {
         return {
-        url: "account/get-users" ,
-        params:userParams
-      }
-    },
-    transformResponse:(users:User[], meta) => {
-      const paginationHeader = meta?.response?.headers.get('Pagination');
-      const pagination = paginationHeader? JSON.parse(paginationHeader) : null;
-      return {users, pagination};
-    }
+          url: "account/get-users",
+          params: userParams,
+        };
+      },
+      transformResponse: (users: User[], meta) => {
+        const paginationHeader = meta?.response?.headers.get("Pagination");
+        const pagination = paginationHeader
+          ? JSON.parse(paginationHeader)
+          : null;
+        return { users, pagination };
+      },
     }),
     updateUser: builder.mutation<void, { id: string; data: FormData }>({
       query: ({ id, data }) => {
@@ -89,7 +94,7 @@ export const accountApi = createApi({
         };
       },
     }),
-    addUser:builder.mutation<User, FormData>({
+    addUser: builder.mutation<User, FormData>({
       query: (data: FormData) => {
         return {
           url: "account/add-user",
@@ -98,6 +103,27 @@ export const accountApi = createApi({
         };
       },
     }),
+    resetPassword: builder.mutation<{ message: string }, { email: string }>({
+      query: (data) => ({
+        url: "account/reset-password",
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" },
+      }),
+    }),
+    changePassword: builder.mutation<
+    { message: string }, // Povratni tip
+    { currentPassword: string; newPassword: string } // Ulazni parametri
+  >({
+    query: (data) => ({
+      url: "account/change-password",
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" },
+    }),
+  }),
+  
+
     sendWelcomeEmail: builder.mutation<void, { receptor: string }>({
       query: (emailData) => {
         if (!emailData.receptor || emailData.receptor.trim() === "") {
@@ -137,5 +163,7 @@ export const {
   useFetchUsersQuery,
   useDeleteUserMutation,
   useAddUserMutation,
-  useUpdateUserMutation
+  useUpdateUserMutation,
+  useResetPasswordMutation,
+  useChangePasswordMutation
 } = accountApi;
