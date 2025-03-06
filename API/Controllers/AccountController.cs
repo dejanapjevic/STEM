@@ -139,7 +139,7 @@ namespace API.Controllers
         [HttpGet("get-user-by-id/{id}")]
         public async Task<ActionResult<User>> GetUserById(string id)
         {
-            
+
             var user = await _context.Users.FindAsync(id);
             if (user == null) return NotFound();
             else return Ok(user);
@@ -151,7 +151,7 @@ namespace API.Controllers
             if (user == null) return NotFound();
             var userTopics = _context.Topics.Where(t => t.UserId == id); // pretpostavljam da postoji UserId u ForumTopics
             _context.Topics.RemoveRange(userTopics);
-            var userReplies=_context.Replies.Where(t=>t.UserId==id);
+            var userReplies = _context.Replies.Where(t => t.UserId == id);
             _context.Replies.RemoveRange(userReplies);
             // Spasi promene (ovo će obrisati sve teme korisnika)
             await _context.SaveChangesAsync();
@@ -278,6 +278,16 @@ namespace API.Controllers
 
             return Ok(new { message = "Lozinka je promijenjena." });
         }
+        [HttpGet("isLoggedIn")]
+        public IActionResult IsLoggedIn()
+        {
+            if (User.Identity?.IsAuthenticated == true)
+            {
+                return Ok(new { isAuthenticated = true });
+            }
+            return Ok(new { isAuthenticated = false });
+        }
+
 
     }
 }

@@ -9,7 +9,7 @@ import LoginForm from "../account/LoginForm";
 import RegisterForm from "../account/registerForm";
 import RequireAuth from "./RequireAuth";
 import WelcomePage from "../welcome/WelcomePage";
-
+import IsLoggedIn from "./isLoggedIn";
 import Quiz from "../quiz&test/Quiz";
 import CareerOptions from "../quiz&test/CareerOptions";
 import Forum from "../forum/Forum";
@@ -20,10 +20,9 @@ import UsersInventory from "../admin/UsersInventory";
 import QuizInventory from "../admin/quizInventory";
 import CatalogInventory from "../admin/CatalogInventory";
 import HomePage from "../account/HomePage";
-import Quiz2 from "../quiz&test/Quiz2";
 
-import VideoLessons from "../video-lectures/VideoLesson";
 import TutorialInventory from "../video-lectures/tutorialInventory";
+import VideoLesson from "../video-lectures/VideoLesson";
 
 export const router = createBrowserRouter([
   {
@@ -42,21 +41,25 @@ export const router = createBrowserRouter([
           { path: "quizInventory", element: <QuizInventory /> },
           { path: "tutorialInventory", element: <TutorialInventory /> },
           { path: "quiz", element: <Quiz /> },
-          { path: "quiz2", element: <Quiz2 /> },
           { path: "career", element: <CareerOptions /> },
-
-          { path: "tutorials", element: <VideoLessons /> },
+          { path: "tutorials", element: <VideoLesson /> },
         ],
       },
-      { path: "home", element: <WelcomePage /> },
 
       { path: "server-error", element: <ServerError /> },
       { path: "not-found", element: <NotFound /> },
-      { path: "login", element: <LoginForm /> },
-      { path: "register", element: <RegisterForm /> },
-      { path: "welcome", element: <WelcomePage /> },
       { path: "forum", element: <Forum /> },
       { path: "tema/:id", element: <TopicDetails /> },
+
+      {
+        element: <IsLoggedIn />, // Sprečava prijavljene korisnike da vide login/register/welcome
+        children: [
+          { path: "login", element: <LoginForm /> },
+          { path: "register", element: <RegisterForm /> },
+          { path: "welcome", element: <WelcomePage /> },
+          { path: "home", element: <WelcomePage /> },
+        ],
+      },
 
       { path: "*", element: <Navigate replace to="/not-found" /> },
     ],
