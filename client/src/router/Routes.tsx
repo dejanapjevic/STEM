@@ -22,7 +22,8 @@ import CatalogInventory from "../admin/CatalogInventory";
 import HomePage from "../account/HomePage";
 
 import TutorialInventory from "../video-lectures/tutorialInventory";
-import VideoLesson from "../video-lectures/VideoLesson";
+import { VideoLesson } from "../video-lectures/VideoLesson";
+
 
 export const router = createBrowserRouter([
   {

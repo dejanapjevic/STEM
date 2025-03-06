@@ -11,8 +11,9 @@ import { Article } from "../models/article";
 
 interface Props {
   article: Article;
+  sx?: object;
 }
-export default function ArticleCard({ article }: Props) {
+export default function ArticleCard({ article , sx}: Props) {
   return (
     <Card
       sx={{
@@ -24,9 +25,10 @@ export default function ArticleCard({ article }: Props) {
         boxShadow: "10",
         display: "flex",
         flexDirection: "column",
-        height: "100%",
+        height: "90%",
         animation: "appear 0.7s ease-out",
-        overflow: "hidden", // Ovaj deo će pomoći da se izbegne preklapanje
+        overflow: "hidden", 
+        sx
       }}
     >
       <CardMedia
@@ -75,12 +77,29 @@ export default function ArticleCard({ article }: Props) {
             textDecoration: "none",
             "&:hover": {
               textDecoration: "underline",
-              color: "purple",
+              color: "black",
               fontWeight: "bold",
             },
           }}
         >
           Saznaj više
+        </Button>
+        <Button
+          component={Link}
+          to={`/catalog/${article.id}`}
+          size="medium"
+          color="secondary"
+          sx={{
+            fontWeight: "bold",
+            textDecoration: "none",
+            "&:hover": {
+              textDecoration: "underline",
+              color: "black",
+              fontWeight: "bold",
+            },
+          }}
+        >
+          Dodaj u omiljeno
         </Button>
       </CardActions>
     </Card>

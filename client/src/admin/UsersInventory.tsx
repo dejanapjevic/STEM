@@ -103,6 +103,7 @@ export default function UsersInventory() {
               padding: "6px 12px",
               minWidth: "auto",
               fontSize: "14px",
+              marginLeft:"70px"
             }}
             size="small"
             variant="contained"

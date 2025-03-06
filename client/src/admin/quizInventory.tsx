@@ -69,8 +69,12 @@ export default function quizInventory() {
           sx={{
             color: "white",
             backgroundColor: "black",
+            whiteSpace: "nowrap",
+
+            fontSize: "13px",
+            marginLeft: "70px",
           }}
-          size="large"
+          size="small"
           variant="contained"
         >
           Kreiraj pitanje
@@ -138,7 +142,16 @@ export default function quizInventory() {
               <TableCell align="center">{item.answer}</TableCell>
               <TableCell align="center">
                 <Button
-                  startIcon={<Delete />}
+                  startIcon={
+                    <Delete
+                      sx={{
+                        fontSize: 40,
+                        width: 24,
+                        height: 24,
+                        transform: "scale(1.5)",
+                      }}
+                    />
+                  }
                   color="error"
                   onClick={() => handleDeleteQuestion(item.id)}
                 />

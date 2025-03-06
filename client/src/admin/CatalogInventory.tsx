@@ -86,10 +86,13 @@ export default function CatalogInventory() {
             sx={{
               color: "white",
               backgroundColor: "black",
-              width: "300px",
-              marginTop: "6px",
+              whiteSpace: "nowrap",
+              padding: "6px 12px",
+              minWidth: "auto",
+              fontSize: "14px",
+              marginLeft:"77px"
             }}
-            size="large"
+            size="small"
             variant="contained"
           >
             Kreiraj članak
@@ -180,11 +183,21 @@ export default function CatalogInventory() {
               <TableCell align="center">
                 <Button
                   onClick={() => handleSelectedArticle(article)}
-                  startIcon={<Edit />}
+                  startIcon={<Edit sx={{
+                    fontSize: 35,
+                    width: 22,
+                    height: 22,
+                    transform: "scale(1.5)",
+                  }} />}
                 />
                 <Button
                   onClick={() => handleDeleteArticle(article.id)}
-                  startIcon={<Delete />}
+                  startIcon={<Delete  sx={{
+                    fontSize: 35,
+                    width: 22,
+                    height: 22,
+                    transform: "scale(1.5)",
+                  }}/>}
                   color="error"
                 />
               </TableCell>

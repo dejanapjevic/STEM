@@ -16,7 +16,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import MySearch from "../catalog/Search";
+
 import AppPagination from "../components/AppPagination";
 import { useAppDispatch, useAppSelector } from "../store/store";
 import {

@@ -22,23 +22,23 @@ export default function Header() {
   const [logout] = useLogoutMutation();
   const navigate = useNavigate();
   const location = useLocation();
-  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
-  const [adminMenuAnchor, setAdminMenuAnchor] = useState<HTMLElement | null>(null);
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null); // Korisnički meni
+  const [adminMenuAnchor, setAdminMenuAnchor] = useState<HTMLElement | null>(null); // Administrativni meni
   const searchType = useAppSelector((state) => state.search.type);
   const showBackButton = location.pathname === "/login" || location.pathname === "/register";
   const isHomepage = location.pathname === "/homepage";
 
   const handleMenuClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget as HTMLButtonElement);
+    setAnchorEl(event.currentTarget); // Otvori korisnički meni
   };
 
   const handleAdminMenuClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAdminMenuAnchor(event.currentTarget);
+    setAdminMenuAnchor(event.currentTarget); // Otvori administrativni meni
   };
 
   const handleMenuClose = () => {
-    setAnchorEl(null);
-    setAdminMenuAnchor(null);
+    setAnchorEl(null); // Zatvori korisnički meni
+    setAdminMenuAnchor(null); // Zatvori administrativni meni
   };
 
   return (
@@ -51,27 +51,65 @@ export default function Header() {
 
         {/* Sredina - navigacija */}
         <Box sx={{ display: "flex", gap: 3 }}>
-          <Button onClick={() => navigate("/tutorials")} sx={{borderBottom:"2px solid grey", borderRadius:"20px", width:"150px", color:"black"}}>Video lekcije</Button>
-          <Button onClick={() => navigate("/catalog")} sx={{borderBottom:"2px solid grey", borderRadius:"20px",width:"150px",color:"black"}}>STEM novosti</Button>
-          <Button onClick={() => navigate("/quiz")}sx={{borderBottom:"2px solid grey", borderRadius:"20px",width:"150px",color:"black"}}>STEM kviz</Button>
-          <Button onClick={() => navigate("/career")}sx={{borderBottom:"2px solid grey", borderRadius:"20px",width:"150px",color:"black"}}>Test validacije</Button>
-          <Button onClick={() => navigate("/forum")}sx={{borderBottom:"2px solid grey", borderRadius:"20px",width:"150px",color:"black"}}>Forum</Button>
+          <Button onClick={() => navigate("/tutorials")} sx={{ borderBottom: "2px solid grey", borderRadius: "20px", width: "150px", color: "black" }}>
+            Video lekcije
+          </Button>
+          <Button onClick={() => navigate("/catalog")} sx={{ borderBottom: "2px solid grey", borderRadius: "20px", width: "150px", color: "black" }}>
+            STEM novosti
+          </Button>
+          <Button onClick={() => navigate("/quiz")} sx={{ borderBottom: "2px solid grey", borderRadius: "20px", width: "150px", color: "black" }}>
+            STEM kviz
+          </Button>
+          <Button onClick={() => navigate("/career")} sx={{ borderBottom: "2px solid grey", borderRadius: "20px", width: "150px", color: "black" }}>
+            Test validacije
+          </Button>
+          <Button onClick={() => navigate("/forum")} sx={{ borderBottom: "2px solid grey", borderRadius: "20px", width: "150px", color: "black" }}>
+            Forum
+          </Button>
         </Box>
 
         {/* Desna strana - korisnički meni */}
         <Box sx={{ display: "flex", alignItems: "center" }}>
           {user && user.roles.includes("Admin") && (
-            <Button onClick={handleAdminMenuClick} sx={{borderBottom:"2px solid red", borderRadius:"20px",width:"140px", color:"red"}}>
-              Administracija
-            </Button>
+            <>
+              <Button
+                onClick={handleAdminMenuClick}
+                sx={{
+                  borderBottom: '2px solid red',
+                  borderRadius: '20px',
+                  width: '140px',
+                  color: 'red',
+                }}
+              >
+                Administracija
+              </Button>
+              <Menu
+                anchorEl={adminMenuAnchor} // Koristimo drugačiji anchorEl za administrativni meni
+                open={Boolean(adminMenuAnchor)}
+                onClose={handleMenuClose}
+                PaperProps={{
+                  sx: {
+                    maxHeight: 250,
+                    width: '260px',
+                  },
+                }}
+              >
+                <MenuItem onClick={() => navigate("/userInventory")}>Administracija korisnika</MenuItem>
+                <MenuItem onClick={() => navigate("/quizInventory")}>Administracija kviza</MenuItem>
+                <MenuItem onClick={() => navigate("/catalogInventory")}>Administracija članaka</MenuItem>
+                <MenuItem onClick={() => navigate("/forumInventory")}>Administracija foruma</MenuItem>
+                <MenuItem onClick={() => navigate("/tutorialInventory")}>Administracija video lekcija</MenuItem>
+              </Menu>
+            </>
           )}
+
           {user ? (
             <>
               <IconButton onClick={handleMenuClick} sx={{ color: "black" }}>
                 <AccountCircleIcon sx={{ fontSize: 30 }} />
               </IconButton>
               <Menu
-                anchorEl={anchorEl}
+                anchorEl={anchorEl} // Korisnički meni koristi svoj anchorEl
                 open={Boolean(anchorEl)}
                 onClose={handleMenuClose}
                 MenuListProps={{ "aria-labelledby": "user-menu" }}

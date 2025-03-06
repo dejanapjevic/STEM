@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button, TextField, Typography, Stack, Box } from "@mui/material";
+import { toast } from "react-toastify";
 
 const VideoUpload = ({
   tutorialId,
@@ -34,7 +35,7 @@ const VideoUpload = ({
     formData.append("tutorialId", tutorialId.toString());
 
     try {
-      const response = await fetch("http://localhost:5211/api/Video/upload", {
+      const response = await fetch("http://localhost:5211/api/Tutorials/upload", {
         method: "POST",
         body: formData,
       });
@@ -46,6 +47,7 @@ const VideoUpload = ({
 
         // Refetch liste videa nakon uploada
         refetchVideos();
+        toast.success("Uspješno ste uploadovali video");
       } else {
         alert("Greška pri uploadu videa.");
       }
@@ -57,19 +59,26 @@ const VideoUpload = ({
   return (
     <Box sx={{ display: "flex", alignItems: "center", gap: 2, padding: 1 }}>
       <Stack spacing={1} sx={{ maxWidth: 250 }}>
-        <TextField
-          label="Naslov"
-          variant="outlined"
-          size="small"
-          fullWidth
-          value={videoTitle}
-          onChange={handleTitleChange}
-        />
-        <Button variant="contained" component="label" size="small">
+      <TextField
+  label="Naslov"
+  variant="outlined"
+  size="small"
+  fullWidth
+  value={videoTitle}
+  onChange={handleTitleChange}
+  InputProps={{
+    style: { fontWeight: "bold" } // Podebljava tekst unutar input polja
+  }}
+  InputLabelProps={{
+    style: { fontWeight: "bold" } // Podebljava labelu iznad inputa
+  }}
+/>
+
+        <Button variant="contained" component="label" size="small" sx={{backgroundColor:"black"}}>
           Izaberite video
           <input type="file" accept="video/mp4,video/webm,video/ogg" hidden onChange={handleFileChange} />
         </Button>
-        <Button variant="contained" color="primary" size="small" onClick={handleUpload}>
+        <Button variant="contained" color="primary" size="small" sx={{backgroundColor:"black"}}  onClick={handleUpload}>
           Upload
         </Button>
       </Stack>
