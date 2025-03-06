@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using API.Extensions;
 using API.RequestHelpers;
 using API.Services;
+using Microsoft.Identity.Client;
 
 namespace API.Controllers
 {
@@ -127,7 +128,6 @@ namespace API.Controllers
                     user.LastName,
                     user.Gender,
                     user.DateOfBirth,
-
                     Roles = roles
                 });
             }
@@ -218,26 +218,6 @@ namespace API.Controllers
 
             return BadRequest(new ProblemDetails { Title = "Problem pri ažuriranju korisnika" });
         }
-        private static string GenerateRandomPassword()
-        {
-            var random = new Random();
-            string upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            string lower = "abcdefghijklmnopqrstuvwxyz";
-            string digits = "0123456789";
-            string special = "!@#$%^&*()-_=+";
-
-            string password =
-                upper[random.Next(upper.Length)].ToString() +
-                lower[random.Next(lower.Length)].ToString() +
-                digits[random.Next(digits.Length)].ToString() +
-                special[random.Next(special.Length)].ToString() +
-                new string(Enumerable.Repeat(upper + lower + digits + special, 4)
-                    .Select(s => s[random.Next(s.Length)]).ToArray()); // Ostali nasumični karakteri
-
-            return new string(password.ToCharArray().OrderBy(x => random.Next()).ToArray());
-        }
-
-
 
 
         [HttpPost("reset-password")]
@@ -246,7 +226,7 @@ namespace API.Controllers
             var user = await _userManager.FindByEmailAsync(resetPasswordDto.Email);
             if (user == null) return NotFound("Korisnik sa ovom e-mail adresom ne postoji");
 
-            string newPassword = GenerateRandomPassword();
+            string newPassword = AccountExtension.GenerateRandomPassword();
             var resetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
             var isValid = await _userManager.VerifyUserTokenAsync(user,
                  TokenOptions.DefaultProvider, "ResetPassword", resetToken);
@@ -288,7 +268,7 @@ namespace API.Controllers
             return Ok(new { isAuthenticated = false });
         }
 
-
+        
     }
 }
 /*Kada pozoveš CreateAsync metodu, UserManager koristi IdentityUser klasu (ili tvoju prilagođenu verziju klase korisnika) 

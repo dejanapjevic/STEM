@@ -69,10 +69,6 @@ export default function CatalogInventory() {
   return (
     <div
       style={{
-        backgroundImage:
-          "linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 1)), url('background.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
         minHeight: "100vh",
         padding: "20px",
       }}
@@ -85,7 +81,6 @@ export default function CatalogInventory() {
       >
         {/* Grupisanje pretrage i dugmeta */}
         <Box display="flex" alignItems="center" gap={2}>
-          <MySearch type="articles" />
           <Button
             onClick={handleCreateNewArticle}
             sx={{
@@ -165,12 +160,8 @@ export default function CatalogInventory() {
                   <span>{article.title}</span>
                 </Box>
               </TableCell>
-              <TableCell align="center" >
-                {article.category}
-              </TableCell>
-              <TableCell align="center">
-                {article.description}
-              </TableCell>
+              <TableCell align="center">{article.category}</TableCell>
+              <TableCell align="center">{article.description}</TableCell>
               <TableCell
                 align="center"
                 sx={{

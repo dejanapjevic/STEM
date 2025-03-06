@@ -15,13 +15,19 @@ import {
 import { useState } from "react";
 import QuestionForm from "../quiz&test/QuestionForm";
 import { toast } from "react-toastify";
+import { useAppDispatch, useAppSelector } from "../store/store";
+import MySearch from "../catalog/Search";
+import { setPageNumber } from "../quiz&test/quizSlice";
+import AppPagination from "../components/AppPagination";
 
 export default function quizInventory() {
-  const { data, isLoading, refetch } = useFetchQuizQuestionsQuery();
+  const dispatch = useAppDispatch();
+  const quizParams = useAppSelector((state) => state.quiz);
+  const { data, isLoading, refetch } = useFetchQuizQuestionsQuery(quizParams);
   console.log(data);
   const [deleteQuestion] = useDeleteQuestionMutation();
   const [addMode, setAddMode] = useState(false);
-  
+
   const handleDeleteQuestion = async (id: number) => {
     try {
       await deleteQuestion(id);
@@ -31,7 +37,7 @@ export default function quizInventory() {
       console.log(error);
     }
   };
-  
+
   const handleCreateQuestion = () => {
     setAddMode(true);
   };
@@ -54,20 +60,13 @@ export default function quizInventory() {
   return (
     <div
       style={{
-        backgroundImage:
-          "linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 1)), url('background.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
         minHeight: "100vh",
-        
       }}
     >
-      <Box>
+      <Box sx={{ display: "flex", m: 2, gap: 3 }}>
         <Button
           onClick={handleCreateQuestion}
           sx={{
-            marginLeft: "5%",
-            marginTop: "2%",
             color: "white",
             backgroundColor: "black",
           }}
@@ -76,6 +75,14 @@ export default function quizInventory() {
         >
           Kreiraj pitanje
         </Button>
+
+        {/* Pomerite paginaciju na desnu stranu */}
+        <Box sx={{ ml: "auto" }}>
+          <AppPagination
+            metadata={data.pagination}
+            onPageChange={(page: number) => dispatch(setPageNumber(page))}
+          />
+        </Box>
       </Box>
 
       <Table
@@ -84,24 +91,36 @@ export default function quizInventory() {
           maxWidth: "90%",
           padding: "0 16px",
           margin: "0 auto",
-          
+
           borderCollapse: "collapse",
         }}
         aria-label="simple table"
       >
         <TableHead>
           <TableRow sx={{ borderBottom: "4px solid rgba(0, 0, 0, 0.6)" }}>
-            <TableCell align="center" sx={{ fontWeight: "bold" }}>PITANJE</TableCell>
-            <TableCell align="center" sx={{ fontWeight: "bold" }}>OPCIJA 1</TableCell>
-            <TableCell align="center" sx={{ fontWeight: "bold" }}>OPCIJA 2</TableCell>
-            <TableCell align="center" sx={{ fontWeight: "bold" }}>OPCIJA 3</TableCell>
-            <TableCell align="center" sx={{ fontWeight: "bold" }}>OPCIJA 4</TableCell>
-            <TableCell align="center" sx={{ fontWeight: "bold" }}>ODGOVOR</TableCell>
+            <TableCell align="center" sx={{ fontWeight: "bold" }}>
+              PITANJE
+            </TableCell>
+            <TableCell align="center" sx={{ fontWeight: "bold" }}>
+              OPCIJA 1
+            </TableCell>
+            <TableCell align="center" sx={{ fontWeight: "bold" }}>
+              OPCIJA 2
+            </TableCell>
+            <TableCell align="center" sx={{ fontWeight: "bold" }}>
+              OPCIJA 3
+            </TableCell>
+            <TableCell align="center" sx={{ fontWeight: "bold" }}>
+              OPCIJA 4
+            </TableCell>
+            <TableCell align="center" sx={{ fontWeight: "bold" }}>
+              ODGOVOR
+            </TableCell>
             <TableCell align="center" sx={{ fontWeight: "bold" }}></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {data?.map((item) => (
+          {data?.questions?.map((item) => (
             <TableRow
               key={item.id}
               sx={{ borderBottom: "2px solid rgba(0, 0, 0, 0.6)" }}

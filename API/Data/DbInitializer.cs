@@ -49,7 +49,7 @@ namespace API.Data
                     Email = "dejana@test.com",
                     FirstName = "Dejana",
                     LastName = "Pjević",
-                    Gender = "Z",
+                    Gender = "Ž",
                     DateOfBirth = new DateTime(2001, 11, 12)
                 };
 

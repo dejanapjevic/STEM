@@ -12,6 +12,9 @@ import { tutorialApi } from "../video-lectures/tutorialApi";
 import { userSlice } from "../account/userSlice";
 import { forumSlice } from "../forum/forumSlice";
 import { tutorialSlice } from "../video-lectures/tutorialSlice";
+import { quizSlice } from "../quiz&test/quizSlice";
+import searchSlice from "./searchSlice";
+
 
 export const store = configureStore({
   reducer: {
@@ -27,7 +30,9 @@ export const store = configureStore({
     catalog: catalogSlice.reducer,
     users: userSlice.reducer,
     forum: forumSlice.reducer,
-    tutorial:tutorialSlice.reducer
+    tutorial: tutorialSlice.reducer,
+    quiz: quizSlice.reducer,
+    search: searchSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(

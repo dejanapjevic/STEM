@@ -14,19 +14,19 @@ import { useAppDispatch, useAppSelector } from "../store/store";
 import AppPagination from "../components/AppPagination";
 import { setPageNumber, setPageSize } from "../forum/forumSlice";
 import { useEffect } from "react";
-import MySearch from "../catalog/Search";
 
 export default function ForumInventory() {
   const dispatch = useAppDispatch();
   const forumParams = useAppSelector((state) => state.forum);
-  
+
   useEffect(() => {
     dispatch(setPageSize(10));
   }, [dispatch]);
-  
+
   const { data, isLoading, refetch } = useFetchTopicsQuery(forumParams);
+  console.log(data);
   const [deleteTopic] = useDeleteTopicMutation();
-  
+
   const handleDeleteTopic = async (id: number) => {
     try {
       await deleteTopic(id);
@@ -36,41 +36,31 @@ export default function ForumInventory() {
       console.log(error);
     }
   };
-  console.log(data);
-  
+
   if (isLoading || !data) return <div>Loading....</div>;
 
   return (
     <div
       style={{
-        backgroundImage:
-          "linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 1)), url('background.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
         minHeight: "100vh",
-        padding: "20px",
       }}
     >
-    <div
-  style={{
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center", // Poravnava elemente vertikalno
-    width: "100%", // Osigurava da div zauzme celu širinu
-    padding: "10px",
-  }}
->
-  <MySearch type="forum" />
-  <div style={{ marginLeft: "auto" }}>
-    <AppPagination
-      metadata={data.pagination}
-      onPageChange={(page: number) => dispatch(setPageNumber(page))}
-    />
-  </div>
-</div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center", // Poravnava elemente vertikalno
+          width: "100%", // Osigurava da div zauzme celu širinu
+        }}
+      >
+        <div style={{ marginLeft: "auto" }}>
+          <AppPagination
+            metadata={data.pagination}
+            onPageChange={(page: number) => dispatch(setPageNumber(page))}
+          />
+        </div>
+      </div>
 
-
-      
       <Table
         sx={{
           minWidth: 650,
@@ -85,15 +75,24 @@ export default function ForumInventory() {
       >
         <TableHead>
           <TableRow sx={{ borderBottom: "4px solid rgba(0, 0, 0, 0.6)" }}>
-            <TableCell align="center" sx={{ fontWeight: "bold" }}>TEMA</TableCell>
-            <TableCell align="center" sx={{ fontWeight: "bold" }}>AUTOR</TableCell>
-            <TableCell align="center" sx={{ fontWeight: "bold" }}>DATUM</TableCell>
+            <TableCell align="center" sx={{ fontWeight: "bold" }}>
+              TEMA
+            </TableCell>
+            <TableCell align="center" sx={{ fontWeight: "bold" }}>
+              AUTOR
+            </TableCell>
+            <TableCell align="center" sx={{ fontWeight: "bold" }}>
+              DATUM
+            </TableCell>
             <TableCell align="center"></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {data.topics.map((item) => (
-            <TableRow key={item.id} sx={{ borderBottom: "2px solid rgba(0, 0, 0, 0.6)" }}>
+            <TableRow
+              key={item.id}
+              sx={{ borderBottom: "2px solid rgba(0, 0, 0, 0.6)" }}
+            >
               <TableCell
                 align="center"
                 sx={{
@@ -114,15 +113,21 @@ export default function ForumInventory() {
                 {new Date(item.createdAt).toLocaleDateString()}
               </TableCell>
               <TableCell align="center">
-  <Button
-    startIcon={
-      <Delete sx={{ fontSize: 40, width: 24, height: 24,transform: "scale(1.5)" }} />
-    }
-    color="error"
-    onClick={() => handleDeleteTopic(item.id)}
-  />
-</TableCell>
-
+                <Button
+                  startIcon={
+                    <Delete
+                      sx={{
+                        fontSize: 40,
+                        width: 24,
+                        height: 24,
+                        transform: "scale(1.5)",
+                      }}
+                    />
+                  }
+                  color="error"
+                  onClick={() => handleDeleteTopic(item.id)}
+                />
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

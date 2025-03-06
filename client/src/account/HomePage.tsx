@@ -5,7 +5,6 @@ import {
   Grid,
   Button,
   TextField,
-  Divider,
   Dialog,
   DialogTitle,
   DialogContent,
@@ -15,13 +14,13 @@ import {
   MenuItem,
   Select,
   SelectChangeEvent,
+  IconButton,
+  Menu,
+  Card,
+  CardContent,
+  CardActions,
 } from "@mui/material";
 
-import {
-  useChangePasswordMutation,
-  useUpdateUserMutation,
-  useUserInfoQuery,
-} from "./accountApi";
 import {
   GitHub,
   Twitter,
@@ -31,23 +30,25 @@ import {
   YouTube,
   Edit,
   Save,
+  Article,
+  Assignment,
+  School,
 } from "@mui/icons-material";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
+import {
+  useChangePasswordMutation,
+  useUpdateUserMutation,
+  useUserInfoQuery,
+} from "./accountApi";
 
 export default function ProfilePage() {
   const { data: user, refetch } = useUserInfoQuery();
   const [updateUser] = useUpdateUserMutation();
   const [changePassword] = useChangePasswordMutation();
-  const [dialogchangePassword, setDialogChangePasswordOpen] = useState(false);
+  const [dialogChangePassword, setDialogChangePasswordOpen] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
-
-  const formatDateForInput = (date: string | Date | undefined): string => {
-    if (!date) return "";
-    const dateObj = typeof date === "string" ? new Date(date) : date;
-    return dateObj.toISOString().split("T")[0];
-  };
-
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [userData, setUserData] = useState({
     firstName: "",
     lastName: "",
@@ -55,10 +56,10 @@ export default function ProfilePage() {
     dateOfBirth: "",
     gender: "",
   });
-  const [trenutnaLozinka, setTrenutnaLozinka] = useState("");
-  const [novaLozinka, setNovaLozinka] = useState("");
-  const [novaLozinkaPonovno, setNovaLozinkaPonovno] = useState("");
-  // Postavljanje userData kada se podaci učitaju
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
   useEffect(() => {
     if (user) {
       setUserData({
@@ -66,31 +67,34 @@ export default function ProfilePage() {
         lastName: user.lastName || "",
         email: user.email || "",
         dateOfBirth: user.dateOfBirth
-          ? formatDateForInput(user.dateOfBirth)
+          ? new Date(user.dateOfBirth).toLocaleDateString()
           : "",
         gender: user.gender || "",
       });
     }
   }, [user]);
-  //funkcija za input
+
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-
-    if (name === "trenutna lozinka") {
-      setTrenutnaLozinka(value);
-    } else if (name === "nova lozinka") {
-      setNovaLozinka(value);
-    } else if (name === "nova lozika") {
-      setNovaLozinkaPonovno(value);
-    } else {
+    if (name === "currentPassword") setCurrentPassword(value);
+    else if (name === "newPassword") setNewPassword(value);
+    else if (name === "confirmPassword") setConfirmPassword(value);
+    else {
       setUserData((prev) => ({
         ...prev,
-        [name]: value, // Za druge podatke
+        [name]: value,
       }));
     }
   };
 
-  // Funkcija za Select
   const handleSelectChange = (e: SelectChangeEvent<string>) => {
     const { name, value } = e.target;
     setUserData((prev) => ({
@@ -116,64 +120,107 @@ export default function ProfilePage() {
         formData.append("dateOfBirth", userData.dateOfBirth.toString());
       }
 
+      // Passing the FormData object
       await updateUser({ id: user.id, data: formData }).unwrap();
       setDialogOpen(false);
+      handleClose();
       toast.success("Uspješno ste ažurirali lične podatke!");
       await refetch(); // Osvježavanje podataka nakon ažuriranja
     } catch (error) {
       console.error("Greška pri ažuriranju korisničkih podataka:", error);
     }
   };
+
   const handleChangePassword = async () => {
-    if (novaLozinka !== novaLozinkaPonovno) {
-      alert("Lozinke se ne poklapaju!");
+    if (newPassword !== confirmPassword) {
+      toast.error("Lozinke se ne poklapaju!");
       return;
     }
-
     try {
       await changePassword({
-        currentPassword: trenutnaLozinka,
-        newPassword: novaLozinka,
+        currentPassword,
+        newPassword,
       }).unwrap();
       setDialogChangePasswordOpen(false);
       toast.success("Lozinka je uspješno promijenjena!");
+      setCurrentPassword("");
+      setConfirmPassword("");
+      setNewPassword("");
     } catch (error) {
-      console.error("Greška pri promjeni lozinke:", error);
+      console.error("Greška prilikom promjene lozinke:", error);
     }
   };
 
   return (
     <Box>
-      {/* Header Image */}
       <Box
         sx={{
-          height: 250,
+          height: 160,
           backgroundImage: "url('background.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       />
 
-      {/* Profile Section */}
       <Grid
         container
         justifyContent="center"
-        sx={{ position: "relative", top: -30 }}
+        sx={{ position: "relative", top: -30, display: "flex", gap: 2 }}
       >
         <Avatar
           src="user.jpg"
-          sx={{ width: 100, height: 100, border: "4px solid white" }}
+          sx={{
+            width: 140,
+            height: 140,
+            border: "4px solid white",
+            boxShadow: 2,
+          }}
         />
+        <IconButton
+          onClick={handleClick}
+          sx={{
+            position: "absolute",
+            top: "110px",
+            right: "10px",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            color: "white",
+            borderRadius: "50%",
+            padding: "5px",
+            "&:hover": {
+              backgroundColor: "rgba(0, 0, 0, 0.7)",
+            },
+          }}
+        >
+          <Edit />
+        </IconButton>
+        <Menu
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+        >
+          <MenuItem onClick={() => setDialogOpen(true)}>
+            Promijeni lične podatke
+          </MenuItem>
+          <MenuItem onClick={() => setDialogChangePasswordOpen(true)}>
+            Promijeni lozinku
+          </MenuItem>
+        </Menu>
       </Grid>
 
-      <Box textAlign="center" mt={1}>
-        <Typography variant="h6">
-          {user?.firstName} {user?.lastName}
+      <Box textAlign="center" sx={{ mt: 2 }}>
+        <Typography
+          variant="h5"
+          sx={{ fontWeight: "bold", fontStyle: "italic" }}
+        >
+          DOBRODOŠLI NAZAD, {user?.firstName}!
+        </Typography>
+        <Typography variant="body1" sx={{ color: "gray" }}>
+          {user?.email}
         </Typography>
       </Box>
 
-      {/* Social Icons */}
-      <Box display="flex" justifyContent="center" gap={2} mt={1}>
+      {/* Social Links */}
+      <Box display="flex" justifyContent="center" gap={2} mt={3}>
         <Facebook color="primary" />
         <Twitter color="primary" />
         <LinkedIn color="primary" />
@@ -182,58 +229,49 @@ export default function ProfilePage() {
         <GitHub />
       </Box>
 
-      {/* User Info Table */}
-      <Box
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        mt="12px"
-        width="80%"
-        mx="auto"
-      >
-        <Box textAlign="center">
-          <Typography variant="body2" sx={{ mb: 1 }}>
-            <strong>Ime i prezime:</strong> {userData.firstName}{" "}
-            {userData.lastName}
-          </Typography>
-          <Divider />
-          <Typography variant="body2" sx={{ mb: 1 }}>
-            <strong>E-mail:</strong> {userData.email}
-          </Typography>
-          <Divider />
-          <Typography variant="body2" sx={{ mb: 1 }}>
-            <strong>Datum rođenja:</strong>{" "}
-            {userData.dateOfBirth
-              ? new Date(userData.dateOfBirth).toLocaleDateString()
-              : "N/A"}
-          </Typography>
-          <Divider />
-          <Typography variant="body2">
-            <strong>Pol:</strong> {userData.gender}
-          </Typography>
-          <Divider />
-        </Box>
+      {/* Options Section */}
+      <Box display="flex" justifyContent="center" mt={4} gap={3}>
+        <Card sx={{ width: 250, textAlign: "center", boxShadow: 3 }}>
+          <CardContent>
+            <Article fontSize="large" sx={{ color: "primary.main", mb: 2 }} />
+            <Typography variant="h6">Sačuvani članci</Typography>
+          </CardContent>
+          <CardActions>
+            <Button size="small" color="primary">
+              Pogledaj
+            </Button>
+          </CardActions>
+        </Card>
 
-        {/* Dugme Edit */}
-        <Button
-          startIcon={<Edit />}
-          onClick={() => setDialogOpen(true)}
-          variant="contained"
-          sx={{ mt: 2, width: "250px" }}
-        >
-          Izmjeni podatke
-        </Button>
-        <Button
-          startIcon={<Edit />}
-          onClick={() => setDialogChangePasswordOpen(true)}
-          variant="contained"
-          sx={{ mt: 2, width: "250px" }}
-        >
-          Nova lozinka
-        </Button>
+        <Card sx={{ width: 250, textAlign: "center", boxShadow: 3 }}>
+          <CardContent>
+            <Assignment
+              fontSize="large"
+              sx={{ color: "primary.main", mb: 2 }}
+            />
+            <Typography variant="h6">Moj STEM portfolio</Typography>
+          </CardContent>
+          <CardActions>
+            <Button size="small" color="primary">
+              Pogledaj
+            </Button>
+          </CardActions>
+        </Card>
+
+        <Card sx={{ width: 250, textAlign: "center", boxShadow: 3 }}>
+          <CardContent>
+            <School fontSize="large" sx={{ color: "primary.main", mb: 2 }} />
+            <Typography variant="h6">Sačuvane lekcije</Typography>
+          </CardContent>
+          <CardActions>
+            <Button size="small" color="primary">
+              Pogledaj
+            </Button>
+          </CardActions>
+        </Card>
       </Box>
 
-      {/* Dialog za izmene */}
+      {/* Edit Profile Dialog */}
       <Dialog open={dialogOpen} onClose={() => setDialogOpen(false)}>
         <DialogTitle>Izmjena korisničkih podataka</DialogTitle>
         <DialogContent>
@@ -246,6 +284,7 @@ export default function ProfilePage() {
                 value={userData.firstName}
                 onChange={handleInputChange}
                 size="small"
+                variant="standard"
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -256,6 +295,7 @@ export default function ProfilePage() {
                 value={userData.lastName}
                 onChange={handleInputChange}
                 size="small"
+                variant="standard"
               />
             </Grid>
             <Grid item xs={12}>
@@ -266,6 +306,7 @@ export default function ProfilePage() {
                 value={userData.email}
                 onChange={handleInputChange}
                 size="small"
+                variant="standard"
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -278,6 +319,7 @@ export default function ProfilePage() {
                 value={userData.dateOfBirth}
                 onChange={handleInputChange}
                 size="small"
+                variant="standard"
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -289,15 +331,15 @@ export default function ProfilePage() {
                   onChange={handleSelectChange}
                   label="Pol"
                 >
-                  <MenuItem value="M">Muški</MenuItem>
-                  <MenuItem value="Ž">Ženski</MenuItem>
+                  <MenuItem value="M">M</MenuItem>
+                  <MenuItem value="Ž">Ž</MenuItem>
                 </Select>
               </FormControl>
             </Grid>
           </Grid>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setDialogOpen(false)} color="secondary">
+          <Button onClick={() => setDialogOpen(false)} sx={{ color: "black" }}>
             Otkaži
           </Button>
           <Button
@@ -310,44 +352,45 @@ export default function ProfilePage() {
         </DialogActions>
       </Dialog>
 
+      {/* Change Password Dialog */}
       <Dialog
-        open={dialogchangePassword}
+        open={dialogChangePassword}
         onClose={() => setDialogChangePasswordOpen(false)}
       >
         <DialogTitle>Izmjena korisničke lozinke</DialogTitle>
         <DialogContent>
-          <Grid container spacing={2} sx={{ mt: 1 }}>
-            <Grid item xs={12} sm={12}>
-              <TextField
-                fullWidth
-                variant="standard"
-                name="trenutna lozinka"
-                label="Trenutna lozinka"
-                onChange={handleInputChange}
-                size="small"
-              />
-            </Grid>
-            <Grid item xs={12} sm={12}>
-              <TextField
-                fullWidth
-                variant="standard"
-                name="nova lozinka"
-                label="Nova lozinka"
-                onChange={handleInputChange}
-                size="small"
-              />
-            </Grid>
-            <Grid item xs={12} sm={12}>
-              <TextField
-                fullWidth
-                variant="standard"
-                name="nova lozika"
-                label="Ponovo unesi novu lozinku"
-                onChange={handleInputChange}
-                size="small"
-              />
-            </Grid>
-          </Grid>
+          <TextField
+            fullWidth
+            name="currentPassword"
+            label="Trenutna lozinka"
+            type="password"
+            value={currentPassword}
+            onChange={handleInputChange}
+            size="small"
+            variant="standard"
+            sx={{ mb: 2 }}
+          />
+          <TextField
+            fullWidth
+            name="newPassword"
+            label="Nova lozinka"
+            type="password"
+            value={newPassword}
+            onChange={handleInputChange}
+            size="small"
+            variant="standard"
+            sx={{ mb: 2 }}
+          />
+          <TextField
+            fullWidth
+            name="confirmPassword"
+            label="Potvrdi novu lozinku"
+            type="password"
+            value={confirmPassword}
+            onChange={handleInputChange}
+            size="small"
+            variant="standard"
+          />
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setDialogChangePasswordOpen(false)}>

@@ -1,4 +1,3 @@
-
 using System.Security.Claims;
 using API.Data;
 using API.DTOs;
@@ -55,7 +54,9 @@ namespace API.Controllers
                     User = new
                     {
                         t.User.Id,
-                        t.User.UserName
+                        t.User.UserName,
+                        t.User.FirstName,
+                        t.User.LastName
                     },
                     ReplyCount = _context.Replies.Count(r => r.TopicId == t.Id) // Brojanje odgovora
                 });

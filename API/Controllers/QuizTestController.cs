@@ -1,5 +1,7 @@
 using API.Data;
 using API.Entities;
+using API.Extensions;
+using API.RequestHelpers;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -18,11 +20,16 @@ namespace API.Controllers
 
         [HttpGet("all-quiz-questions")]
 
-        public async Task<ActionResult<List<Question>>> GetQuestions()
+        public async Task<ActionResult<List<Question>>> GetQuestions([FromQuery]TutorialParams questionParams)
         {
+            var query = _context.Questions
+            .AsQueryable()
+            .SearchQuestions(questionParams.SearchTerm);
+            var questions = await PagedList<Question>.ToPagedList(query, questionParams.PageNumber, questionParams.PageSize);
 
-            var questions = await _context.Questions.ToListAsync();
+            
             if (questions == null) return NotFound();
+            Response.AddPaginationHeader(questions.Metadata);
             return Ok(questions);
         }
 

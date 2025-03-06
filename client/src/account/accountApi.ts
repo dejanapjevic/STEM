@@ -112,17 +112,16 @@ export const accountApi = createApi({
       }),
     }),
     changePassword: builder.mutation<
-    { message: string }, // Povratni tip
-    { currentPassword: string; newPassword: string } // Ulazni parametri
-  >({
-    query: (data) => ({
-      url: "account/change-password",
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: { "Content-Type": "application/json" },
+      { message: string }, // Povratni tip
+      { currentPassword: string; newPassword: string } // Ulazni parametri
+    >({
+      query: (data) => ({
+        url: "account/change-password",
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" },
+      }),
     }),
-  }),
-  
 
     sendWelcomeEmail: builder.mutation<void, { receptor: string }>({
       query: (emailData) => {
@@ -165,5 +164,5 @@ export const {
   useAddUserMutation,
   useUpdateUserMutation,
   useResetPasswordMutation,
-  useChangePasswordMutation
+  useChangePasswordMutation,
 } = accountApi;

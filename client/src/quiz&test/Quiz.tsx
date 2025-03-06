@@ -25,6 +25,7 @@ interface Question {
 
 export default function Quiz() {
   const { data, isLoading } = useRandomQuestionsQuery();
+
   const navigate = useNavigate();
 
   const questions: Question[] = data

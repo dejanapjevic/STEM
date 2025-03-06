@@ -31,7 +31,7 @@ function App() {
             location.pathname !== "/" &&
             location.pathname !== "/quiz" &&
             location.pathname !== "/career" &&
-            location.pathname !== "/forum" &&
+
             location.pathname !== "/login" &&
             location.pathname !== "/register" && <Header />}
           <Outlet />

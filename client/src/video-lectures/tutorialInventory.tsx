@@ -87,11 +87,10 @@ export default function TutorialInventory() {
   return (
     <div
       style={{
-        backgroundImage:
+       /*  backgroundImage:
           "linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 1)), url('background.jpg')",
-
         backgroundSize: "cover",
-        backgroundPosition: "center ",
+        backgroundPosition: "center ", */
         minHeight: "100vh",
       }}
     >
@@ -103,7 +102,7 @@ export default function TutorialInventory() {
           margin: "20px",
         }}
       >
-        <MySearch type="tutorials" />
+        
         <Button
           onClick={handleOpen}
           variant="contained"

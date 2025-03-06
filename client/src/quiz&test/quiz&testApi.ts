@@ -2,6 +2,8 @@ import { createApi } from "@reduxjs/toolkit/query/react";
 import { baseQueryWithErrorHandling } from "../api/baseApi";
 import { Question } from "./question";
 import { CareerOption } from "./careerOption";
+import { Pagination } from "../models/pagination";
+import { TutorialParams } from "../models/tutorialParams";
 
 export const quiztestApi = createApi({
   reducerPath: "quiz&testApi",
@@ -13,9 +15,24 @@ export const quiztestApi = createApi({
     careerOptions: builder.query<CareerOption[], void>({
       query: () => ({ url: "quiztest/careerOptions" }),
     }),
-    fetchQuizQuestions: builder.query<Question[], void>({
-      query: () => ({ url: "quiztest/all-quiz-questions" }),
-    }),
+    fetchQuizQuestions: builder.query<
+          { questions: Question[]; pagination: Pagination },
+          TutorialParams
+        >({
+      query: (tutorialParams) => { 
+        return {
+        url: "quiztest/all-quiz-questions" ,
+        params: tutorialParams,
+      };
+    },
+    transformResponse: (questions: Question[], meta) => {
+            const paginationHeader = meta?.response?.headers.get("Pagination");
+            const pagination = paginationHeader
+              ? JSON.parse(paginationHeader)
+              : null;
+            return { questions, pagination };
+          },
+        }),
     deleteQuestion:builder.mutation<void, number> ({
         query: (id: number) => {
             return {

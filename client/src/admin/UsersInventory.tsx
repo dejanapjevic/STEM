@@ -75,10 +75,10 @@ export default function UsersInventory() {
   return (
     <div
       style={{
-        backgroundImage:
+       /*  backgroundImage:
           "linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 1)), url('background.jpg')",
         backgroundSize: "cover",
-        backgroundPosition: "center",
+        backgroundPosition: "center", */
         minHeight: "100vh",
         padding: "20px",
       }}
@@ -94,7 +94,7 @@ export default function UsersInventory() {
       >
         {/* Grupisanje pretrage i dugmeta */}
         <Box sx={{ display: "flex", alignItems: "center", gap: "10px" }}>
-          <MySearch type="users" />
+          
           <Button
             sx={{
               color: "white",

@@ -22,7 +22,7 @@ export default function Filters({ categories: data }: Props) {
   return (
     <Box display="flex" flexDirection="column" gap={3} >
       <Paper>
-        <MySearch type="articles"/>
+        {/* <MySearch type="articles"/> */}
       </Paper>
       <Paper sx={{ padding: 3 }}>
         <RadioButtonGroup
