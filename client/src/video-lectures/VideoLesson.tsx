@@ -282,6 +282,7 @@ export const VideoLesson = () => {
                     onClick={() => handleNext(numericTutorialId)}
                     disabled={videosForTutorial.length === 0}
                   >
+                  
                     <ArrowForward />
                   </IconButton>
                 </Box>
