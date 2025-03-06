@@ -3,6 +3,7 @@ import { useCareerOptionsQuery } from "./quiz&testApi";
 import { Card, CardContent, Typography, Button, Box } from "@mui/material";
 import { ArrowBackIos } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import "../../styles/welcome.css";
 
 export default function CareerOptions() {
   const navigate = useNavigate();
@@ -21,7 +22,22 @@ export default function CareerOptions() {
   });
   const [finished, setFinished] = useState(false);
 
-  if (isLoading) return <Typography>Loading...</Typography>;
+  if (isLoading)
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+          width: "100%",
+          backgroundImage:
+            "linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 1)), url('background.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      ></Box>
+    );
   if (!data || data.length === 0)
     return <Typography>No questions available</Typography>;
 
@@ -60,8 +76,12 @@ export default function CareerOptions() {
   };
   const ExitQuizButton: React.FC = () => (
     <Box sx={{ position: "absolute", top: 20, left: 20 }}>
-      <Button onClick={() => navigate("/catalog")} sx={{ color: "white" }}>
-        <ArrowBackIos sx={{ color: "white" }} /> NAPUSTI TEST
+      <Button
+        onClick={() => navigate("/catalog")}
+        sx={{ color: "black", fontWeight: "bold" }}
+      >
+        <ArrowBackIos sx={{ color: "black", fontWeight: "bold" }} /> NAPUSTI
+        TEST
       </Button>
     </Box>
   );
@@ -73,7 +93,10 @@ export default function CareerOptions() {
         justifyContent: "center",
         alignItems: "center",
         height: "100vh",
-        backgroundColor: "#9f7aea",
+        backgroundImage:
+          "linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 1)), url('background.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
       }}
     >
       <ExitQuizButton />
@@ -87,12 +110,16 @@ export default function CareerOptions() {
           flexDirection: "column",
           justifyContent: "center", // Centriranje sadržaja
           overflow: "auto", // Omogućava skrolovanje ako je sadržaj previše dugačak
+          animation: "appear 1.7s ease-out",
         }}
       >
         <CardContent>
           {finished ? (
             <>
-              <Typography variant="h5">
+              <Typography
+                variant="h5"
+                sx={{ fontStyle: "italic", fontFamily: "Arial, sans-serif" }}
+              >
                 Vaša idealna karijera je: {getResult()}
               </Typography>
               <Button
@@ -100,7 +127,7 @@ export default function CareerOptions() {
                 onClick={resetTest}
                 sx={{
                   marginTop: 2,
-                  backgroundColor: "#9f7aea",
+                  backgroundColor: "black",
                   color: "white",
                 }}
               >
@@ -109,7 +136,16 @@ export default function CareerOptions() {
             </>
           ) : (
             <>
-              <Typography variant="h6" gutterBottom sx={{ marginBottom: 2 }}>
+              <Typography
+                variant="h6"
+                gutterBottom
+                sx={{
+                  marginBottom: 2,
+                  fontStyle: "italic",
+                  fontFamily: "Arial, sans-serif",
+                  fontWeight:"bold"
+                }}
+              >
                 {data[currentQuestion].title}
               </Typography>
               <Box
@@ -122,27 +158,27 @@ export default function CareerOptions() {
               >
                 <Button
                   variant="contained"
-                  sx={{ backgroundColor: "#9f7aea", color: "white" }}
+                  sx={{ backgroundColor: "black", color: "white" }}
                   onClick={() => handleAnswer("science")}
                 >
                   {data[currentQuestion].optionA}
                 </Button>
                 <Button
-                  sx={{ backgroundColor: "#9f7aea", color: "white" }}
+                  sx={{ backgroundColor: "black", color: "white" }}
                   variant="contained"
                   onClick={() => handleAnswer("tech")}
                 >
                   {data[currentQuestion].optionB}
                 </Button>
                 <Button
-                  sx={{ backgroundColor: "#9f7aea", color: "white" }}
+                  sx={{ backgroundColor: "black", color: "white" }}
                   variant="contained"
                   onClick={() => handleAnswer("eng")}
                 >
                   {data[currentQuestion].optionC}
                 </Button>
                 <Button
-                  sx={{ backgroundColor: "#9f7aea", color: "white" }}
+                  sx={{ backgroundColor: "black", color: "white" }}
                   variant="contained"
                   onClick={() => handleAnswer("math")}
                 >

@@ -9,6 +9,7 @@ import {
   IconButton,
   Button,
   Box,
+  Divider,
 } from "@mui/material";
 import { useState } from "react";
 import { useRandomQuestionsQuery } from "./quiz&testApi";
@@ -37,16 +38,30 @@ export default function Quiz() {
 
   if (isLoading) {
     return (
-      <Typography variant="h6" textAlign="center">
-        Učitavanje pitanja...
-      </Typography>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+          width: "100%",
+          backgroundImage:
+            "linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 1)), url('background.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      ></Box>
     );
   }
 
-   const ExitQuizButton: React.FC = () => (
+  const ExitQuizButton: React.FC = () => (
     <Box sx={{ position: "absolute", top: 20, left: 20 }}>
-      <Button onClick={() => navigate("/catalog")} sx={{ color: "white" }}>
-        <ArrowBackIos sx={{ color: "white" }} /> NAPUSTI KVIZ
+      <Button
+        onClick={() => navigate("/catalog")}
+        sx={{ color: "black", fontWeight: "bold" }}
+      >
+        <ArrowBackIos sx={{ color: "black", fontWeight: "bold" }} /> NAPUSTI
+        KVIZ
       </Button>
     </Box>
   );
@@ -104,10 +119,10 @@ export default function Quiz() {
             alignItems: "center",
             height: "100vh",
             width: "100%",
-            backgroundColor:"#9f7aea",
+            backgroundImage:
+              "linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 1)), url('background.jpg')",
             backgroundSize: "cover",
             backgroundPosition: "center",
-            
           }}
         >
           <ExitQuizButton />
@@ -116,7 +131,7 @@ export default function Quiz() {
               maxWidth: 600,
               width: "100%", // Postavljamo da se širi do maksimalne širine
               minHeight: 300,
-              border:"2px solid black"
+              border: "2px solid black",
             }}
           >
             <CardContent>
@@ -221,7 +236,8 @@ export default function Quiz() {
           alignItems: "center", // Centriranje vertikalno
           height: "100vh", // Postavlja visinu na celu visinu ekrana
           width: "100%",
-          backgroundColor:"#9f7aea",
+          backgroundImage:
+            "linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 1)), url('background.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -233,9 +249,9 @@ export default function Quiz() {
             maxWidth: 600,
             width: "100%", // Postavljamo da se širi do maksimalne širine
             minHeight: 300, // Postavljamo minimalnu visinu kako bi izgledalo dosledno,
-            border:"4px solid ",
+            border: "4px solid ",
             backgroundColor: "white",
-                borderColor:
+            borderColor:
               isAnswerCorrect === true
                 ? "#00ff40"
                 : isAnswerCorrect === false
@@ -245,9 +261,19 @@ export default function Quiz() {
           }}
         >
           <CardContent>
-            <Typography variant="h6" gutterBottom>
+            <Typography
+              variant="h6"
+              gutterBottom
+              sx={{
+                color: "black",
+                fontWeight: "bold",
+                fontStyle: "italic",
+                fontFamily: "Arial, sans-serif",
+              }}
+            >
               {questions[currentIndex].title}
             </Typography>
+            <Divider />
 
             <RadioGroup
               key={currentIndex}
