@@ -1,4 +1,4 @@
-import { Delete, VideoLibrary } from "@mui/icons-material";
+import { Delete } from "@mui/icons-material";
 import {
   Button,
   Dialog,
@@ -22,16 +22,20 @@ import { useAppDispatch, useAppSelector } from "../store/store";
 import {
   useCreateTutorialMutation,
   useDeleteTutorialMutation,
+  useFetchProgressForUserQuery,
   useFetchTutorialsQuery,
   useFetchVideosQuery,
 } from "./tutorialApi";
 import { setPageNumber } from "./tutorialSlice";
 import VideoUpload from "./videoUpload";
+import { useUserInfoQuery } from "../account/accountApi";
 
 export default function TutorialInventory() {
   const dispatch = useAppDispatch();
   const [addTutorial] = useCreateTutorialMutation();
   const [deleteTutorial] = useDeleteTutorialMutation();
+ 
+
   const tutorialParams = useAppSelector((state) => state.tutorial);
   const {
     data: tutorial,
@@ -87,7 +91,7 @@ export default function TutorialInventory() {
   return (
     <div
       style={{
-       /*  backgroundImage:
+        /*  backgroundImage:
           "linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 1)), url('background.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center ", */
@@ -102,7 +106,6 @@ export default function TutorialInventory() {
           margin: "20px",
         }}
       >
-        
         <Button
           onClick={handleOpen}
           variant="contained"
@@ -204,7 +207,6 @@ export default function TutorialInventory() {
               sx={{ borderBottom: "2px solid rgba(0, 0, 0, 0.6)" }}
             >
               <TableCell align="center" sx={{ fontWeight: "bold" }}>
-                
                 {item.name}
               </TableCell>
               <TableCell align="center" sx={{ fontWeight: "bold" }}>

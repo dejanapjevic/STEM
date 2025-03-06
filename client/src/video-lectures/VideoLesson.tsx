@@ -8,23 +8,56 @@ import {
   CardMedia,
   LinearProgress,
 } from "@mui/material";
-import { ArrowBack, ArrowForward } from "@mui/icons-material";
-import { useFetchTutorialsWithVideosQuery } from "./tutorialApi";
+import {
+  ArrowBack,
+  ArrowForward,
+  DoneOutline,
+  Star,
+} from "@mui/icons-material";
+import {
+  useFetchProgressForUserQuery,
+  useFetchTutorialsWithVideosQuery,
+  useUpdateProgressMutation,
+} from "./tutorialApi";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../store/store";
 import { setPageNumber } from "./tutorialSlice";
 import AppPagination from "../components/AppPagination";
-import MySearch from "../catalog/Search";
+import { useUserInfoQuery } from "../account/accountApi";
+
+// Define the types for progress and video objects
+interface Video {
+  id: number;
+  tutorialId: number;
+  title: string;
+  path: string;
+}
+
+interface TutorialProgress {
+  tutorialId: number;
+  isStarred: boolean;
+  videos: { videoId: number; isWatched: boolean }[];
+}
 
 export const VideoLesson = () => {
-  const [videos, setVideos] = useState<any[]>([]);
+  const [videos, setVideos] = useState<Video[]>([]);
+  const { data: user } = useUserInfoQuery();
   const dispatch = useAppDispatch();
   const tutorialParams = useAppSelector((state) => state.tutorial);
-  const [groupedVideos, setGroupedVideos] = useState<Record<number, any[]>>({});
+  const [groupedVideos, setGroupedVideos] = useState<Record<number, Video[]>>(
+    {}
+  );
   const [currentVideoIndex, setCurrentVideoIndex] = useState<
     Record<number, number>
   >({});
+  const [watchedVideos, setWatchedVideos] = useState<Record<number, boolean>>(
+    {}
+  );
   const { data, isLoading } = useFetchTutorialsWithVideosQuery(tutorialParams);
+  const { data: progress } = user?.id
+    ? useFetchProgressForUserQuery(user.id)
+    : { data: [] }; // Ensure progress is always an array
+  const [updateProgress] = useUpdateProgressMutation();
 
   useEffect(() => {
     if (!data?.tutorials || data.tutorials.length === 0) {
@@ -56,8 +89,21 @@ export const VideoLesson = () => {
         setGroupedVideos({});
       });
   }, [data]);
-  const groupVideosByTutorial = (videos: any[]) => {
-    const grouped: Record<number, any[]> = {};
+
+  useEffect(() => {
+    if (progress && Array.isArray(progress)) {
+      const updatedWatchedVideos: Record<number, boolean> = {};
+      progress.forEach((tutorialProgress: TutorialProgress) => {
+        tutorialProgress.videos.forEach((video) => {
+          updatedWatchedVideos[video.videoId] = video.isWatched;
+        });
+      });
+      setWatchedVideos(updatedWatchedVideos);
+    }
+  }, [progress]);
+
+  const groupVideosByTutorial = (videos: Video[]) => {
+    const grouped: Record<number, Video[]> = {};
     const initialIndexState: Record<number, number> = {};
 
     videos.forEach((video) => {
@@ -71,6 +117,27 @@ export const VideoLesson = () => {
 
     setGroupedVideos(grouped);
     setCurrentVideoIndex(initialIndexState);
+  };
+
+  const handleVideoEnd = (videoId: number) => {
+    setWatchedVideos((prevState) => ({
+      ...prevState,
+      [videoId]: true,
+    }));
+
+    if (user?.id) {
+      updateProgress({
+        userId: user?.id,
+        videoId: videoId,
+        isWatched: true,
+      })
+        .then(() => {
+          console.log(`Video ${videoId} je odgledan`);
+        })
+        .catch((error) => {
+          console.error("Greška prilikom ažuriranja napretka:", error);
+        });
+    }
   };
 
   const handleNext = (tutorialId: number) => {
@@ -92,11 +159,17 @@ export const VideoLesson = () => {
     });
   };
 
+  const isTutorialCompleted = (tutorialId: number): boolean => {
+    const videosForTutorial = groupedVideos[tutorialId] || [];
+    return videosForTutorial.every(
+      (video) => watchedVideos[video.id] === true
+    );
+  };
+
   if (isLoading) return <Typography>Loading...</Typography>;
 
   return (
     <>
-      {/* Pretraga i paginacija */}
       <div style={{ display: "flex", justifyContent: "right" }}>
         {data?.pagination && (
           <AppPagination
@@ -106,7 +179,6 @@ export const VideoLesson = () => {
         )}
       </div>
 
-      {/* Grid Layout za prikaz tutorijala */}
       <Grid container spacing={3} padding="10px">
         {Object.keys(groupedVideos).map((tutorialId) => {
           const numericTutorialId = Number(tutorialId);
@@ -116,6 +188,8 @@ export const VideoLesson = () => {
           const videosForTutorial = groupedVideos[numericTutorialId] || [];
           const currentIndex = currentVideoIndex[numericTutorialId] || 0;
           const currentVideo = videosForTutorial[currentIndex];
+          const isTutorialStarred =
+            isTutorialCompleted(numericTutorialId);
 
           return (
             <Grid item xs={12} sm={6} md={4} key={numericTutorialId}>
@@ -126,33 +200,38 @@ export const VideoLesson = () => {
                   height: "590px",
                 }}
               >
-                {/* Tutorijal naslov i opis */}
                 <CardContent sx={{ flexGrow: 1, height: "200px" }}>
                   <Typography variant="h6" fontWeight="bold">
-                    {tutorial?.name || "Unknown Tutorial"}
+                    {tutorial?.name}
+                    <Star
+                      sx={{
+                        marginLeft: "20px",
+                        color: isTutorialStarred ? "green" : "gray", // Change color based on isStarred
+                      }}
+                    />
                   </Typography>
                   <Typography
                     variant="body2"
                     color="text.secondary"
                     sx={{
-                      height: "140px", // Povećana visina opisa
+                      height: "140px",
                       overflow: "hidden",
                       display: "-webkit-box",
                       WebkitBoxOrient: "vertical",
-                      WebkitLineClamp: 5, // Ograničenje na 5 linija teksta
+                      WebkitLineClamp: 5,
                     }}
                   >
-                    {tutorial?.description || "No description available"}
+                    {tutorial?.description}
                   </Typography>
                 </CardContent>
 
-                {/* Video sa povećanom visinom */}
                 {videosForTutorial.length > 0 ? (
                   <CardMedia
                     component="video"
                     controls
                     src={`http://localhost:5211${currentVideo?.path}`}
-                    sx={{ width: "100%", height: "300px", objectFit: "cover" }} // Povećana visina videa
+                    sx={{ width: "100%", height: "300px", objectFit: "cover" }}
+                    onEnded={() => handleVideoEnd(currentVideo?.id)}
                   />
                 ) : (
                   <Box
@@ -167,7 +246,6 @@ export const VideoLesson = () => {
                   </Box>
                 )}
 
-                {/* Progress bar */}
                 <Box padding="10px">
                   <LinearProgress
                     variant="determinate"
@@ -178,7 +256,6 @@ export const VideoLesson = () => {
                   />
                 </Box>
 
-                {/* Kontrole */}
                 <Box
                   display="flex"
                   justifyContent="space-between"
@@ -191,7 +268,15 @@ export const VideoLesson = () => {
                     <ArrowBack />
                   </IconButton>
                   <Typography>
-                    {currentVideo?.title || "Unknown Video"}
+                    {currentVideo?.title}
+                    <DoneOutline
+                      sx={{
+                        color: watchedVideos[currentVideo?.id]
+                          ? "green"
+                          : "red",
+                        marginLeft: "25px",
+                      }}
+                    />
                   </Typography>
                   <IconButton
                     onClick={() => handleNext(numericTutorialId)}

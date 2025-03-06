@@ -19,7 +19,7 @@ namespace API.Controllers
             _context = context;
         }
 
-       
+
         [HttpDelete("delete-tutorial/{id}")]
         public async Task<ActionResult> DeleteTutorial(int id)
         {
@@ -79,7 +79,7 @@ namespace API.Controllers
         [HttpGet("get-all-videos")]
         public async Task<ActionResult<List<Video>>> GetAllVideos()
         {
-            
+
             var videos = await _context.Videos.ToListAsync();
             if (videos == null) return NotFound();
             return Ok(videos);
@@ -145,6 +145,69 @@ namespace API.Controllers
 
             return Ok(videos);
         }
+        [HttpPost("update-progress")]
+        public async Task<IActionResult> UpdateProgress([FromBody] ProgressUpdateDTO progressUpdateDto)
+        {
+            var progress = await _context.UserProgress
+            .FirstOrDefaultAsync(up => up.UserId == progressUpdateDto.UserId && up.VideoId == progressUpdateDto.VideoId);
+            if (progress == null)
+            {
+                progress = new UserProgress
+                {
+                    UserId = progressUpdateDto.UserId,
+                    VideoId = progressUpdateDto.VideoId,
+                    isWatched = progressUpdateDto.IsWatched,
+                };
+                _context.UserProgress.Add(progress);
+            }
+            else
+            {
+                progress.isWatched = progressUpdateDto.IsWatched;
+                _context.UserProgress.Update(progress);
+            }
+            await _context.SaveChangesAsync();
+            return Ok(progress);
+        }
+
+        [HttpGet("get-progress-for-user")]
+        public async Task<IActionResult> GetUserProgress(string userId)
+        {
+            // Dohvatanje svih tutorijala
+            var tutorials = await _context.Tutorials.ToListAsync();
+
+            // Dohvatanje svih videa sa njihovim tutorijalima
+            var videos = await _context.Videos.ToListAsync();
+
+            // Dohvatanje napretka korisnika
+            var progress = await _context.UserProgress
+                .Where(up => up.UserId == userId)
+                .ToListAsync();
+
+            // Formatiranje odgovora
+            var response = tutorials.Select(t => new
+            {
+                TutorialId = t.Id,
+                TutorialName = t.Name,
+
+                // Proveravamo da li su svi videi iz tutorijala označeni kao odgledani
+                IsStarred = videos
+                    .Where(v => v.TutorialId == t.Id) // Filtriramo videe koji pripadaju ovom tutorijalu
+                    .All(v => progress.Any(p => p.VideoId == v.Id && p.isWatched)),
+
+                Videos = videos
+                    .Where(v => v.TutorialId == t.Id) // Filtriramo videe koji pripadaju ovom tutorijalu
+                    .Select(v => new
+                    {
+                        VideoId = v.Id,
+                        VideoTitle = v.Title,
+                        IsWatched = progress.Any(p => p.VideoId == v.Id && p.isWatched)
+                    }).ToList()
+            });
+
+            return Ok(response);
+        }
 
     }
+
+
 }

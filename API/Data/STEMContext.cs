@@ -13,7 +13,8 @@ namespace API.Data
     public required DbSet<Topic> Topics { get; set; }
     public required DbSet<Reply> Replies { get; set; }
     public required DbSet<Video> Videos { get; set; }
-    public required DbSet<Tutorial> Tutorials {get; set;}
+    public required DbSet<Tutorial> Tutorials { get; set; }
+    public required DbSet<UserProgress> UserProgress { get; set; }
 
 
     protected override void OnModelCreating(ModelBuilder builder)
@@ -50,10 +51,14 @@ namespace API.Data
           .OnDelete(DeleteBehavior.Cascade);
 
       builder.Entity<Video>()
-                 .HasOne(v=>v.tutorial)
+                 .HasOne(v => v.tutorial)
                  .WithMany() // Jer jedan tutorial može imati više videa
                  .HasForeignKey(v => v.TutorialId)
-                 .OnDelete(DeleteBehavior.Cascade); 
+                 .OnDelete(DeleteBehavior.Cascade);
+                 
+      builder.Entity<UserProgress>()
+.HasIndex(up => new { up.UserId, up.VideoId })
+.IsUnique(); // Osigurava da korisnik može imati samo jedan zapis po videu
     }
   }
 

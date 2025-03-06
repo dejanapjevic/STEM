@@ -48,6 +48,9 @@ export const tutorialApi = createApi({
     fetchVideos: builder.query<Video[], void>({
       query: () => ({ url: "tutorials/get-all-videos" }),
     }),
+    fetchProgressForUser:builder.query<void,string>({
+      query: (userId) => ({  url: `tutorials/get-progress-for-user?userId=${userId}`, }),
+    }),
     deleteTutorial: builder.mutation<void, number>({
       query: (id: number) => {
         return {
@@ -56,6 +59,16 @@ export const tutorialApi = createApi({
         };
       },
     }),
+    updateProgress: builder.mutation<void, { userId: string, videoId: number, isWatched:boolean }>({
+      query: (data) => {
+        return {
+          url: "tutorials/update-progress",  
+          method: "POST",                    
+          body: data,                      
+        };
+      },
+    }),
+    
     createTutorial: builder.mutation<Tutorial, FormData>({
       query: (data: FormData) => {
         return {
@@ -74,4 +87,6 @@ export const {
   useFetchTutorialsWithVideosQuery,
   useCreateTutorialMutation,
   useDeleteTutorialMutation,
+  useFetchProgressForUserQuery,
+  useUpdateProgressMutation
 } = tutorialApi;

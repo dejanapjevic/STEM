@@ -3,6 +3,252 @@
   "ManifestType": "Build",
   "Endpoints": [
     {
+      "Route": "videos/Bioinformatics in Python_ DNA Toolkit. Part 1_ Validating and counting nucleotides..mp4",
+      "AssetFile": "videos/Bioinformatics in Python_ DNA Toolkit. Part 1_ Validating and counting nucleotides..mp4",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "24698422"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "video/mp4"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"9gZDqtShRnGeni9Jx5so/7lo9KlrH326SC8lDQgcmgI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 06 Mar 2025 21:40:03 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-9gZDqtShRnGeni9Jx5so/7lo9KlrH326SC8lDQgcmgI="
+        }
+      ]
+    },
+    {
+      "Route": "videos/Bioinformatics in Python_ DNA Toolkit. Part 1_ Validating and counting nucleotides..yun59uxcno.mp4",
+      "AssetFile": "videos/Bioinformatics in Python_ DNA Toolkit. Part 1_ Validating and counting nucleotides..mp4",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "24698422"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "video/mp4"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"9gZDqtShRnGeni9Jx5so/7lo9KlrH326SC8lDQgcmgI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 06 Mar 2025 21:40:03 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "yun59uxcno"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-9gZDqtShRnGeni9Jx5so/7lo9KlrH326SC8lDQgcmgI="
+        },
+        {
+          "Name": "label",
+          "Value": "videos/Bioinformatics in Python_ DNA Toolkit. Part 1_ Validating and counting nucleotides..mp4"
+        }
+      ]
+    },
+    {
+      "Route": "videos/Rosalind Problems_ Transcription and Reverse Complement.mp4",
+      "AssetFile": "videos/Rosalind Problems_ Transcription and Reverse Complement.mp4",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "14896850"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "video/mp4"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"4nNkbtMHUb8ZhtRnGv1PeovySU/W8lAn2kuATSiIA5w=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 06 Mar 2025 21:39:57 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-4nNkbtMHUb8ZhtRnGv1PeovySU/W8lAn2kuATSiIA5w="
+        }
+      ]
+    },
+    {
+      "Route": "videos/Rosalind Problems_ Transcription and Reverse Complement.yww9lgf0bb.mp4",
+      "AssetFile": "videos/Rosalind Problems_ Transcription and Reverse Complement.mp4",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "14896850"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "video/mp4"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"4nNkbtMHUb8ZhtRnGv1PeovySU/W8lAn2kuATSiIA5w=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 06 Mar 2025 21:39:57 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "yww9lgf0bb"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-4nNkbtMHUb8ZhtRnGv1PeovySU/W8lAn2kuATSiIA5w="
+        },
+        {
+          "Name": "label",
+          "Value": "videos/Rosalind Problems_ Transcription and Reverse Complement.mp4"
+        }
+      ]
+    },
+    {
+      "Route": "videos/Top 10 Reasons to Learn Cybersecurity in 2024 _ Why Cybersecurity is Important _ Edureka.mp4",
+      "AssetFile": "videos/Top 10 Reasons to Learn Cybersecurity in 2024 _ Why Cybersecurity is Important _ Edureka.mp4",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "17376428"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "video/mp4"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"8o5QiDBDYswAFVaF5cFLDeoL1FPiYR9Jq1PKcjNEd4E=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 06 Mar 2025 21:33:38 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-8o5QiDBDYswAFVaF5cFLDeoL1FPiYR9Jq1PKcjNEd4E="
+        }
+      ]
+    },
+    {
+      "Route": "videos/Top 10 Reasons to Learn Cybersecurity in 2024 _ Why Cybersecurity is Important _ Edureka.uppjihday3.mp4",
+      "AssetFile": "videos/Top 10 Reasons to Learn Cybersecurity in 2024 _ Why Cybersecurity is Important _ Edureka.mp4",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "17376428"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "video/mp4"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"8o5QiDBDYswAFVaF5cFLDeoL1FPiYR9Jq1PKcjNEd4E=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 06 Mar 2025 21:33:38 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "uppjihday3"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-8o5QiDBDYswAFVaF5cFLDeoL1FPiYR9Jq1PKcjNEd4E="
+        },
+        {
+          "Name": "label",
+          "Value": "videos/Top 10 Reasons to Learn Cybersecurity in 2024 _ Why Cybersecurity is Important _ Edureka.mp4"
+        }
+      ]
+    },
+    {
       "Route": "videos/What is an API_.mp4",
       "AssetFile": "videos/What is an API_.mp4",
       "Selectors": [],
@@ -111,7 +357,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 05 Mar 2025 15:38:39 GMT"
+          "Value": "Thu, 06 Mar 2025 21:28:26 GMT"
         }
       ],
       "EndpointProperties": [
@@ -148,7 +394,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 05 Mar 2025 15:38:39 GMT"
+          "Value": "Thu, 06 Mar 2025 21:28:26 GMT"
         }
       ],
       "EndpointProperties": [

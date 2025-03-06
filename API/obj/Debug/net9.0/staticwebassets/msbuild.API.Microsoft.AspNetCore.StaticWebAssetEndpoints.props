@@ -1,5 +1,41 @@
 ﻿<Project>
   <ItemGroup>
+    <StaticWebAssetEndpoint Include="_content/API/videos/Bioinformatics in Python_ DNA Toolkit. Part 1_ Validating and counting nucleotides..mp4">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\videos\Bioinformatics in Python_ DNA Toolkit. Part 1_ Validating and counting nucleotides..mp4'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-9gZDqtShRnGeni9Jx5so/7lo9KlrH326SC8lDQgcmgI="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"24698422"},{"Name":"Content-Type","Value":"video/mp4"},{"Name":"ETag","Value":"\u00229gZDqtShRnGeni9Jx5so/7lo9KlrH326SC8lDQgcmgI=\u0022"},{"Name":"Last-Modified","Value":"Thu, 06 Mar 2025 21:40:03 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/API/videos/Bioinformatics in Python_ DNA Toolkit. Part 1_ Validating and counting nucleotides..yun59uxcno.mp4">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\videos\Bioinformatics in Python_ DNA Toolkit. Part 1_ Validating and counting nucleotides..mp4'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"yun59uxcno"},{"Name":"integrity","Value":"sha256-9gZDqtShRnGeni9Jx5so/7lo9KlrH326SC8lDQgcmgI="},{"Name":"label","Value":"_content/API/videos/Bioinformatics in Python_ DNA Toolkit. Part 1_ Validating and counting nucleotides..mp4"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"24698422"},{"Name":"Content-Type","Value":"video/mp4"},{"Name":"ETag","Value":"\u00229gZDqtShRnGeni9Jx5so/7lo9KlrH326SC8lDQgcmgI=\u0022"},{"Name":"Last-Modified","Value":"Thu, 06 Mar 2025 21:40:03 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/API/videos/Rosalind Problems_ Transcription and Reverse Complement.mp4">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\videos\Rosalind Problems_ Transcription and Reverse Complement.mp4'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-4nNkbtMHUb8ZhtRnGv1PeovySU/W8lAn2kuATSiIA5w="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"14896850"},{"Name":"Content-Type","Value":"video/mp4"},{"Name":"ETag","Value":"\u00224nNkbtMHUb8ZhtRnGv1PeovySU/W8lAn2kuATSiIA5w=\u0022"},{"Name":"Last-Modified","Value":"Thu, 06 Mar 2025 21:39:57 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/API/videos/Rosalind Problems_ Transcription and Reverse Complement.yww9lgf0bb.mp4">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\videos\Rosalind Problems_ Transcription and Reverse Complement.mp4'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"yww9lgf0bb"},{"Name":"integrity","Value":"sha256-4nNkbtMHUb8ZhtRnGv1PeovySU/W8lAn2kuATSiIA5w="},{"Name":"label","Value":"_content/API/videos/Rosalind Problems_ Transcription and Reverse Complement.mp4"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"14896850"},{"Name":"Content-Type","Value":"video/mp4"},{"Name":"ETag","Value":"\u00224nNkbtMHUb8ZhtRnGv1PeovySU/W8lAn2kuATSiIA5w=\u0022"},{"Name":"Last-Modified","Value":"Thu, 06 Mar 2025 21:39:57 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/API/videos/Top 10 Reasons to Learn Cybersecurity in 2024 _ Why Cybersecurity is Important _ Edureka.mp4">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\videos\Top 10 Reasons to Learn Cybersecurity in 2024 _ Why Cybersecurity is Important _ Edureka.mp4'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-8o5QiDBDYswAFVaF5cFLDeoL1FPiYR9Jq1PKcjNEd4E="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"17376428"},{"Name":"Content-Type","Value":"video/mp4"},{"Name":"ETag","Value":"\u00228o5QiDBDYswAFVaF5cFLDeoL1FPiYR9Jq1PKcjNEd4E=\u0022"},{"Name":"Last-Modified","Value":"Thu, 06 Mar 2025 21:33:38 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/API/videos/Top 10 Reasons to Learn Cybersecurity in 2024 _ Why Cybersecurity is Important _ Edureka.uppjihday3.mp4">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\videos\Top 10 Reasons to Learn Cybersecurity in 2024 _ Why Cybersecurity is Important _ Edureka.mp4'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"uppjihday3"},{"Name":"integrity","Value":"sha256-8o5QiDBDYswAFVaF5cFLDeoL1FPiYR9Jq1PKcjNEd4E="},{"Name":"label","Value":"_content/API/videos/Top 10 Reasons to Learn Cybersecurity in 2024 _ Why Cybersecurity is Important _ Edureka.mp4"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"17376428"},{"Name":"Content-Type","Value":"video/mp4"},{"Name":"ETag","Value":"\u00228o5QiDBDYswAFVaF5cFLDeoL1FPiYR9Jq1PKcjNEd4E=\u0022"},{"Name":"Last-Modified","Value":"Thu, 06 Mar 2025 21:33:38 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/API/videos/What is an API_.mp4">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\videos\What is an API_.mp4'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
@@ -16,13 +52,13 @@
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\videos\What is cyber security_1080p.mp4'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-YJL1dE4xcyo0j\u002BaViZAgmjWIQ6ASiDI6qGT7H2rkrUo="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"7131490"},{"Name":"Content-Type","Value":"video/mp4"},{"Name":"ETag","Value":"\u0022YJL1dE4xcyo0j\u002BaViZAgmjWIQ6ASiDI6qGT7H2rkrUo=\u0022"},{"Name":"Last-Modified","Value":"Wed, 05 Mar 2025 15:38:39 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"7131490"},{"Name":"Content-Type","Value":"video/mp4"},{"Name":"ETag","Value":"\u0022YJL1dE4xcyo0j\u002BaViZAgmjWIQ6ASiDI6qGT7H2rkrUo=\u0022"},{"Name":"Last-Modified","Value":"Thu, 06 Mar 2025 21:28:26 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/API/videos/What is cyber security_1080p.omriu2xs2w.mp4">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\videos\What is cyber security_1080p.mp4'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"omriu2xs2w"},{"Name":"integrity","Value":"sha256-YJL1dE4xcyo0j\u002BaViZAgmjWIQ6ASiDI6qGT7H2rkrUo="},{"Name":"label","Value":"_content/API/videos/What is cyber security_1080p.mp4"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"7131490"},{"Name":"Content-Type","Value":"video/mp4"},{"Name":"ETag","Value":"\u0022YJL1dE4xcyo0j\u002BaViZAgmjWIQ6ASiDI6qGT7H2rkrUo=\u0022"},{"Name":"Last-Modified","Value":"Wed, 05 Mar 2025 15:38:39 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"7131490"},{"Name":"Content-Type","Value":"video/mp4"},{"Name":"ETag","Value":"\u0022YJL1dE4xcyo0j\u002BaViZAgmjWIQ6ASiDI6qGT7H2rkrUo=\u0022"},{"Name":"Last-Modified","Value":"Thu, 06 Mar 2025 21:28:26 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/API/videos/WhatsApp Video 2025-02-25 at 10.39.01_c8b6f98c.aociqg82sv.mp4">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\videos\WhatsApp Video 2025-02-25 at 10.39.01_c8b6f98c.mp4'))</AssetFile>
