@@ -55,7 +55,13 @@ export default function TopicDetails() {
 
   return (
     <Box sx={{ maxWidth: 1600, p: 3 }}>
-      <Card sx={{ mb: 2, p: 2 }}>
+      <Card
+        sx={{
+          mb: 2,
+          p: 2,
+          borderRadius: 2, // Blago zaobljeni uglovi
+        }}
+      >
         <CardContent>
           <Typography variant="h5" sx={{ textAlign: "center" }}>
             {data.title}
@@ -106,6 +112,15 @@ export default function TopicDetails() {
               p: 2,
               maxWidth: 1400,
               animation: "appear 1.2s ease-out",
+              borderRadius: 2, // Blago zaobljeni uglovi
+              backgroundColor: "#f9f9f9", // Svetla pozadina
+              boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)", // Blaga senka
+              transition:
+                "transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out",
+              "&:hover": {
+                transform: "scale(1.02)", // Blago povećanje pri hoveru
+                boxShadow: "0 6px 14px rgba(0, 0, 0, 0.15)", // Jača senka
+              },
             }}
           >
             <CardContent>

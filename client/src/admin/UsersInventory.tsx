@@ -9,6 +9,7 @@ import {
   TableCell,
   TableBody,
   Typography,
+  Avatar,
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
@@ -18,7 +19,6 @@ import {
 } from "../account/accountApi";
 import { useAppSelector } from "../store/store";
 import UserForm from "./UserForm";
-import MySearch from "../catalog/Search";
 import { resetSearchTerm, setPageNumber } from "../account/userSlice";
 import { useDispatch } from "react-redux";
 import AppPagination from "../components/AppPagination";
@@ -27,9 +27,10 @@ export default function UsersInventory() {
   const userParams = useAppSelector((state) => state.users);
 
   const { data, isLoading, refetch } = useFetchUsersQuery(userParams);
+  console.log(data);
   const [deleteUser] = useDeleteUserMutation();
   const [addMode, setAddMode] = useState(false);
-  const searchTerm = useAppSelector((state) => state.users.searchTerm);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(resetSearchTerm()); // Reset pretrage pri učitavanju stranice
@@ -41,9 +42,6 @@ export default function UsersInventory() {
       await deleteUser(id);
       refetch();
       toast.success("Uspješno ste obrisali korisnika");
-      if (filteredUsers.length === 1 && userParams.pageNumber > 1) {
-        dispatch(setPageNumber(userParams.pageNumber - 1));
-      }
     } catch (error) {
       console.log(error);
     }
@@ -56,15 +54,6 @@ export default function UsersInventory() {
 
   // 🔍 Filtriranje korisnika prema searchTerm
   const users = data?.users || [];
-  const filteredUsers = users.filter(
-    (user) =>
-      user.firstName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.lastName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.roles?.some((role) =>
-        role.toLowerCase().includes(searchTerm.toLowerCase())
-      )
-  );
 
   if (addMode) {
     return (
@@ -75,10 +64,6 @@ export default function UsersInventory() {
   return (
     <div
       style={{
-       /*  backgroundImage:
-          "linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 1)), url('background.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center", */
         minHeight: "100vh",
         padding: "20px",
       }}
@@ -94,7 +79,6 @@ export default function UsersInventory() {
       >
         {/* Grupisanje pretrage i dugmeta */}
         <Box sx={{ display: "flex", alignItems: "center", gap: "10px" }}>
-          
           <Button
             sx={{
               color: "white",
@@ -103,7 +87,7 @@ export default function UsersInventory() {
               padding: "6px 12px",
               minWidth: "auto",
               fontSize: "14px",
-              marginLeft:"70px"
+              marginLeft: "70px",
             }}
             size="small"
             variant="contained"
@@ -134,6 +118,7 @@ export default function UsersInventory() {
         >
           <TableHead>
             <TableRow sx={{ borderBottom: "4px solid rgba(0, 0, 0, 0.6)" }}>
+              <TableCell align="center" sx={{ fontWeight: "bold" }}></TableCell>
               <TableCell align="center" sx={{ fontWeight: "bold" }}>
                 IME
               </TableCell>
@@ -156,28 +141,47 @@ export default function UsersInventory() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {filteredUsers.length === 0 ? (
+            {users.length === 0 ? (
               <TableRow>
                 <TableCell colSpan={7} align="center">
                   Nema korisnika koji odgovaraju pretrazi.
                 </TableCell>
               </TableRow>
             ) : (
-              filteredUsers.map((item) => (
+              users.map((item) => (
                 <TableRow
                   key={item.id}
                   sx={{ borderBottom: "2px solid rgba(0, 0, 0, 0.6)" }}
                 >
+                  <TableCell align="center">
+                    {" "}
+                    <Avatar
+                      src={item.profilePicture}
+                      sx={{
+                        width: 40,
+                        height: 40,
+                        border: "4px solid white",
+                        boxShadow: 2,
+                        cursor: "pointer",
+                      }}
+                    />
+                  </TableCell>
                   <TableCell align="center">{item.firstName}</TableCell>
                   <TableCell align="center">{item.lastName}</TableCell>
                   <TableCell align="center">
-                    <div
-                      style={{ display: "inline-flex", alignItems: "center" }}
-                    >
-                      <Email sx={{ marginRight: 1 }} />
-                      {item.email}
-                    </div>
-                  </TableCell>
+  <div
+    style={{
+      display: "flex",
+      alignItems: "center",
+      gap: "10px", // Razmak između ikone i emaila
+      marginLeft: "15px", // Pomera ikonicu i email 15px od početka kolone
+    }}
+  >
+    <Email />
+    <span>{item.email}</span>
+  </div>
+</TableCell>
+
                   <TableCell align="center">{item.gender}</TableCell>
                   <TableCell align="center">
                     <div

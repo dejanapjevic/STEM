@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Xp7bo8aMxHL8LF8gsXDiZv5ippQK9tXrLit0h9hYzG8=",
+  "Hash": "a1ntKEMjqrUPcKUQS9RPwDuEgXbRkX03Xx8ZuZSvNHA=",
   "Source": "API",
   "BasePath": "_content/API",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "API\\wwwroot",
       "Source": "API",
-      "ContentRoot": "C:\\Users\\PC\\Desktop\\STEM\\API\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\PC\\Desktop\\STEM2\\STEM\\API\\wwwroot\\",
       "BasePath": "_content/API",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\PC\\Desktop\\STEM\\API\\wwwroot\\videos\\Bioinformatics in Python_ DNA Toolkit. Part 1_ Validating and counting nucleotides..mp4",
+      "Identity": "C:\\Users\\PC\\Desktop\\STEM2\\STEM\\API\\wwwroot\\videos\\Bioinformatics in Python_ DNA Toolkit. Part 1_ Validating and counting nucleotides..mp4",
       "SourceId": "API",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\PC\\Desktop\\STEM\\API\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\PC\\Desktop\\STEM2\\STEM\\API\\wwwroot\\",
       "BasePath": "_content/API",
       "RelativePath": "videos/Bioinformatics in Python_ DNA Toolkit. Part 1_ Validating and counting nucleotides.#[.{fingerprint}]?.mp4",
       "AssetKind": "All",
@@ -38,10 +38,10 @@
       "OriginalItemSpec": "wwwroot\\videos\\Bioinformatics in Python_ DNA Toolkit. Part 1_ Validating and counting nucleotides..mp4"
     },
     {
-      "Identity": "C:\\Users\\PC\\Desktop\\STEM\\API\\wwwroot\\videos\\Rosalind Problems_ Transcription and Reverse Complement.mp4",
+      "Identity": "C:\\Users\\PC\\Desktop\\STEM2\\STEM\\API\\wwwroot\\videos\\Rosalind Problems_ Transcription and Reverse Complement.mp4",
       "SourceId": "API",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\PC\\Desktop\\STEM\\API\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\PC\\Desktop\\STEM2\\STEM\\API\\wwwroot\\",
       "BasePath": "_content/API",
       "RelativePath": "videos/Rosalind Problems_ Transcription and Reverse Complement#[.{fingerprint}]?.mp4",
       "AssetKind": "All",
@@ -59,10 +59,10 @@
       "OriginalItemSpec": "wwwroot\\videos\\Rosalind Problems_ Transcription and Reverse Complement.mp4"
     },
     {
-      "Identity": "C:\\Users\\PC\\Desktop\\STEM\\API\\wwwroot\\videos\\Top 10 Reasons to Learn Cybersecurity in 2024 _ Why Cybersecurity is Important _ Edureka.mp4",
+      "Identity": "C:\\Users\\PC\\Desktop\\STEM2\\STEM\\API\\wwwroot\\videos\\Top 10 Reasons to Learn Cybersecurity in 2024 _ Why Cybersecurity is Important _ Edureka.mp4",
       "SourceId": "API",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\PC\\Desktop\\STEM\\API\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\PC\\Desktop\\STEM2\\STEM\\API\\wwwroot\\",
       "BasePath": "_content/API",
       "RelativePath": "videos/Top 10 Reasons to Learn Cybersecurity in 2024 _ Why Cybersecurity is Important _ Edureka#[.{fingerprint}]?.mp4",
       "AssetKind": "All",
@@ -80,10 +80,10 @@
       "OriginalItemSpec": "wwwroot\\videos\\Top 10 Reasons to Learn Cybersecurity in 2024 _ Why Cybersecurity is Important _ Edureka.mp4"
     },
     {
-      "Identity": "C:\\Users\\PC\\Desktop\\STEM\\API\\wwwroot\\videos\\What is an API_.mp4",
+      "Identity": "C:\\Users\\PC\\Desktop\\STEM2\\STEM\\API\\wwwroot\\videos\\What is an API_.mp4",
       "SourceId": "API",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\PC\\Desktop\\STEM\\API\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\PC\\Desktop\\STEM2\\STEM\\API\\wwwroot\\",
       "BasePath": "_content/API",
       "RelativePath": "videos/What is an API_#[.{fingerprint}]?.mp4",
       "AssetKind": "All",
@@ -101,10 +101,10 @@
       "OriginalItemSpec": "wwwroot\\videos\\What is an API_.mp4"
     },
     {
-      "Identity": "C:\\Users\\PC\\Desktop\\STEM\\API\\wwwroot\\videos\\What is cyber security_1080p.mp4",
+      "Identity": "C:\\Users\\PC\\Desktop\\STEM2\\STEM\\API\\wwwroot\\videos\\What is cyber security_1080p.mp4",
       "SourceId": "API",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\PC\\Desktop\\STEM\\API\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\PC\\Desktop\\STEM2\\STEM\\API\\wwwroot\\",
       "BasePath": "_content/API",
       "RelativePath": "videos/What is cyber security_1080p#[.{fingerprint}]?.mp4",
       "AssetKind": "All",
@@ -122,10 +122,10 @@
       "OriginalItemSpec": "wwwroot\\videos\\What is cyber security_1080p.mp4"
     },
     {
-      "Identity": "C:\\Users\\PC\\Desktop\\STEM\\API\\wwwroot\\videos\\WhatsApp Video 2025-02-25 at 10.39.01_c8b6f98c.mp4",
+      "Identity": "C:\\Users\\PC\\Desktop\\STEM2\\STEM\\API\\wwwroot\\videos\\WhatsApp Video 2025-02-25 at 10.39.01_c8b6f98c.mp4",
       "SourceId": "API",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\PC\\Desktop\\STEM\\API\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\PC\\Desktop\\STEM2\\STEM\\API\\wwwroot\\",
       "BasePath": "_content/API",
       "RelativePath": "videos/WhatsApp Video 2025-02-25 at 10.39.01_c8b6f98c#[.{fingerprint}]?.mp4",
       "AssetKind": "All",
@@ -146,7 +146,7 @@
   "Endpoints": [
     {
       "Route": "videos/Bioinformatics in Python_ DNA Toolkit. Part 1_ Validating and counting nucleotides..mp4",
-      "AssetFile": "C:\\Users\\PC\\Desktop\\STEM\\API\\wwwroot\\videos\\Bioinformatics in Python_ DNA Toolkit. Part 1_ Validating and counting nucleotides..mp4",
+      "AssetFile": "C:\\Users\\PC\\Desktop\\STEM2\\STEM\\API\\wwwroot\\videos\\Bioinformatics in Python_ DNA Toolkit. Part 1_ Validating and counting nucleotides..mp4",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -167,7 +167,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 06 Mar 2025 21:40:03 GMT"
+          "Value": "Sun, 09 Mar 2025 15:15:33 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -183,7 +183,7 @@
     },
     {
       "Route": "videos/Bioinformatics in Python_ DNA Toolkit. Part 1_ Validating and counting nucleotides..yun59uxcno.mp4",
-      "AssetFile": "C:\\Users\\PC\\Desktop\\STEM\\API\\wwwroot\\videos\\Bioinformatics in Python_ DNA Toolkit. Part 1_ Validating and counting nucleotides..mp4",
+      "AssetFile": "C:\\Users\\PC\\Desktop\\STEM2\\STEM\\API\\wwwroot\\videos\\Bioinformatics in Python_ DNA Toolkit. Part 1_ Validating and counting nucleotides..mp4",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -204,7 +204,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 06 Mar 2025 21:40:03 GMT"
+          "Value": "Sun, 09 Mar 2025 15:15:33 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -228,7 +228,7 @@
     },
     {
       "Route": "videos/Rosalind Problems_ Transcription and Reverse Complement.mp4",
-      "AssetFile": "C:\\Users\\PC\\Desktop\\STEM\\API\\wwwroot\\videos\\Rosalind Problems_ Transcription and Reverse Complement.mp4",
+      "AssetFile": "C:\\Users\\PC\\Desktop\\STEM2\\STEM\\API\\wwwroot\\videos\\Rosalind Problems_ Transcription and Reverse Complement.mp4",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -249,7 +249,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 06 Mar 2025 21:39:57 GMT"
+          "Value": "Sun, 09 Mar 2025 15:15:33 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -265,7 +265,7 @@
     },
     {
       "Route": "videos/Rosalind Problems_ Transcription and Reverse Complement.yww9lgf0bb.mp4",
-      "AssetFile": "C:\\Users\\PC\\Desktop\\STEM\\API\\wwwroot\\videos\\Rosalind Problems_ Transcription and Reverse Complement.mp4",
+      "AssetFile": "C:\\Users\\PC\\Desktop\\STEM2\\STEM\\API\\wwwroot\\videos\\Rosalind Problems_ Transcription and Reverse Complement.mp4",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -286,7 +286,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 06 Mar 2025 21:39:57 GMT"
+          "Value": "Sun, 09 Mar 2025 15:15:33 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -310,7 +310,7 @@
     },
     {
       "Route": "videos/Top 10 Reasons to Learn Cybersecurity in 2024 _ Why Cybersecurity is Important _ Edureka.mp4",
-      "AssetFile": "C:\\Users\\PC\\Desktop\\STEM\\API\\wwwroot\\videos\\Top 10 Reasons to Learn Cybersecurity in 2024 _ Why Cybersecurity is Important _ Edureka.mp4",
+      "AssetFile": "C:\\Users\\PC\\Desktop\\STEM2\\STEM\\API\\wwwroot\\videos\\Top 10 Reasons to Learn Cybersecurity in 2024 _ Why Cybersecurity is Important _ Edureka.mp4",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -331,7 +331,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 06 Mar 2025 21:33:38 GMT"
+          "Value": "Sun, 09 Mar 2025 15:15:33 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -347,7 +347,7 @@
     },
     {
       "Route": "videos/Top 10 Reasons to Learn Cybersecurity in 2024 _ Why Cybersecurity is Important _ Edureka.uppjihday3.mp4",
-      "AssetFile": "C:\\Users\\PC\\Desktop\\STEM\\API\\wwwroot\\videos\\Top 10 Reasons to Learn Cybersecurity in 2024 _ Why Cybersecurity is Important _ Edureka.mp4",
+      "AssetFile": "C:\\Users\\PC\\Desktop\\STEM2\\STEM\\API\\wwwroot\\videos\\Top 10 Reasons to Learn Cybersecurity in 2024 _ Why Cybersecurity is Important _ Edureka.mp4",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -368,7 +368,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 06 Mar 2025 21:33:38 GMT"
+          "Value": "Sun, 09 Mar 2025 15:15:33 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -392,7 +392,7 @@
     },
     {
       "Route": "videos/What is an API_.mp4",
-      "AssetFile": "C:\\Users\\PC\\Desktop\\STEM\\API\\wwwroot\\videos\\What is an API_.mp4",
+      "AssetFile": "C:\\Users\\PC\\Desktop\\STEM2\\STEM\\API\\wwwroot\\videos\\What is an API_.mp4",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -413,7 +413,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 05 Mar 2025 15:38:39 GMT"
+          "Value": "Sun, 09 Mar 2025 15:15:33 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -429,7 +429,7 @@
     },
     {
       "Route": "videos/What is an API_.x1h5egxkvq.mp4",
-      "AssetFile": "C:\\Users\\PC\\Desktop\\STEM\\API\\wwwroot\\videos\\What is an API_.mp4",
+      "AssetFile": "C:\\Users\\PC\\Desktop\\STEM2\\STEM\\API\\wwwroot\\videos\\What is an API_.mp4",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -450,7 +450,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 05 Mar 2025 15:38:39 GMT"
+          "Value": "Sun, 09 Mar 2025 15:15:33 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -474,7 +474,7 @@
     },
     {
       "Route": "videos/What is cyber security_1080p.mp4",
-      "AssetFile": "C:\\Users\\PC\\Desktop\\STEM\\API\\wwwroot\\videos\\What is cyber security_1080p.mp4",
+      "AssetFile": "C:\\Users\\PC\\Desktop\\STEM2\\STEM\\API\\wwwroot\\videos\\What is cyber security_1080p.mp4",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -495,7 +495,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 06 Mar 2025 21:28:26 GMT"
+          "Value": "Sun, 09 Mar 2025 15:15:33 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -511,7 +511,7 @@
     },
     {
       "Route": "videos/What is cyber security_1080p.omriu2xs2w.mp4",
-      "AssetFile": "C:\\Users\\PC\\Desktop\\STEM\\API\\wwwroot\\videos\\What is cyber security_1080p.mp4",
+      "AssetFile": "C:\\Users\\PC\\Desktop\\STEM2\\STEM\\API\\wwwroot\\videos\\What is cyber security_1080p.mp4",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -532,7 +532,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 06 Mar 2025 21:28:26 GMT"
+          "Value": "Sun, 09 Mar 2025 15:15:33 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -556,7 +556,7 @@
     },
     {
       "Route": "videos/WhatsApp Video 2025-02-25 at 10.39.01_c8b6f98c.aociqg82sv.mp4",
-      "AssetFile": "C:\\Users\\PC\\Desktop\\STEM\\API\\wwwroot\\videos\\WhatsApp Video 2025-02-25 at 10.39.01_c8b6f98c.mp4",
+      "AssetFile": "C:\\Users\\PC\\Desktop\\STEM2\\STEM\\API\\wwwroot\\videos\\WhatsApp Video 2025-02-25 at 10.39.01_c8b6f98c.mp4",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -577,7 +577,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 05 Mar 2025 15:38:39 GMT"
+          "Value": "Sun, 09 Mar 2025 15:15:33 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -601,7 +601,7 @@
     },
     {
       "Route": "videos/WhatsApp Video 2025-02-25 at 10.39.01_c8b6f98c.mp4",
-      "AssetFile": "C:\\Users\\PC\\Desktop\\STEM\\API\\wwwroot\\videos\\WhatsApp Video 2025-02-25 at 10.39.01_c8b6f98c.mp4",
+      "AssetFile": "C:\\Users\\PC\\Desktop\\STEM2\\STEM\\API\\wwwroot\\videos\\WhatsApp Video 2025-02-25 at 10.39.01_c8b6f98c.mp4",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -622,7 +622,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 05 Mar 2025 15:38:39 GMT"
+          "Value": "Sun, 09 Mar 2025 15:15:33 GMT"
         },
         {
           "Name": "Cache-Control",

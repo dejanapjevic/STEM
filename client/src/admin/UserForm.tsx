@@ -21,6 +21,7 @@ import { useAddUserMutation, useFetchUsersQuery } from "../account/accountApi";
 import { toast } from "react-toastify";
 import { addUserSchema } from "../schemas/AddUserSchema";
 import { useEffect } from "react";
+import { useAppSelector } from "../store/store";
 interface UserFormValues {
   roles: string[];
   email: string;
@@ -52,8 +53,9 @@ export default function UserForm({ onCancel, onSuccess }: Props) {
     },
   });
 
+  const userParams = useAppSelector((state) => state.users);
   const [addUser, { isLoading: isSubmitting }] = useAddUserMutation();
-  const { refetch } = useFetchUsersQuery();
+  const { refetch } = useFetchUsersQuery(userParams);
   const onSubmit = async (data: any) => {
     try {
       await addUser(data);
