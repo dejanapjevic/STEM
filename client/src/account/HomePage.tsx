@@ -19,6 +19,7 @@ import {
   Card,
   CardContent,
   CardActions,
+  CircularProgress,
 } from "@mui/material";
 
 import {
@@ -39,13 +40,16 @@ import { toast } from "react-toastify";
 import {
   useChangePasswordMutation,
   useUpdateUserMutation,
+  useUploadProfilePictureMutation,
   useUserInfoQuery,
 } from "./accountApi";
 
 export default function ProfilePage() {
   const { data: user, refetch } = useUserInfoQuery();
+  console.log(user);
   const [updateUser] = useUpdateUserMutation();
   const [changePassword] = useChangePasswordMutation();
+  const [uploadProfilePicture] = useUploadProfilePictureMutation();
   const [dialogChangePassword, setDialogChangePasswordOpen] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -59,6 +63,7 @@ export default function ProfilePage() {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -80,6 +85,27 @@ export default function ProfilePage() {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+  const [image, setImage] = useState("user.jpg");
+
+  const handleImageChange = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    if (event.target.files && event.target.files[0]) {
+      const formData = new FormData();
+      formData.append("file", event.target.files[0]); // Dodaj fajl pod ključem "file"
+
+      try {
+        // Pozovi mutaciju za upload slike
+        const response = await uploadProfilePicture(formData).unwrap();
+
+        refetch();
+        // Pošto odgovor vraća string (putanju slike), postavi tu vrednost
+        setImage(response); // Direktno postavi URL slike
+      } catch (error) {
+        console.error("Upload failed:", error);
+      }
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -110,6 +136,7 @@ export default function ProfilePage() {
     }
 
     try {
+      setIsSubmitting(true); // Počinjemo sa slanjem
       const formData = new FormData();
       formData.append("firstName", userData.firstName);
       formData.append("lastName", userData.lastName);
@@ -125,9 +152,11 @@ export default function ProfilePage() {
       setDialogOpen(false);
       handleClose();
       toast.success("Uspješno ste ažurirali lične podatke!");
+      setIsSubmitting(false);
       await refetch(); // Osvježavanje podataka nakon ažuriranja
     } catch (error) {
       console.error("Greška pri ažuriranju korisničkih podataka:", error);
+      setIsSubmitting(false);
     }
   };
 
@@ -137,17 +166,21 @@ export default function ProfilePage() {
       return;
     }
     try {
+      setIsSubmitting(true);
       await changePassword({
         currentPassword,
         newPassword,
       }).unwrap();
       setDialogChangePasswordOpen(false);
+      handleClose();
       toast.success("Lozinka je uspješno promijenjena!");
+      setIsSubmitting(false);
       setCurrentPassword("");
       setConfirmPassword("");
       setNewPassword("");
     } catch (error) {
       console.error("Greška prilikom promjene lozinke:", error);
+      setIsSubmitting(false);
     }
   };
 
@@ -168,21 +201,31 @@ export default function ProfilePage() {
         sx={{ position: "relative", top: -30, display: "flex", gap: 2 }}
       >
         <Avatar
-          src="user.jpg"
+          src={user?.profilePicture}
           sx={{
             width: 140,
             height: 140,
             border: "4px solid white",
             boxShadow: 2,
+            cursor: "pointer",
           }}
+          onClick={() => document.getElementById("imageUpload")?.click()}
+        />
+        {/* Input za upload (skriven) */}
+        <input
+          type="file"
+          id="imageUpload"
+          accept="image/*"
+          style={{ display: "none" }}
+          onChange={handleImageChange}
         />
         <IconButton
           onClick={handleClick}
           sx={{
-            position: "absolute",
             top: "110px",
-            right: "10px",
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            width: "30px",
+            height: "30px",
+            backgroundColor: "blue",
             color: "white",
             borderRadius: "50%",
             padding: "5px",
@@ -339,15 +382,15 @@ export default function ProfilePage() {
           </Grid>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setDialogOpen(false)} sx={{ color: "black" }}>
+          <Button onClick={() => setDialogOpen(false)} sx={{ color: "red" }}>
             Otkaži
           </Button>
           <Button
             onClick={handleSaveData}
             startIcon={<Save />}
-            variant="contained"
+            variant="outlined"
           >
-            Sačuvaj
+            {isSubmitting ? <CircularProgress /> : "Sačuvaj "}
           </Button>
         </DialogActions>
       </Dialog>
@@ -393,15 +436,18 @@ export default function ProfilePage() {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setDialogChangePasswordOpen(false)}>
+          <Button
+            onClick={() => setDialogChangePasswordOpen(false)}
+            sx={{ color: "red" }}
+          >
             Otkaži
           </Button>
           <Button
             onClick={handleChangePassword}
             startIcon={<Save />}
-            variant="contained"
+            variant="outlined"
           >
-            Sačuvaj
+            {isSubmitting ? <CircularProgress /> : "Sačuvaj "}
           </Button>
         </DialogActions>
       </Dialog>

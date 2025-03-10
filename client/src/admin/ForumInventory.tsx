@@ -11,7 +11,6 @@ import {
 import { useDeleteTopicMutation, useFetchTopicsQuery } from "../forum/forumApi";
 import { toast } from "react-toastify";
 import { useAppDispatch, useAppSelector } from "../store/store";
-import AppPagination from "../components/AppPagination";
 import { setPageNumber, setPageSize } from "../forum/forumSlice";
 import { useEffect } from "react";
 
@@ -24,7 +23,6 @@ export default function ForumInventory() {
   }, [dispatch]);
 
   const { data, isLoading, refetch } = useFetchTopicsQuery(forumParams);
-  console.log(data);
   const [deleteTopic] = useDeleteTopicMutation();
 
   const handleDeleteTopic = async (id: number) => {
@@ -36,31 +34,21 @@ export default function ForumInventory() {
       console.log(error);
     }
   };
+  console.log(data);
 
   if (isLoading || !data) return <div>Loading....</div>;
 
   return (
     <div
       style={{
+        backgroundImage:
+          "linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 1)), url('background.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
         minHeight: "100vh",
+        padding: "20px",
       }}
     >
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center", // Poravnava elemente vertikalno
-          width: "100%", // Osigurava da div zauzme celu širinu
-        }}
-      >
-        <div style={{ marginLeft: "auto" }}>
-          <AppPagination
-            metadata={data.pagination}
-            onPageChange={(page: number) => dispatch(setPageNumber(page))}
-          />
-        </div>
-      </div>
-
       <Table
         sx={{
           minWidth: 650,

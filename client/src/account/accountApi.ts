@@ -103,6 +103,13 @@ export const accountApi = createApi({
         };
       },
     }),
+    uploadProfilePicture: builder.mutation<string, FormData>({
+      query: (formData) => ({
+        url: "account/upload-profile-picture",
+        method: "POST",
+        body: formData,
+      }),
+    }),
     resetPassword: builder.mutation<{ message: string }, { email: string }>({
       query: (data) => ({
         url: "account/reset-password",
@@ -165,4 +172,5 @@ export const {
   useUpdateUserMutation,
   useResetPasswordMutation,
   useChangePasswordMutation,
+  useUploadProfilePictureMutation,
 } = accountApi;

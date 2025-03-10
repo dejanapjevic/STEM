@@ -46,7 +46,7 @@ namespace API.Controllers
                 FirstName = registerDto.FirstName,
                 LastName = registerDto.LastName,
                 Gender = registerDto.Gender,
-                DateOfBirth = registerDto.DateOfBirth
+                DateOfBirth = registerDto.DateOfBirth,
             };
             //va metoda će pokušati da kreira korisnika i vratiti rezultat, koji može biti uspešan ili neuspešan. 
             //Taj rezultat se čuva u promenljivoj result.
@@ -91,7 +91,8 @@ namespace API.Controllers
                 user.LastName,
                 user.Gender,
                 user.DateOfBirth,
-                Roles = roles
+                Roles = roles,
+                user.ProfilePicture
             });
         }
 
@@ -128,7 +129,8 @@ namespace API.Controllers
                     user.LastName,
                     user.Gender,
                     user.DateOfBirth,
-                    Roles = roles
+                    Roles = roles,
+                    user.ProfilePicture
                 });
             }
             Response.AddPaginationHeader(users.Metadata);
@@ -267,8 +269,23 @@ namespace API.Controllers
             }
             return Ok(new { isAuthenticated = false });
         }
+        [HttpPost("upload-profile-picture")]
+        public async Task<ActionResult> UploadProfilePicture(IFormFile file)
+        {
+            if (file == null)
+            {
+                return BadRequest("File not received");
+            }
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null) return Unauthorized();
+            string pictureUrl = new UploadImageHandler().UploadProfilePicture(file);
+            user.ProfilePicture = pictureUrl;
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
+            return Ok(new { pictureUrl });
 
-        
+        }
+
     }
 }
 /*Kada pozoveš CreateAsync metodu, UserManager koristi IdentityUser klasu (ili tvoju prilagođenu verziju klase korisnika) 

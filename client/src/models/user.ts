@@ -7,5 +7,5 @@ export type User = {
   dateOfBirth: Date | string;
   roles: string[];
   password?: string;
-  
+  profilePicture:string;
 };

@@ -9,17 +9,14 @@ namespace API.Services
     {
         public string Upload(IFormFile file)
         {
-            //extension
+            
             string extension = Path.GetExtension(file.FileName).ToLowerInvariant();
-            List<string> validExtensions = new List<string> { ".jpg", ".jpeg", ".png", ".gif", ".bmp", ".tiff", ".webp" };
+            List<string> validExtensions = new List<string> { ".jpg", ".jpeg", ".png", ".gif", ".bmp", ".tiff", ".webp", ".avif" };
             if (!validExtensions.Contains(extension))
             {
                 return $"Ekstenzija nije validna!({string.Join(", ", validExtensions)})";
             }
-            //file size
-            /* long size=file.Length; //u bajtovima
-            if(size>(6*1024*1024)) {
-             return "Maksimalna veličina je 6MB"; */
+
             long size = file.Length;
 
             if (size > (7 * 1024 * 1024))
@@ -27,15 +24,39 @@ namespace API.Services
                 return "Maksimalna veličina je 7MB";
 
             }
-            //file name
             string fileName = Guid.NewGuid().ToString() + extension;
-            //save on server
-            //string path = Path.Combine(Directory.GetCurrentDirectory(),"Uploads");
-            string path = @"C:\Users\PC\Desktop\STEMObrazovanje\client\public\images\articles";
+            string path = @"C:\Users\PC\Desktop\STEM\client\public\images\articles";
             using FileStream stream = new FileStream(Path.Combine(path, fileName), FileMode.Create);
             file.CopyTo(stream);
 
             string fileUrl = $"/images/articles/{fileName}";
+            return fileUrl;
+
+        }
+
+        public string UploadProfilePicture(IFormFile file)
+        {
+            
+            string extension = Path.GetExtension(file.FileName).ToLowerInvariant();
+            List<string> validExtensions = new List<string> { ".jpg", ".jpeg", ".png", ".gif", ".bmp", ".tiff", ".webp", ".aif"};
+            if (!validExtensions.Contains(extension))
+            {
+                return $"Ekstenzija nije validna!({string.Join(", ", validExtensions)})";
+            }
+
+            long size = file.Length;
+
+            if (size > (7 * 1024 * 1024))
+            {
+                return "Maksimalna veličina je 7MB";
+
+            }
+            string fileName = Guid.NewGuid().ToString() + extension;
+            string path = @"C:\Users\PC\Desktop\STEM\client\public\images\profilePictures";
+            using FileStream stream = new FileStream(Path.Combine(path, fileName), FileMode.Create);
+            file.CopyTo(stream);
+
+            string fileUrl = $"/images/profilePictures/{fileName}";
             return fileUrl;
 
         }

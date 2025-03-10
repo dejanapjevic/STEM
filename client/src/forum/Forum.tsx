@@ -58,21 +58,13 @@ export default function Forum() {
         sx={{ display: "flex", justifyContent: "space-between", width: "100%" }}
       >
         <Button
-        variant="contained"
-        sx={{ m: 1, ml:2.5 }}
-        onClick={() => setOpenDialog(true)}
-      >
-        Dodaj temu
-      </Button>
-        {data?.pagination && (
-          <AppPagination
-            metadata={data.pagination}
-            onPageChange={(page: number) => dispatch(setPageNumber(page))}
-          />
-        )}
+          variant="contained"
+          sx={{ m: 1, ml: 2.5 }}
+          onClick={() => setOpenDialog(true)}
+        >
+          Dodaj temu
+        </Button>
       </Box>
-
-      
 
       {/* Dialog za unos nove teme */}
       <Dialog
@@ -103,7 +95,21 @@ export default function Forum() {
       {data?.topics?.map((topic) => (
         <Card
           key={topic.id}
-          sx={{ animation: "appear 1.2s ease-out", height: 160, margin: 2 }}
+          sx={{
+            animation: "appear 1.2s ease-out",
+            height: 138,
+            margin: 2,
+            padding: 2,
+            borderRadius: 2, // Blago zaobljeni uglovi
+            backgroundColor: "#f9f9f9", // Svetla pozadina
+            boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)", // Blaga senka
+            transition:
+              "transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out",
+            "&:hover": {
+              transform: "scale(1.02)", // Blago povećanje pri hoveru
+              boxShadow: "0 6px 14px rgba(0, 0, 0, 0.15)", // Jača senka
+            },
+          }}
         >
           <CardContent
             sx={{
@@ -116,7 +122,7 @@ export default function Forum() {
             }}
           >
             <Typography
-              fontSize={16}
+              fontSize={20} // Veći font za bolju vidljivost
               marginBottom={1}
               align="center"
               sx={{
@@ -128,17 +134,27 @@ export default function Forum() {
                 WebkitBoxOrient: "vertical",
                 WebkitLineClamp: 4,
                 fontWeight: "bold",
+                color: "#2c3e50", // Tamnija nijansa plave za ozbiljniji ton
+                letterSpacing: 1.3, // Blago povećan razmak između slova
+                textShadow: "2px 2px 4px rgba(0,0,0,0.2)", // Blaga senka za dubinu
               }}
             >
               {topic.title}
             </Typography>
 
             <Typography fontSize={12} color="textSecondary" align="center">
-              Autor: {topic.user?.firstName} {topic.user?.lastName} | Datum:{" "}
-              {new Date(topic.createdAt).toLocaleDateString()}
+              <strong style={{ color: "#0077b6" }}>
+                {topic.user?.firstName} {topic.user?.lastName}
+              </strong>{" "}
+              |{" "}
+              <span style={{ fontStyle: "italic", color: "#888" }}>
+                {" "}
+                {new Date(topic.createdAt).toLocaleDateString()}
+              </span>
             </Typography>
-            <Typography fontSize={12} color="textSecondary" align="center">
-              Broj odgovora: {topic.replyCount}
+            <Typography fontSize={14} color="#555" align="center">
+              <strong style={{ color: "#d9534f" }}>Broj odgovora:</strong>{" "}
+              {topic.replyCount}
             </Typography>
             <Button
               variant="outlined"
@@ -150,6 +166,22 @@ export default function Forum() {
           </CardContent>
         </Card>
       ))}
+      {data?.pagination && (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            position: "absolute",
+            bottom: 0, // Fiksiranje na dno
+            width: "100%", // Širina treba biti 100% da pokrije celu širinu ekrana
+          }}
+        >
+          <AppPagination
+            metadata={data.pagination}
+            onPageChange={(page: number) => dispatch(setPageNumber(page))}
+          />
+        </Box>
+      )}
     </Box>
   );
 }
