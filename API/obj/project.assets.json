@@ -10714,11 +10714,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\PC\\Desktop\\STEM\\API\\API.csproj",
+      "projectUniqueName": "C:\\Users\\PC\\Desktop\\STEM2\\STEM\\API\\API.csproj",
       "projectName": "API",
-      "projectPath": "C:\\Users\\PC\\Desktop\\STEM\\API\\API.csproj",
+      "projectPath": "C:\\Users\\PC\\Desktop\\STEM2\\STEM\\API\\API.csproj",
       "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\PC\\Desktop\\STEM\\API\\obj\\",
+      "outputPath": "C:\\Users\\PC\\Desktop\\STEM2\\STEM\\API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
