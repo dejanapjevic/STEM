@@ -9,6 +9,7 @@ import { setForumSearchTerm } from "../forum/forumSlice";
 import { setQuizSearchTerm } from "../quiz&test/quizSlice";
 import { useLocation } from "react-router-dom";
 import { setSearchType } from "../store/searchSlice";
+import { setTutorialSearchTerm } from "../video-lectures/tutorialSlice";
 
 interface SearchProps {
   type: "articles" | "users" | "forum" | "tutorials" | "quiz";
@@ -49,15 +50,15 @@ export default function MySearch({ type }: SearchProps) {
 
   useEffect(() => {
     // Na osnovu rute postavljamo odgovarajući tip pretrage
-    if (location.pathname.includes("/userinventory")) {
+    if (location.pathname.includes("/userInventory")) {
       dispatch(setSearchType("users"));
     } else if (location.pathname.includes("/forum")) {
       dispatch(setSearchType("forum"));
-    } else if (location.pathname.includes("/tutorials")|| location.pathname.includes("/tutorialinventory")) {
+    } else if (location.pathname.includes("/tutorials")|| location.pathname.includes("/tutorialInventory")) {
       dispatch(setSearchType("tutorials"));
-    } else if (location.pathname.includes("/quizinventory")) {
+    } else if (location.pathname.includes("/quizInventory")) {
       dispatch(setSearchType("quiz"));
-    } else if (location.pathname.includes("/catalog") || location.pathname.includes("/cataloginventory")) {
+    } else if (location.pathname.includes("/catalog") || location.pathname.includes("/catalogInventory")) {
       dispatch(setSearchType("articles"));
     }
     
@@ -79,6 +80,9 @@ export default function MySearch({ type }: SearchProps) {
         break;
       case "quiz":
         dispatch(setQuizSearchTerm(event.target.value));
+        break;
+        case "tutorials":
+        dispatch(setTutorialSearchTerm(event.target.value));
         break;
     }
   }, 500);

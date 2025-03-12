@@ -8,10 +8,9 @@ import {
   Menu,
   MenuItem,
   Avatar,
-  Typography,
   Divider,
 } from "@mui/material";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useLogoutMutation, useUserInfoQuery } from "../account/accountApi";
 import { useAppSelector } from "../store/store";
 import {

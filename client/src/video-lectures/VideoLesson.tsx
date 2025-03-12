@@ -11,8 +11,8 @@ import {
 import {
   ArrowBack,
   ArrowForward,
+  CheckCircle,
   DoneOutline,
-  Star,
 } from "@mui/icons-material";
 import {
   useFetchProgressForUserQuery,
@@ -58,7 +58,7 @@ export const VideoLesson = () => {
     ? useFetchProgressForUserQuery(user.id)
     : { data: [] }; // Ensure progress is always an array
   const [updateProgress] = useUpdateProgressMutation();
-
+  console.log(progress);
   useEffect(() => {
     if (!data?.tutorials || data.tutorials.length === 0) {
       setVideos([]);
@@ -161,24 +161,13 @@ export const VideoLesson = () => {
 
   const isTutorialCompleted = (tutorialId: number): boolean => {
     const videosForTutorial = groupedVideos[tutorialId] || [];
-    return videosForTutorial.every(
-      (video) => watchedVideos[video.id] === true
-    );
+    return videosForTutorial.every((video) => watchedVideos[video.id] === true);
   };
 
   if (isLoading) return <Typography>Loading...</Typography>;
 
   return (
     <>
-      <div style={{ display: "flex", justifyContent: "right" }}>
-        {data?.pagination && (
-          <AppPagination
-            metadata={data.pagination}
-            onPageChange={(page: number) => dispatch(setPageNumber(page))}
-          />
-        )}
-      </div>
-
       <Grid container spacing={3} padding="10px">
         {Object.keys(groupedVideos).map((tutorialId) => {
           const numericTutorialId = Number(tutorialId);
@@ -188,8 +177,7 @@ export const VideoLesson = () => {
           const videosForTutorial = groupedVideos[numericTutorialId] || [];
           const currentIndex = currentVideoIndex[numericTutorialId] || 0;
           const currentVideo = videosForTutorial[currentIndex];
-          const isTutorialStarred =
-            isTutorialCompleted(numericTutorialId);
+          const isTutorialStarred = isTutorialCompleted(numericTutorialId);
 
           return (
             <Grid item xs={12} sm={6} md={4} key={numericTutorialId}>
@@ -201,24 +189,31 @@ export const VideoLesson = () => {
                 }}
               >
                 <CardContent sx={{ flexGrow: 1, height: "200px" }}>
-                  <Typography variant="h6" fontWeight="bold">
+                  <Typography
+                    variant="h6"
+                    fontWeight="bold"
+                    sx={{ display: "flex", alignItems: "center" }}
+                  >
                     {tutorial?.name}
-                    <Star
+                    <CheckCircle
                       sx={{
                         marginLeft: "20px",
+                        height: "50px",
+                        width: "50px",
                         color: isTutorialStarred ? "green" : "gray", // Change color based on isStarred
                       }}
                     />
                   </Typography>
+
                   <Typography
                     variant="body2"
                     color="text.secondary"
                     sx={{
                       height: "140px",
-                      overflow: "hidden",
-                      display: "-webkit-box",
+                      overflowY: "auto", // Dodajte scroll na vertikalnoj osi
+                      display: "block", // Ukoliko želite da sadržaj bude prikazan u blok formatu
                       WebkitBoxOrient: "vertical",
-                      WebkitLineClamp: 5,
+                      WebkitLineClamp: "none", // Uklonite WebkitLineClamp, jer želimo da omogućimo scroll
                     }}
                   >
                     {tutorial?.description}
@@ -282,7 +277,6 @@ export const VideoLesson = () => {
                     onClick={() => handleNext(numericTutorialId)}
                     disabled={videosForTutorial.length === 0}
                   >
-                  
                     <ArrowForward />
                   </IconButton>
                 </Box>
@@ -291,6 +285,25 @@ export const VideoLesson = () => {
           );
         })}
       </Grid>
+      <div
+        style={{
+          position: "fixed",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          display: "flex",
+          justifyContent: "center",
+
+          zIndex: 1000,
+        }}
+      >
+        {data?.pagination && (
+          <AppPagination
+            metadata={data.pagination}
+            onPageChange={(page: number) => dispatch(setPageNumber(page))}
+          />
+        )}
+      </div>
     </>
   );
 };

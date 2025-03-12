@@ -9,7 +9,7 @@ interface TutorialState {
 const initialStateTutorial:     TutorialState = {
   searchTerm: "",
   pageNumber: 1, // podrazumjevano se prikazuje prva stranica.
-  pageSize: 2,
+  pageSize: 3,
 };
 
 export const tutorialSlice = createSlice({

@@ -22,19 +22,16 @@ import { useAppDispatch, useAppSelector } from "../store/store";
 import {
   useCreateTutorialMutation,
   useDeleteTutorialMutation,
-  useFetchProgressForUserQuery,
   useFetchTutorialsQuery,
   useFetchVideosQuery,
 } from "./tutorialApi";
 import { setPageNumber } from "./tutorialSlice";
 import VideoUpload from "./videoUpload";
-import { useUserInfoQuery } from "../account/accountApi";
 
 export default function TutorialInventory() {
   const dispatch = useAppDispatch();
   const [addTutorial] = useCreateTutorialMutation();
   const [deleteTutorial] = useDeleteTutorialMutation();
- 
 
   const tutorialParams = useAppSelector((state) => state.tutorial);
   const {
@@ -109,7 +106,11 @@ export default function TutorialInventory() {
         <Button
           onClick={handleOpen}
           variant="contained"
-          sx={{ marginTop: "15px", backgroundColor: "black" }}
+          sx={{
+            marginTop: "15px",
+            marginLeft: "55px",
+            backgroundColor: "black",
+          }}
         >
           Dodaj novi tutorijal
         </Button>
@@ -257,3 +258,4 @@ export default function TutorialInventory() {
     </div>
   );
 }
+

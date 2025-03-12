@@ -92,7 +92,9 @@ export default function ArticleForm({
           console.log(`${pair[0]}: ${pair[1]}`);
         }
 
-        await updateArticle({ id: article.id, data: formData }); //ovo
+        // await updateArticle({ id: article.id, data: formData }); 
+        await updateArticle({ id: article.id.toString(), data: formData });
+
         handleConfirmation();
       } else {
         console.log("Podaci za kreiranje");
@@ -186,7 +188,7 @@ const handleConfirmation = () => {
             variant="contained"
             type="submit"
             disabled={isSubmitting}
-           // onClick={() => handleConfirmation()}
+           
           >
             {isSubmitting ? <CircularProgress /> : "Sačuvaj članak"}
             

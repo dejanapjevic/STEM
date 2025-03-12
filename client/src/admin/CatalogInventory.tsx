@@ -20,7 +20,6 @@ import ArticleForm from "./ArticleForm";
 import { Article } from "../models/article";
 import { useDeleteArticleMutation } from "./adminApi";
 import { toast } from "react-toastify";
-import MySearch from "../catalog/Search";
 
 export default function CatalogInventory() {
   const articleParams = useAppSelector((state) => state.catalog);
@@ -69,6 +68,10 @@ export default function CatalogInventory() {
   return (
     <div
       style={{
+        backgroundImage:
+          "linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 1)), url('background.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
         minHeight: "100vh",
         padding: "20px",
       }}
@@ -86,13 +89,10 @@ export default function CatalogInventory() {
             sx={{
               color: "white",
               backgroundColor: "black",
-              whiteSpace: "nowrap",
-              padding: "6px 12px",
-              minWidth: "auto",
-              fontSize: "14px",
-              marginLeft:"77px"
+              width: "300px",
+              marginTop: "6px",
             }}
-            size="small"
+            size="large"
             variant="contained"
           >
             Kreiraj članak
@@ -183,21 +183,11 @@ export default function CatalogInventory() {
               <TableCell align="center">
                 <Button
                   onClick={() => handleSelectedArticle(article)}
-                  startIcon={<Edit sx={{
-                    fontSize: 35,
-                    width: 22,
-                    height: 22,
-                    transform: "scale(1.5)",
-                  }} />}
+                  startIcon={<Edit />}
                 />
                 <Button
                   onClick={() => handleDeleteArticle(article.id)}
-                  startIcon={<Delete  sx={{
-                    fontSize: 35,
-                    width: 22,
-                    height: 22,
-                    transform: "scale(1.5)",
-                  }}/>}
+                  startIcon={<Delete />}
                   color="error"
                 />
               </TableCell>
