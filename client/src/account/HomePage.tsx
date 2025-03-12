@@ -359,7 +359,11 @@ export default function ProfilePage() {
                 label="Datum rođenja"
                 type="date"
                 InputLabelProps={{ shrink: true }}
-                value={userData.dateOfBirth}
+                value={
+                  userData.dateOfBirth
+                    ? userData.dateOfBirth.split("/").reverse().join("-")
+                    : ""
+                }
                 onChange={handleInputChange}
                 size="small"
                 variant="standard"
