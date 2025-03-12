@@ -46,13 +46,12 @@ export const baseQueryWithErrorHandling = async (
       case 401:
         if (typeof responseData === "object" && "title" in responseData) {
           toast.error(
-            responseData.title +
-              "!Ne postoji registrovan korisnik sa tim podacima"
+            responseData.title + " - Provjerite lozinku ili korisničko ime!"
           ); // Sada je pristup validan
         }
         break;
       case 403:
-        if (typeof responseData === "object" ) {
+        if (typeof responseData === "object") {
           toast.error("403 Forbidden"); // Sada je pristup validan
         }
         break;

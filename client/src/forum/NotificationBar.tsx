@@ -34,7 +34,7 @@ const NotificationBar = () => {
         right: "3%",
         width: "50%",
         backgroundColor: "white",
-        border:"2px solid grey",
+        border: "2px solid grey",
         zIndex: 1000,
         padding: "1%",
         fontSize: "18px",
@@ -44,10 +44,15 @@ const NotificationBar = () => {
         justifyContent: "center",
       }}
     >
-      <p>
-        <Comment color="info"/>
+      <p
+        style={{
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <Comment color="info" style={{ marginRight: "8px" }} />{" "}
         {currentNotification}
-        </p>
+      </p>
 
       <button
         onClick={handleClose}
