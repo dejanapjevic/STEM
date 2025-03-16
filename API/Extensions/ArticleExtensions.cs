@@ -20,7 +20,8 @@ namespace API.Extensions
             if(string.IsNullOrEmpty(searchTerm)) return query;
             var lowerCaseSearchTerm = searchTerm.Trim().ToLower();
 
-            return  query.Where(x => x.Title.ToLower().Contains(lowerCaseSearchTerm));
+            return  query.Where(x => x.Title.ToLower().Contains(lowerCaseSearchTerm)
+            || x.Description.ToLower().Contains(lowerCaseSearchTerm));
         }
 
         public static IQueryable<Article> Filter (this IQueryable<Article> query, string? categories) 

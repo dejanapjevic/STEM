@@ -35,10 +35,13 @@ const VideoUpload = ({
     formData.append("tutorialId", tutorialId.toString());
 
     try {
-      const response = await fetch("http://localhost:5211/api/Tutorials/upload", {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        "http://localhost:5211/api/Tutorials/upload",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
       if (response.ok) {
         const data = await response.json();
@@ -59,26 +62,42 @@ const VideoUpload = ({
   return (
     <Box sx={{ display: "flex", alignItems: "center", gap: 2, padding: 1 }}>
       <Stack spacing={1} sx={{ maxWidth: 250 }}>
-      <TextField
-  label="Naslov"
-  variant="outlined"
-  size="small"
-  fullWidth
-  value={videoTitle}
-  onChange={handleTitleChange}
-  InputProps={{
-    style: { fontWeight: "bold" } // Podebljava tekst unutar input polja
-  }}
-  InputLabelProps={{
-    style: { fontWeight: "bold" } // Podebljava labelu iznad inputa
-  }}
-/>
+        <TextField
+          label="Naslov"
+          variant="outlined"
+          size="small"
+          fullWidth
+          value={videoTitle}
+          onChange={handleTitleChange}
+          InputProps={{
+            style: { fontWeight: "bold" }, // Podebljava tekst unutar input polja
+          }}
+          InputLabelProps={{
+            style: { fontWeight: "bold" }, // Podebljava labelu iznad inputa
+          }}
+        />
 
-        <Button variant="contained" component="label" size="small" sx={{backgroundColor:"black"}}>
+        <Button
+          variant="contained"
+          component="label"
+          size="small"
+          sx={{ backgroundColor: "black" }}
+        >
           Izaberite video
-          <input type="file" accept="video/mp4,video/webm,video/ogg" hidden onChange={handleFileChange} />
+          <input
+            type="file"
+            accept="video/mp4,video/webm,video/ogg"
+            hidden
+            onChange={handleFileChange}
+          />
         </Button>
-        <Button variant="contained" color="primary" size="small" sx={{backgroundColor:"black"}}  onClick={handleUpload}>
+        <Button
+          variant="contained"
+          color="primary"
+          size="small"
+          sx={{ backgroundColor: "black" }}
+          onClick={handleUpload}
+        >
           Upload
         </Button>
       </Stack>
@@ -86,7 +105,6 @@ const VideoUpload = ({
       {/* Video i naslov pored upload dugmadi */}
       {uploadedVideo && (
         <Stack direction="row" alignItems="center" spacing={1}>
-          <Typography variant="body2">{videoTitle}</Typography>
           <video width="100" height="60" controls>
             <source src={uploadedVideo} type="video/mp4" />
             Your browser does not support the video tag.

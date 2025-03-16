@@ -86,7 +86,6 @@ export default function ForumInventory() {
                 sx={{
                   maxWidth: "230px",
                   whiteSpace: "normal",
-                  fontWeight: "bold",
                 }}
               >
                 <div style={{ display: "inline-flex", alignItems: "center" }}>
@@ -94,10 +93,10 @@ export default function ForumInventory() {
                   {item.title}
                 </div>
               </TableCell>
-              <TableCell align="center" sx={{ fontWeight: "bold" }}>
+              <TableCell align="center">
                 {item.user?.firstName} {item.user?.lastName}
               </TableCell>
-              <TableCell align="center" sx={{ fontWeight: "bold" }}>
+              <TableCell align="center">
                 {new Date(item.createdAt).toLocaleDateString()}
               </TableCell>
               <TableCell align="center">

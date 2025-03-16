@@ -1256,3 +1256,16 @@ C:\Users\PC\Desktop\DIPLOMSKI\STEM\API\obj\Debug\net9.0\refint\API.dll
 C:\Users\PC\Desktop\DIPLOMSKI\STEM\API\obj\Debug\net9.0\API.pdb
 C:\Users\PC\Desktop\DIPLOMSKI\STEM\API\obj\Debug\net9.0\API.genruntimeconfig.cache
 C:\Users\PC\Desktop\DIPLOMSKI\STEM\API\obj\Debug\net9.0\ref\API.dll
+C:\Users\PC\Desktop\STEM\API\bin\Debug\net9.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\PC\Desktop\STEM\API\bin\Debug\net9.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\PC\Desktop\STEM\API\bin\Debug\net9.0\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\PC\Desktop\STEM\API\bin\Debug\net9.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\PC\Desktop\STEM\API\bin\Debug\net9.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\PC\Desktop\STEM\API\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\PC\Desktop\STEM\API\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\PC\Desktop\STEM\API\bin\Debug\net9.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\PC\Desktop\STEM\API\bin\Debug\net9.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\PC\Desktop\STEM\API\bin\Debug\net9.0\Microsoft.Extensions.Logging.dll
+C:\Users\PC\Desktop\STEM\API\bin\Debug\net9.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\PC\Desktop\STEM\API\bin\Debug\net9.0\Microsoft.Extensions.Options.dll
+C:\Users\PC\Desktop\STEM\API\bin\Debug\net9.0\Microsoft.Extensions.Primitives.dll

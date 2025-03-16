@@ -88,10 +88,6 @@ export default function TutorialInventory() {
   return (
     <div
       style={{
-        /*  backgroundImage:
-          "linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 1)), url('background.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center ", */
         minHeight: "100vh",
       }}
     >
@@ -207,18 +203,10 @@ export default function TutorialInventory() {
               key={item.id}
               sx={{ borderBottom: "2px solid rgba(0, 0, 0, 0.6)" }}
             >
-              <TableCell align="center" sx={{ fontWeight: "bold" }}>
-                {item.name}
-              </TableCell>
-              <TableCell align="center" sx={{ fontWeight: "bold" }}>
-                {" "}
-                {item.description}
-              </TableCell>
-              <TableCell align="center" sx={{ fontWeight: "bold" }}>
-                {" "}
-                {item.category}
-              </TableCell>
-              <TableCell align="center" sx={{ fontWeight: "bold" }}>
+              <TableCell align="center">{item.name}</TableCell>
+              <TableCell align="center"> {item.description}</TableCell>
+              <TableCell align="center"> {item.category}</TableCell>
+              <TableCell align="center">
                 <Select
                   value=""
                   displayEmpty
@@ -258,4 +246,3 @@ export default function TutorialInventory() {
     </div>
   );
 }
-

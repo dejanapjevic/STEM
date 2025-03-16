@@ -25,7 +25,7 @@ namespace API.Services
 
             }
             string fileName = Guid.NewGuid().ToString() + extension;
-            string path = @"C:\Users\PC\Desktop\DIPLOMSKI\STEM\client\public\images\articles";
+            string path = @"C:\Users\PC\Desktop\STEM\client\public\images\articles";
             using FileStream stream = new FileStream(Path.Combine(path, fileName), FileMode.Create);
             file.CopyTo(stream);
 
@@ -52,7 +52,7 @@ namespace API.Services
 
             }
             string fileName = Guid.NewGuid().ToString() + extension;
-            string path = @"C:\Users\PC\Desktop\DIPLOMSKI\STEM\client\public\images\profilePictures";
+            string path = @"C:\Users\PC\Desktop\STEM\client\public\images\profilePictures";
             using FileStream stream = new FileStream(Path.Combine(path, fileName), FileMode.Create);
             file.CopyTo(stream);
 
